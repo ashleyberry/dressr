@@ -25,17 +25,23 @@ CREATE TABLE "clothing"(
 "date_worn" DATE
 );
 
+
+
+-- User registration // POST
+INSERT INTO "user" ("first_name", "email", "username", "password", "profile_url")
+VALUES ($1, $2, $3, $4, $5);
+
 -- Clothing GET all items
 SELECT * FROM "clothing";
 
--- Clothing POST 
+-- Clothing add new item // POST 
 INSERT INTO "clothing" ("type", "kind", "brand", "image_url", "color", "material", "description", "date_worn") 
 VALUES ($1, $2, $3, $4, $5, $6, $7, $8);
 
 -- Clothing GET selected item
 SELECT * FROM "clothing" WHERE "id"=$1;
 
--- Clothing PUT selected item
+-- Update selected item // PUT
 UPDATE "clothing" SET "type" = $1, "kind" = $2, "brand" = $3, "image_url" = $4, "color" = $5, "material" = $6, "description" = $7, "date_worn" = $8, WHERE "id" = $9;
 
 -- Clothing DELETE selected item

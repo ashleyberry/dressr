@@ -4,8 +4,11 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 
 class RegisterForm extends Component {
   state = {
+    first_name: '',
+    email: '',
     username: '',
     password: '',
+    profile_url: ''
   };
 
   registerUser = (event) => {
@@ -14,8 +17,11 @@ class RegisterForm extends Component {
     this.props.dispatch({
       type: 'REGISTER',
       payload: {
+        first_name: this.state.first_name,
+        email: this.state.email,
         username: this.state.username,
         password: this.state.password,
+        profile_url: this.state.profile_url,
       },
     });
   }; // end registerUser
@@ -35,6 +41,30 @@ class RegisterForm extends Component {
             {this.props.store.errors.registrationMessage}
           </h3>
         )}
+        <div>
+          <label htmlFor="first_name">
+            First Name:
+            <input
+            
+              type="text"
+              name="first_name"
+              value={ this.state.first_name }
+              required
+              onChange={this.handleInputChangeFor( 'first_name' )}
+            />
+          </label>
+        </div>
+        <div>
+          <label htmlFor="email">
+            Email:
+            <input
+              type="text"
+              name="email"
+              value={ this.state.email }
+              onChange={this.handleInputChangeFor( 'email' )}
+            />
+          </label>
+        </div>
         <div>
           <label htmlFor="username">
             Username:
@@ -56,6 +86,17 @@ class RegisterForm extends Component {
               value={this.state.password}
               required
               onChange={this.handleInputChangeFor('password')}
+            />
+          </label>
+        </div>
+        <div>
+          <label htmlFor="profile_url">
+            Profile Image URL:
+            <input
+              type="text"
+              name="profile_url"
+              value={ this.state.profile_url }
+              onChange={this.handleInputChangeFor( 'profile_url' )}
             />
           </label>
         </div>
