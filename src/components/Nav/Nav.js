@@ -1,20 +1,25 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import LogOutButton from '../LogOutButton/LogOutButton';
+// import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+// import { mdiHanger } from '@mdi/js';
 
 const Nav = (props) => {
   console.log( 'in Nav.js props.store.user.first_name:', props.store.user.first_name)
   let loginLinkData = {
     path: '/login',
     text: 'Login / Register',
+    photo: ''
   };
 
   if (props.store.user.id != null) {
     loginLinkData.path = '/user';
     loginLinkData.text = 'Home';
+    loginLinkData.photo = <img src={ props.store.user.profile_url } className="avatar"/>
+    
+    
   }
 console.log( 'in Nav.js')
   return (
@@ -32,10 +37,10 @@ console.log( 'in Nav.js')
         {/* Show the link to the info page and the logout button if the user is logged in */}
         {props.store.user.id && (
           <>
-            <Link className="nav-link" to="/info">
+            {/* <Link className="nav-link" to="/info">
               Info Page
-            </Link>
-            <LogOutButton className="nav-link" />
+            </Link> */}
+            {/* <LogOutButton className="nav-link" /> */}
           </>
         )}
         {/* Always show this link since the about page is not protected */}
@@ -43,8 +48,7 @@ console.log( 'in Nav.js')
           About
         </Link> */}
         <div className="image-cropper">
-          <img src="https://i.ibb.co/HFP5Sxd/Cher-promo-1.png" 
-            className="avatar"/>
+          { loginLinkData.photo }
         </div>
       </div>
     </div>
