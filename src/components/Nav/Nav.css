@@ -1,3 +1,19 @@
+.image-cropper {
+  display: inline-block;
+  position: relative;
+}
+
+.avatar {
+  margin-top: 10px;
+  margin-right: 5px;
+  object-fit: cover;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  display: inline-block;
+  position: relative;
+}
+
 .nav-title {
     font-size: 24px;
     font-weight: 700;
