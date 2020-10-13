@@ -4,6 +4,15 @@ body,
   height: 100%;
 }
 
+.addItemForm {
+  padding-top: 20px;
+  padding-left: 30px;
+}
+
+.addItemHeader {
+  padding-left: 30px;
+}
+
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0px;
@@ -17,12 +26,12 @@ img {
 
 .itemDescription {
   padding-top: 50px;
-  margin-left: 30px;
-  margin-right: 30px;
+  margin-left: 50px;
+  margin-right: 50px;
 }
 
 .descriptionBtns {
-  margin-top: 50px;
+  margin-top: 60px;
 }
 
 .descriptionHeader {

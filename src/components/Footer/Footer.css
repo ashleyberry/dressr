@@ -1,6 +1,8 @@
 .footer-nav {
   padding: 20px;
   text-align: center;
+  justify-content: center;
+  padding-left: 40px;
 }
 
 .footer-nav-link {
