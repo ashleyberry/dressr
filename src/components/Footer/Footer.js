@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Footer.css';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import DressMe from '../DressMe/DressMe';
 
 // This is one of our simplest components
 // It doesn't have local state, so it can be a function component.
@@ -33,9 +33,12 @@ const Footer = ( props ) => {
                 {/* Show the link to the info page and the logout button if the user is logged in */}
                 {props.store.user.id && (
                 <>
-                    {/* <Link className="nav-link" to="/info">
-                    Info Page
-                    </Link> */}
+                    <Link className="footer-nav-link" to="/addItem">
+                        Add Item
+                    </Link>
+                    <Link className='footer-nav-link' to="/dressMe">
+                        Dress Me
+                    </Link>
                     <LogOutButton className="footer-nav-link" />
                 </>
                 )}

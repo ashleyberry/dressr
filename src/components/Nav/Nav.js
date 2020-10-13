@@ -4,23 +4,27 @@ import { connect } from 'react-redux';
 // import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+// import Icon from '@mdi/react'
 // import { mdiHanger } from '@mdi/js';
+// import FaceIcon from '@material-ui/icons/Face';
 
 const Nav = (props) => {
-  console.log( 'in Nav.js props.store.user.first_name:', props.store.user.first_name)
+
   let loginLinkData = {
     path: '/login',
     text: 'Login / Register',
-    photo: ''
   };
 
   if (props.store.user.id != null) {
     loginLinkData.path = '/user';
-    loginLinkData.text = 'Home';
-    loginLinkData.photo = <img src={ props.store.user.profile_url } className="avatar"/>
-    
-    
+    loginLinkData.text = '';
+
   }
+
+  if ( props.store.user.profile_url != null ) {
+    loginLinkData.photo = <img src={ props.store.user.profile_url } className="avatar"/>
+  }
+
 console.log( 'in Nav.js')
   return (
     <div className="nav">
@@ -47,6 +51,7 @@ console.log( 'in Nav.js')
         {/* <Link className="nav-link" to="/about">
           About
         </Link> */}
+        
         <div className="image-cropper">
           { loginLinkData.photo }
         </div>

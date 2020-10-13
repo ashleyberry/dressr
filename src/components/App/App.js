@@ -19,6 +19,10 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import AddItem from '../AddItem/AddItem';
+import EditItem from '../EditItem/EditItem';
+import Description from '../Description/Description';
+import DressMe from '../DressMe/DressMe';
 
 import './App.css';
 
@@ -60,6 +64,34 @@ class App extends Component {
               exact
               path="/info"
               component={InfoPage}
+            />
+
+            <ProtectedRoute
+              // logged in shows AddItem else shows LoginPage
+              exact
+              path="/addItem"
+              component={ AddItem }
+            />
+
+            <ProtectedRoute
+              // logged in shows EditItem else shows LoginPage
+              exact
+              path="/editItem"
+              component={ EditItem }
+            />
+
+            <ProtectedRoute
+              // logged in shows EditItem else shows LoginPage
+              exact
+              path="/description"
+              component={ Description }
+            />
+
+            <ProtectedRoute
+              // logged in shows EditItem else shows LoginPage
+              exact
+              path="/dressMe"
+              component={ DressMe }
             />
 
             {/* When a value is supplied for the authRedirect prop the user will
