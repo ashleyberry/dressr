@@ -8,9 +8,6 @@ import { withRouter } from 'react-router-dom';
 
 class ClosetItem extends Component {
 
-  state = {
-    heading: 'ClosetItem Component',
-  };
 
   // on item click, send to details page
   onItemClick = ( item ) => {

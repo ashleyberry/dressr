@@ -6,16 +6,10 @@ import Card from '@material-ui/core/Card';
 import './Search.css';
 
 class TemplateClass extends Component {
+
     state = {
         inputValue: '',
       }
-
-    filterByInput = ( input ) => {
-    console.log( 'in filterByInput:', input )
-    console.log( 'this.state:', this.state )
-
-    // return this.props.store.clothing.filter( item => item.includes(this.state.inputValue))
-    }
 
   render() {
     console.log( 'in search.js: this.props.store.clothing', this.props.store.clothing )
@@ -23,10 +17,15 @@ class TemplateClass extends Component {
     const items = this.props.store.clothing.filter(( item )=>{
         if( this.state.inputValue == null) 
           return item
-         else if (item.color.toLowerCase().includes(this.state.inputValue.toLowerCase())) {
+         else if ( item.color.toLowerCase().includes(this.state.inputValue.toLowerCase()) ||
+            item.type.toLowerCase().includes(this.state.inputValue.toLowerCase()) || 
+            item.material.toLowerCase().includes(this.state.inputValue.toLowerCase()) ||
+            item.kind.toLowerCase().includes(this.state.inputValue.toLowerCase()) || 
+            item.brand.toLowerCase().includes(this.state.inputValue.toLowerCase())) {
           return item
         }
-      }).map(item=>{
+      }).map( item=>{
+
         return (
         <div className='closetItem'>
           <ul>
