@@ -2,9 +2,7 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-/**
- * GET route template
- */
+// get all items
 router.get('/', (req, res) => {
     console.log( 'in clothing GET')
     const query = `SELECT * FROM "clothing";`
@@ -14,13 +12,24 @@ router.get('/', (req, res) => {
     })
     .catch( error => {
         console.log( 'error in clothing GET',error );
-        res.sendStatus(500);
+        res.sendStatus( 500 );
     })
   });
 
-/**
- * POST route template
- */
+// Delete a clothing item
+router.delete('/:id', (req, res) => {
+  console.log( 'in delete router:', req.params.id)
+  const query = `DELETE FROM "clothing" WHERE "id"=$1;`
+  pool.query(query, [req.params.id])
+  .then(() => 
+      res.sendStatus(200))
+  .catch(error => {
+      console.log('ERROR in clothing DELETE:', error);
+      res.sendStatus( 500 )
+  })
+});
+
+// Add a clothing item
 router.post('/', (req, res) => {
   console.log( 'req.body is:', req.body )
   const query = `INSERT INTO "clothing" ("type", "kind", "brand", "image_url", "color", "material", "description", "user_id") 
@@ -29,7 +38,7 @@ router.post('/', (req, res) => {
   .then(result => {
     res.sendStatus( 201 );
   }).catch(err => {
-    console.log( err );
+    console.log( 'ERROR in clothing POST:', err );
     res.sendStatus( 500 )
   })
 });

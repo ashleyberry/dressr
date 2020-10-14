@@ -14,6 +14,18 @@ function* addClothingSaga( action ) {
     })
 }
 
+function* deleteClothingSaga( action ) {
+    console.log( 'in deleteClothingSaga with:', action.payload );
+    yield axios({
+        method: 'DELETE',
+        url: `/api/clothing/${ action.payload }`,
+        data: action.payload
+    })
+    yield put({
+        type: 'FETCH_CLOTHING',
+    })
+}
+
 function* editClothingSaga( action ) {
     console.log( 'in editClothingSaga with', action )
     yield axios({
@@ -40,8 +52,9 @@ function* getClothingSaga( action ) {
 }
 
 function* clothingSaga() {
-    yield takeEvery('FETCH_CLOTHING', getClothingSaga)
     yield takeLatest( 'ADD_ITEM', addClothingSaga )
+    yield takeLatest( 'DELETE_ITEM', deleteClothingSaga )
+    yield takeEvery('FETCH_CLOTHING', getClothingSaga)
     yield takeLatest( 'UPDATE_ITEM', editClothingSaga )
 }
 

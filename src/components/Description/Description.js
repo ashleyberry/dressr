@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import { withRouter } from 'react-router-dom';
 
 // stying with material-ui
 import { 
@@ -35,7 +36,11 @@ class Description extends Component {
     // delete item
     onDeleteItem = ( itemId ) => {
         console.log( 'in onDeleteItem:', itemId )
-        
+        this.props.dispatch({
+            type: 'DELETE_ITEM',
+            payload: itemId
+        })
+    this.props.history.push('/home');  
     } // end onDeleteItem
 
   render() {
@@ -81,4 +86,4 @@ class Description extends Component {
   }
 }
 
-export default connect(mapStoreToProps)( Description );
+export default connect(mapStoreToProps) (withRouter ( Description ));
