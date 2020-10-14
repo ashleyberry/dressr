@@ -24,8 +24,7 @@ class AddItem extends Component {
     image_url: '',
     color: '',
     material: '',
-    description: '',
-    heading: 'AddItem Component',
+    description: ''
   };
 
   onCancel = () => {
@@ -34,7 +33,12 @@ class AddItem extends Component {
   }
 
   onSave = () => {
-    console.log('in onSave');
+    console.log('in onSave:', this.state );
+    this.props.dispatch({
+      type: 'ADD_ITEM',
+      payload: this.state
+    })
+    this.props.history.push( '/home' );
   }
 
   // updates the local state movie information 
@@ -70,6 +74,9 @@ class AddItem extends Component {
                 <option value="Dress">Dress</option>
                 <option value="Skirt">Skirt</option>
                 <option value="Blouse">Blouse</option>
+                <option value="Pants">Pants</option>
+                <option value="Shirt">Shirt</option>
+                <option value="Jacket">Jacket</option>
                 <option value="Other">Other</option>
             </select>
           </div>
@@ -104,14 +111,14 @@ class AddItem extends Component {
               Brand:
             </label>
             <br/>
-            <input></input>
+            <input onChange={ ( event ) => this.handleChangeFor( event, 'brand' )}></input>
           </div>
 
           <div className="image_Url">
             <label htmlFor="image_Url">
              Image URL:
             </label>
-            <input></input>
+            <input onChange={ ( event ) => this.handleChangeFor( event, 'image_url' )}></input>
           </div>
 
           <div className="colorCheckbox">
@@ -165,10 +172,6 @@ class AddItem extends Component {
               color="primary"
               value="Grey"
               onChange={ ( event ) => this.handleChangeFor( event, 'color' )}/>Grey
-                          <Checkbox 
-              color="primary"
-              value="Multi-color"
-              onChange={ ( event ) => this.handleChangeFor( event, 'color' )}/>Multi-color
                           <Checkbox 
               color="primary"
               value="Other"
@@ -240,28 +243,28 @@ class AddItem extends Component {
                   variant='outlined'
                   multiline
                   style = { { width: 300 } }
-                  rowsMax={40}
+                  rowsMax={ 40 }
                   >
               </TextField>
 
             </div>
         
-            <div className='descriptionBtns'
-                style={{textAlign:'center'}}>
-                <Button 
-                    style={{marginRight:'10px'}}
-                    className='editItemBtn'
-                    onClick={ this.onCancel }
-                    variant='outlined'
-                    color='primary'>
-                    Cancel
-                </Button>
-                <Button 
-                    onClick= { this.onSave }
-                    variant='outlined'
-                    color='secondary'>Save
-                </Button>
-            </div>
+          <div className='descriptionBtns'
+              style={{textAlign:'center'}}>
+              <Button 
+                  style={{marginRight:'10px'}}
+                  className='editItemBtn'
+                  onClick={ this.onCancel }
+                  variant='outlined'
+                  color='primary'>
+                  Cancel
+              </Button>
+              <Button 
+                  onClick= { this.onSave }
+                  variant='outlined'
+                  color='secondary'>Save
+              </Button>
+          </div>
         
         
         </div>

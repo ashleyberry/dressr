@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import { Typography } from '@material-ui/core'
 
 class LoginForm extends Component {
   state = {
@@ -32,8 +33,13 @@ class LoginForm extends Component {
 
   render() {
     return (
+      <div>
+      <Typography
+        variant='h4'>
+        Login
+        </Typography>
       <form className="formPanel" onSubmit={this.login}>
-        <h2>Login</h2>
+                
         {this.props.store.errors.loginMessage && (
           <h3 className="alert" role="alert">
             {this.props.store.errors.loginMessage}
@@ -67,6 +73,7 @@ class LoginForm extends Component {
           <input className="btn" type="submit" name="submit" value="Log In" />
         </div>
       </form>
+      </div>
     );
   }
 }

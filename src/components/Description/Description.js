@@ -7,29 +7,35 @@ import {
     Button, 
     Typography
   } from '@material-ui/core';
-// Basic class component structure for React with default state
-// value setup. When making a new component be sure to replace
-// the component name TemplateClass with the name for the new
-// component.
+
 class Description extends Component {
 
     state = {
-        id: '1',
-        color: 'White',
-        brand: 'Calvin Klein',
-        type: 'Dress',
-        image_url: 'https://www.maykool.com/media/catalog/product/cache/1/image/600x900/9df78eab33525d08d6e5fb8d27136e95/w/h/white-ruched-mesh-spaghetti-straps-sexy-bodycon-mini-dress-070430_1.jpg',
-        description: 'Great party dress'
+        id: this.props.store.recent.id,
+        type: this.props.store.recent.type,
+        kind: this.props.store.recent.kind,
+        brand: this.props.store.recent.brand,
+        image_url: this.props.store.recent.image_url,
+        color: this.props.store.recent.color,
+        material: this.props.store.recent.material,
+        description: this.props.store.recent.description
     };
 
     // go to edit page
-    onEditItem = () => {
-        console.log( 'in onEditItem:' )
-    } // end onEditMovie
+    onEditItem = ( item ) => {
+        console.log( 'in onEditItem:', item )
+        this.props.dispatch({
+            //setting recent item
+            type: 'SET_BATMAN',
+            payload: item
+    })
+    this.props.history.push('/editItem');  
+  } // end onEditItem
 
     // delete item
-    onDeleteItem = () => {
-        console.log( 'in onDeleteItem:' )
+    onDeleteItem = ( itemId ) => {
+        console.log( 'in onDeleteItem:', itemId )
+        
     } // end onDeleteItem
 
   render() {
@@ -59,13 +65,13 @@ class Description extends Component {
                 <Button 
                     style={{marginRight:'10px'}}
                     className='editItemBtn'
-                    onClick={ this.onEditItem }
+                    onClick={ () => this.onEditItem( this.state ) }
                     variant='outlined'
                     color='primary'>
                     Edit Item
                 </Button>
                 <Button 
-                    onClick= { this.onDeleteItem }
+                    onClick= { () => this.onDeleteItem( this.state.id ) }
                     variant='outlined'
                     color='secondary'>Delete Item
                 </Button>

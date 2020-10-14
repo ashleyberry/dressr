@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import { withRouter } from 'react-router-dom';
+
 import Select from 'react-select'
 // import material-ui styling
 import { 
@@ -15,15 +17,16 @@ import {
 // value setup. When making a new component be sure to replace
 // the component name TemplateClass with the name for the new
 // component.
-class EdiItem extends Component {
+class EditItem extends Component {
   state = {
-    type: '',
-    kind: '',
-    brand: '',
-    image_url: '',
-    color: '',
-    material: '',
-    description: ''
+    id: this.props.store.recent.id,
+    type: this.props.store.recent.type,
+    kind: this.props.store.recent.kind,
+    brand: this.props.store.recent.brand,
+    image_url: this.props.store.recent.image_url,
+    color: this.props.store.recent.color,
+    material: this.props.store.recent.material,
+    description: this.props.store.recent.description
   };
 
   onCancel = () => {
@@ -32,7 +35,12 @@ class EdiItem extends Component {
   }
 
   onSave = () => {
-    console.log('in onSave');
+    console.log('in onSave', this.state );
+    this.props.dispatch({
+      type: 'UPDATE_ITEM',
+      payload: this.state
+    })
+    // this.props.history.push('/home')
   }
 
   // updates the local state movie information 
@@ -52,11 +60,11 @@ class EdiItem extends Component {
       <div className ='addItemHeader'>
         <Typography 
             variant='h4'>
-            Edit Item
+            Edit { this.props.store.recent.brand } { this.props.store.recent.type }
         </Typography>
       </div>
 
-      <div className='addItemForm'>
+      <div className='editItemForm'>
 
         <div className='clothingType'>
           <label htmlFor="clothingType">
@@ -69,6 +77,7 @@ class EdiItem extends Component {
               <option value="Dress">Dress</option>
               <option value="Skirt">Skirt</option>
               <option value="Blouse">Blouse</option>
+              <option value="Pants">Pants</option>
               <option value="Other">Other</option>
           </select>
         </div>
@@ -103,14 +112,17 @@ class EdiItem extends Component {
             Brand:
           </label>
           <br/>
-          <input></input>
+          <input value={ this.state.brand }
+            onChange={ ( event ) => this.handleChangeFor( event, 'brand' )}></input>
         </div>
 
         <div className="image_Url">
           <label htmlFor="image_Url">
            Image URL:
           </label>
-          <input></input>
+          <input
+            onChange={ ( event ) => this.handleChangeFor( event, 'image_url' )}>
+          </input>
         </div>
 
         <div className="colorCheckbox">
@@ -233,6 +245,7 @@ class EdiItem extends Component {
 
         <div className='descriptionInput'>
             <TextField 
+                value={ this.state.description }
                 onChange={ ( event ) => this.handleChangeFor ( event, 'description' ) } 
                 type='text' 
                 label='Item Description'
@@ -262,7 +275,6 @@ class EdiItem extends Component {
               </Button>
           </div>
       
-      
       </div>
 
     </div>
@@ -270,4 +282,4 @@ class EdiItem extends Component {
   }
 }
 
-export default connect(mapStoreToProps)( EdiItem );
+export default connect(mapStoreToProps)(withRouter ( EditItem ));

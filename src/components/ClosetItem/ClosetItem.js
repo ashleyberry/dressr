@@ -4,6 +4,7 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import './ClosetItem.css';
 // styling via material ui
 import Card from '@material-ui/core/Card';
+import { withRouter } from 'react-router-dom';
 
 // Basic class component structure for React with default state
 // value setup. When making a new component be sure to replace
@@ -15,20 +16,15 @@ class ClosetItem extends Component {
     heading: 'ClosetItem Component',
   };
 
-    // getting our selected item's id
-    onGetInfo = () => {
-      console.log('onGetInfo this.state', this.state);
-      // first dispatch to get selected movie's genre(s)
-      this.props.dispatch({
-        type: 'FETCH_GENRE', 
-        payload: this.state});
-      // second dispatch to get selected movie's info
-      this.props.dispatch({
-        type: 'FETCH_MOVIE', 
-        payload: this.state});
-      // sends user to details page
-      this.props.history.push( '/details' );
-    } // end onGetInfo
+  // on item click, send to details page
+  onItemClick = ( item ) => {
+    console.log( 'in onItemClick:', item);
+    this.props.dispatch({
+      type: 'SET_BATMAN',
+      payload: item
+  })
+  this.props.history.push('/description');  
+  }
 
   render() {
     return (
@@ -38,7 +34,7 @@ class ClosetItem extends Component {
               <Card>
                 <img src={ this.props.item.image_url } 
                     value={ this.props.item.key }
-                    onClick={ this.onGetInfo }
+                    onClick={() => this.onItemClick( this.props.item ) }
                     >
                 </img>
               </Card>
@@ -49,4 +45,4 @@ class ClosetItem extends Component {
   }
 }
 
-export default connect( mapStoreToProps )( ClosetItem );
+export default connect( mapStoreToProps ) ( withRouter( ClosetItem ));
