@@ -6,10 +6,6 @@ import './ClosetItem.css';
 import Card from '@material-ui/core/Card';
 import { withRouter } from 'react-router-dom';
 
-// Basic class component structure for React with default state
-// value setup. When making a new component be sure to replace
-// the component name TemplateClass with the name for the new
-// component.
 class ClosetItem extends Component {
 
   state = {
@@ -30,7 +26,7 @@ class ClosetItem extends Component {
     return (
 
          <div className='closetItem'>
-          <li key={ this.props.item.key }>
+          {/* <li key={ this.props.item.key }>
               <Card>
                 <img src={ this.props.item.image_url } 
                     value={ this.props.item.key }
@@ -38,7 +34,7 @@ class ClosetItem extends Component {
                     >
                 </img>
               </Card>
-          </li>
+          </li> */}
         </div>
 
     );
