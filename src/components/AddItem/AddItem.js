@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import { withRouter } from 'react-router-dom';
+
 import Select from 'react-select'
 
 // import material-ui styling
@@ -19,12 +21,16 @@ class AddItem extends Component {
     type: '',
     kind: '',
     brand: '',
+    image_url: '',
     color: '',
+    material: '',
+    description: '',
     heading: 'AddItem Component',
   };
 
   onCancel = () => {
     console.log('in onCancel');
+    this.props.history.push( '/home' );
   }
 
   onSave = () => {
@@ -266,4 +272,4 @@ class AddItem extends Component {
   }
 }
 
-export default connect( mapStoreToProps )( AddItem );
+export default connect( mapStoreToProps ) ( withRouter ( AddItem ));

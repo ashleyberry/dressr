@@ -1,0 +1,14 @@
+.home, img {
+    display: inline-block
+  }
+  
+  li {
+    display: inline-block;
+    margin-right: 30px;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  

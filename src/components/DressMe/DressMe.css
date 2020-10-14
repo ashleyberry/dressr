@@ -1,0 +1,17 @@
+.dressMeImages, img {
+    display: inline-block;
+    object-fit: cover;
+    height: 275px;
+    width: 175px;
+
+}
+
+.dressMe {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.dressMeHeader {
+    text-align: center;
+}
