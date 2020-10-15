@@ -8,7 +8,10 @@ import Select from 'react-select'
 import { 
   Button, 
   Checkbox,
-  FormControlLabel,
+  FormControl,
+  FormHelperText,
+  InputLabel,
+  NativeSelect,
   TextField,
   Typography
 } from '@material-ui/core';
@@ -18,9 +21,10 @@ import {
 // the component name TemplateClass with the name for the new
 // component.
 class EditItem extends Component {
+
   state = {
     id: this.props.store.recent.id,
-    type: this.props.store.recent.type,
+    type_id: this.props.store.recent.type_id,
     kind: this.props.store.recent.kind,
     brand: this.props.store.recent.brand,
     image_url: this.props.store.recent.image_url,
@@ -28,6 +32,7 @@ class EditItem extends Component {
     material: this.props.store.recent.material,
     description: this.props.store.recent.description
   };
+
 
   onCancel = () => {
     console.log('in onCancel');
@@ -46,6 +51,9 @@ class EditItem extends Component {
   // updates the local state movie information 
   handleChangeFor = ( event, propertyName ) => {
       console.log( 'in handleChangeFor:', event.target.value )
+      if ( event.target.value === 'other') {
+        this.onOtherClick();
+      }
       this.setState({
           ...this.state,
           [ propertyName ]: event.target.value
@@ -53,8 +61,11 @@ class EditItem extends Component {
       console.log('this.state', this.state )
   }
 
+  onOtherClick = () => {
+    console.log( 'in onOtherClick' )
+  }
+
   render() {
-    
     return (
       <div>
       <div className ='addItemHeader'>
@@ -66,21 +77,38 @@ class EditItem extends Component {
 
       <div className='editItemForm'>
 
-        <div className='clothingType'>
-          <label htmlFor="clothingType">
-            Type:
-          </label>
-          <br/>
-          <select 
-              name="clothingType" id="clothingType"
-              onChange={ ( event ) => this.handleChangeFor( event, 'type' )}>
-              <option value="Dress">Dress</option>
-              <option value="Skirt">Skirt</option>
-              <option value="Blouse">Blouse</option>
-              <option value="Pants">Pants</option>
-              <option value="Other">Other</option>
-          </select>
+      {/* drop down with type names */}
+        <div>
+          <FormControl>
+            <InputLabel htmlFor="type-native-helper">Type</InputLabel>
+              <NativeSelect
+                // value={ this.props.store.recent.type }
+                onChange={ ( event ) => this.handleChangeFor ( event, 'type_id' ) }
+                inputProps={{
+                  name: 'type_id',
+                  id: 'type-native-helper'}}>
+                <option aria-label="None" value="" />
+                {this.props.store.types.map( item => {
+                  return (
+                    <option key={ item.id } 
+                    value={ item.type.toLowerCase() }>
+                    { item.type }
+                    </option>
+                  )
+                })}
+                <option onClick={ this.onOtherClick }>other</option>
+              </NativeSelect>
+            {/* <FormHelperText id='helper'>Type:</FormHelperText> */}
+          </FormControl>
         </div>
+
+          <div hidden={ ( this.state.type === 'other' ) ? false : true } >
+            <label htmlFor="type">
+            SURPRISE!
+            </label>
+            <input
+            ></input>
+          </div>
 
         <div className="kindCheckbox">
           <Checkbox 
@@ -257,7 +285,9 @@ class EditItem extends Component {
             </TextField>
 
           </div>
-      
+
+
+
           <div className='descriptionBtns'
               style={{textAlign:'center'}}>
               <Button 

@@ -3,6 +3,7 @@ import errors from './errors.reducer';
 import user from './user.reducer';
 import clothing from './clothing.reducer';
 import recent from './recent.reducer';
+import types from './type.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   user, // will have an id and username if someone is logged in
   clothing, // will hold the clothing from user's wardrobe if logged in
-  recent // will hold the most recent selected clothing item
-});
+  recent, // will hold the most recent selected clothing item
+  types
+  });
 
 export default rootReducer;

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 // import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import { Typography } from '@material-ui/core';
 // import Icon from '@mdi/react'
 // import { mdiHanger } from '@mdi/js';
 // import FaceIcon from '@material-ui/icons/Face';
@@ -25,11 +26,13 @@ const Nav = (props) => {
     loginLinkData.photo = <img src={ props.store.user.profile_url } className="avatar"/>
   }
 
-console.log( 'in Nav.js')
   return (
     <div className="nav">
       <Link to="/home">
-        <h2 className="nav-title">dressr</h2>
+        <Typography
+          variant='h3'
+          className="nav-title">dressr
+        </Typography>
       </Link>
       <div className="nav-right">
         <Link className="nav-link" to={loginLinkData.path}>

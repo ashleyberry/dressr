@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { withRouter } from 'react-router-dom';
+import './Description.css';
 
 // stying with material-ui
 import { 
@@ -13,6 +14,7 @@ class Description extends Component {
 
     state = {
         id: this.props.store.recent.id,
+        type_id: this.props.store.recent.type_id,
         type: this.props.store.recent.type,
         kind: this.props.store.recent.kind,
         brand: this.props.store.recent.brand,
@@ -60,7 +62,7 @@ class Description extends Component {
                 </div>
                 <div className='itemDescription'>
                     <Typography 
-                        variant='p'>
+                        variant='body1'>
                         { this.state.description }
                     </Typography>
                 </div>
