@@ -10,32 +10,24 @@ import './UserPage.css';
 class UserPage extends Component {
 
   state = {
-    inputValue: '',
+    inputValue: ''
   }
 
-// on item click, send to details page
-onItemClick = ( item ) => {
-    console.log( 'in onItemClick:', item);
+  // on item click, send to details page
+  onItemClick = ( item ) => {
+    console.log( 'in onItemClick:', item );
     this.props.dispatch({
+      // set recently clicked item
         type: 'SET_BATMAN',
         payload: item
     })
-    this.props.history.push('/description');  
-}
-
-  componentDidMount() {
-    this.getInfo();
-  }
-
-  getInfo = () => {
-    console.log( 'in getInfo' );
     this.props.dispatch({
-      type: 'FETCH_CLOTHING'
-    });
-    this.props.dispatch({
-      type: 'FETCH_TYPES'
+      type: 'FETCH_TYPE',
+      payload: item.id
     })
+    this.props.history.push('/description');  
   }
+
 
   render() {
     const items = this.props.store.clothing.filter(( item )=>{

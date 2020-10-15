@@ -1,0 +1,7 @@
+.editItemHeader {
+    text-transform: capitalize;
+}
+
+.editType {
+    display: inline-block;
+}

@@ -1,6 +1,4 @@
-// Used to store the clothing types
-const types = (state = [], action) => {
-    console.log( 'in type reducer:', action.payload )
+const clothingTypes = (state = [], action) => {
     switch (action.type) {
         case 'SET_TYPES':
             console.log('updated type reducer:', action.payload )
@@ -10,4 +8,4 @@ const types = (state = [], action) => {
     }
 }
 
-export default types;
+export default clothingTypes;

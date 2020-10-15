@@ -13,31 +13,19 @@ import {
 class Description extends Component {
 
     state = {
-        id: this.props.store.recent.id,
-        type_id: this.props.store.recent.type_id,
-        type: this.props.store.recent.type,
-        kind: this.props.store.recent.kind,
-        brand: this.props.store.recent.brand,
-        image_url: this.props.store.recent.image_url,
-        color: this.props.store.recent.color,
-        material: this.props.store.recent.material,
-        description: this.props.store.recent.description
+        id: this.props.store.recentClothing.id,
+        type: this.props.store.recentClothing.type,
+        kind: this.props.store.recentClothing.kind,
+        brand: this.props.store.recentClothing.brand,
+        image_url: this.props.store.recentClothing.image_url,
+        color: this.props.store.recentClothing.color,
+        material: this.props.store.recentClothing.material,
+        description: this.props.store.recentClothing.description
     };
-
-    // go to edit page
-    onEditItem = ( item ) => {
-        console.log( 'in onEditItem:', item )
-        this.props.dispatch({
-            //setting recent item
-            type: 'SET_BATMAN',
-            payload: item
-    })
-    this.props.history.push('/editItem');  
-  } // end onEditItem
 
     // delete item
     onDeleteItem = ( itemId ) => {
-        console.log( 'in onDeleteItem:', itemId )
+        // console.log( 'in onDeleteItem:', itemId )
         this.props.dispatch({
             type: 'DELETE_ITEM',
             payload: itemId
@@ -45,16 +33,28 @@ class Description extends Component {
     this.props.history.push('/home');  
     } // end onDeleteItem
 
-  render() {
+    onEditItem = ( item ) => {
+        console.log( 'in onEditItem:', item )
+        this.props.dispatch({
+            //setting.recentClothing item
+            type: 'SET_BATMAN',
+            payload: item
+        })
+        this.props.history.push('/editItem'); 
+  } // end onEditItem
 
+
+  render() {
+    console.log( 'DESCRIPTION this.props.store:', this.props.store )
+    console.log( 'DESCRIPTION this.state:', this.state )
     return (
         <div>
             <div className='description'>
                 <div className ='descriptionHeader'>
-                <Typography 
-                    variant='h4'>
-                    { this.state.color } { this.state.brand } { this.state.type }
-                </Typography>
+                    <Typography 
+                        variant='h4'>
+                        { this.state.color } { this.state.brand } { this.state.type }
+                    </Typography>
                 </div>
                 <br/>
                 <div className='descriptionImg'>
@@ -69,6 +69,7 @@ class Description extends Component {
             </div>
             <div className='descriptionBtns'
                 style={{textAlign:'center'}}>
+  
                 <Button 
                     style={{marginRight:'10px'}}
                     className='editItemBtn'
@@ -77,11 +78,13 @@ class Description extends Component {
                     color='primary'>
                     Edit Item
                 </Button>
-                <Button 
-                    onClick= { () => this.onDeleteItem( this.state.id ) }
-                    variant='outlined'
-                    color='secondary'>Delete Item
-                </Button>
+        
+           
+                    <Button 
+                        onClick= { () => this.onDeleteItem( this.state.id ) }
+                        variant='outlined'
+                        color='secondary'>Delete Item
+                    </Button>
             </div>
       </div>
     );

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { withRouter } from 'react-router-dom';
+import './EditItem.css';
 
 import Select from 'react-select'
 // import material-ui styling
@@ -23,15 +24,15 @@ import {
 class EditItem extends Component {
 
   state = {
-    id: this.props.store.recent.id,
-    type_id: this.props.store.recent.type_id,
-    kind: this.props.store.recent.kind,
-    brand: this.props.store.recent.brand,
-    image_url: this.props.store.recent.image_url,
-    color: this.props.store.recent.color,
-    material: this.props.store.recent.material,
-    description: this.props.store.recent.description
-  };
+    id: this.props.store.recentClothing.id,
+    type: this.props.store.recentClothing.type,
+    kind: this.props.store.recentClothing.kind,
+    brand: this.props.store.recentClothing.brand,
+    image_url: this.props.store.recentClothing.image_url,
+    color: this.props.store.recentClothing.color,
+    material: this.props.store.recentClothing.material,
+    description: this.props.store.recentClothing.description
+};
 
 
   onCancel = () => {
@@ -45,7 +46,11 @@ class EditItem extends Component {
       type: 'UPDATE_ITEM',
       payload: this.state
     })
-    // this.props.history.push('/home')
+    // this.props.dispatch({
+    //   type: 'UPDATE_CLOTHING_TYPE',
+    //   payload: this.state
+    // })
+    this.props.history.push('/home')
   }
 
   // updates the local state movie information 
@@ -61,20 +66,25 @@ class EditItem extends Component {
       console.log('this.state', this.state )
   }
 
+  // TODO
   onOtherClick = () => {
     console.log( 'in onOtherClick' )
+    this.setState({
+      ...this.state,
+
+    })
+    // POST to types
   }
 
   render() {
     return (
       <div>
-      <div className ='addItemHeader'>
+      <div className ='editItemHeader'>
         <Typography 
             variant='h4'>
-            Edit { this.props.store.recent.brand } { this.props.store.recent.type }
+            Edit { this.props.store.recentClothing.brand } { this.props.store.recentClothing.type }
         </Typography>
       </div>
-
       <div className='editItemForm'>
 
       {/* drop down with type names */}
@@ -82,17 +92,16 @@ class EditItem extends Component {
           <FormControl>
             <InputLabel htmlFor="type-native-helper">Type</InputLabel>
               <NativeSelect
-                // value={ this.props.store.recent.type }
-                onChange={ ( event ) => this.handleChangeFor ( event, 'type_id' ) }
+                onChange={ ( event ) => this.handleChangeFor ( event, 'type' ) }
                 inputProps={{
-                  name: 'type_id',
+                  name: 'type',
                   id: 'type-native-helper'}}>
                 <option aria-label="None" value="" />
-                {this.props.store.types.map( item => {
+                {this.props.store.types.map( type => {
                   return (
-                    <option key={ item.id } 
-                    value={ item.type.toLowerCase() }>
-                    { item.type }
+                    <option key={ type.id } 
+                    value={ type.type }>
+                    { type.type }
                     </option>
                   )
                 })}
@@ -102,7 +111,8 @@ class EditItem extends Component {
           </FormControl>
         </div>
 
-          <div hidden={ ( this.state.type === 'other' ) ? false : true } >
+          <div className='otherHiddenField'
+            hidden={ ( this.state.isOther ) ? false : true } >
             <label htmlFor="type">
             SURPRISE!
             </label>

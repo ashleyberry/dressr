@@ -26,8 +26,8 @@ app.use(passport.session());
 
 /* Routes */
 app.use('/api/user', userRouter);
-app.use('/api/clothing', clothingRouter);
-app.use('/api/type', typeRouter)
+app.use( '/api/clothing', clothingRouter );
+app.use( '/api/type', typeRouter );
 
 // Serve static files
 app.use(express.static('build'));

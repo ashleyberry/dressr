@@ -1,4 +1,4 @@
-const recentReducer = (state = [], action) => {
+const recentClothingReducer = (state = [], action) => {
     switch (action.type) {
       case 'SET_BATMAN':
         return action.payload;
@@ -11,5 +11,5 @@ const recentReducer = (state = [], action) => {
   
   // item will be on the redux state at:
   // state.item
-  export default recentReducer;
+  export default recentClothingReducer;
   

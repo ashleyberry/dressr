@@ -2,8 +2,9 @@ import { combineReducers } from 'redux';
 import errors from './errors.reducer';
 import user from './user.reducer';
 import clothing from './clothing.reducer';
-import recent from './recent.reducer';
+import recentClothing from './recent.clothing.reducer';
 import types from './type.reducer';
+import recentType from './recent.type.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -15,8 +16,9 @@ const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   user, // will have an id and username if someone is logged in
   clothing, // will hold the clothing from user's wardrobe if logged in
-  recent, // will hold the most recent selected clothing item
-  types
+  recentClothing, // will hold the most recent selected clothing item
+  types, // will hold the types of clothing
+  recentType // will hold the most recent selected clothing type
   });
 
 export default rootReducer;
