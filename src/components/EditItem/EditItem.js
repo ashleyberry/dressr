@@ -31,7 +31,8 @@ class EditItem extends Component {
     image_url: this.props.store.recentClothing.image_url,
     color: this.props.store.recentClothing.color,
     material: this.props.store.recentClothing.material,
-    description: this.props.store.recentClothing.description
+    description: this.props.store.recentClothing.description,
+    isOther: false
 };
 
 
@@ -71,9 +72,9 @@ class EditItem extends Component {
     console.log( 'in onOtherClick' )
     this.setState({
       ...this.state,
-
+      isOther: true
     })
-    // POST to types
+    console.log( 'updated this.state.isOther:', this.state.isOther )
   }
 
   render() {
@@ -111,13 +112,10 @@ class EditItem extends Component {
           </FormControl>
         </div>
 
-          <div className='otherHiddenField'
-            hidden={ ( this.state.isOther ) ? false : true } >
-            <label htmlFor="type">
-            SURPRISE!
-            </label>
-            <input
-            ></input>
+          <div className='otherHiddenField'>
+            {this.state.type === 'other' ? (
+              <div><label htmlFor="type">SURPRISE!</label><input></input></div> ) : ( null
+            )}
           </div>
 
         <div className="kindCheckbox">

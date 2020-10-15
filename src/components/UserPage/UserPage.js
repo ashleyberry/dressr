@@ -28,13 +28,12 @@ class UserPage extends Component {
     this.props.history.push('/description');  
   }
 
-
   render() {
     const items = this.props.store.clothing.filter(( item )=>{
         if( this.state.inputValue == null) {
           return item
         } else if ( item.color.toLowerCase().includes(this.state.inputValue.toLowerCase()) ||
-            // item.type.toLowerCase().includes(this.state.inputValue.toLowerCase()) || 
+            item.type.toLowerCase().includes(this.state.inputValue.toLowerCase()) || 
             item.material.toLowerCase().includes(this.state.inputValue.toLowerCase()) ||
             item.kind.toLowerCase().includes(this.state.inputValue.toLowerCase()) || 
             item.brand.toLowerCase().includes(this.state.inputValue.toLowerCase())) {
