@@ -34,7 +34,6 @@ function* getRecentTypeSaga( action ) {
 } // end getRecentTypeSaga
 
 
-
 function* typeSaga() {
     yield takeEvery( 'FETCH_TYPES', getTypesSaga );
     yield takeLatest( 'FETCH_TYPE', getRecentTypeSaga );

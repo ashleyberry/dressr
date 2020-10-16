@@ -69,6 +69,7 @@ class EditItem extends Component {
       </div>
       <div className='editItemForm'>
 
+
       {/* drop down with type names */}
         <div>
           <FormControl>
@@ -89,26 +90,22 @@ class EditItem extends Component {
                 })}
                 <option onClick={ this.onOtherClick }>other</option>
               </NativeSelect>
-            {/* <FormHelperText id='helper'>Type:</FormHelperText> */}
+        
           </FormControl>
-        </div>
 
-          {/* <div className='otherHiddenField'>
-            {this.state.type === 'other' ? (
-              <div>
-                <label htmlFor="type">What type of clothing?</label>
-                <input></input>
-                </div> ) : ( null
-            )}
-          </div> */}
-
-        <br/>
-          <div>
-            <label htmlFor="type">If 'Other', enter type:</label>
-            <input 
+          <div className="hiddenOther"
+            style = { { paddingTop: 10 } }>
+            { this.state.type !== 'other' ? (
+              null ) : ( <TextField className="otherType"
+              id="outlined-basic" 
+              label="If 'Other', enter type:" 
+              variant="outlined" 
               onChange={ ( event ) => this.handleChangeFor ( event, 'type' ) }>
-            </input>
+            </TextField>
+            )}
           </div>
+          
+        </div>
 
         <div className="kindCheckbox">
           <Checkbox 

@@ -39,22 +39,21 @@ class UserPage extends Component {
             item.brand.toLowerCase().includes(this.state.inputValue.toLowerCase())) {
           return item
         } 
-      }).map( item=>{
+      }).map( (item, i ) =>{
 
         return (
-        <div className='closetItem'>
-          <ul>
-            <Card>
-                <img src={ item.image_url } 
-                    value={ item.key }
-                    onClick={() => this.onItemClick( item )}>
-                </img>
-            </Card>
-          </ul>
-        </div>
+          <div className='closetItem' key={ i }>
+            <ul>
+              <Card>
+                  <img src={ item.image_url } 
+                      value={ item.key }
+                      onClick={() => this.onItemClick( item )}>
+                  </img>
+              </Card>
+            </ul>
+          </div>
       )
     })
-
 
     return (
         <div>

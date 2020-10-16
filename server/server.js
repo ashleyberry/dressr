@@ -25,7 +25,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 /* Routes */
-app.use('/api/user', userRouter);
+app.use( '/api/user', userRouter );
 app.use( '/api/clothing', clothingRouter );
 app.use( '/api/type', typeRouter );
 

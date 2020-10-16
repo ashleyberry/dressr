@@ -25,7 +25,6 @@ class Description extends Component {
 
     // delete item
     onDeleteItem = ( itemId ) => {
-        // console.log( 'in onDeleteItem:', itemId )
         this.props.dispatch({
             type: 'DELETE_ITEM',
             payload: itemId
@@ -34,7 +33,6 @@ class Description extends Component {
     } // end onDeleteItem
 
     onEditItem = ( item ) => {
-        console.log( 'in onEditItem:', item )
         this.props.dispatch({
             //setting.recentClothing item
             type: 'SET_BATMAN',
@@ -45,8 +43,6 @@ class Description extends Component {
 
 
   render() {
-    console.log( 'DESCRIPTION this.props.store:', this.props.store )
-    console.log( 'DESCRIPTION this.state:', this.state )
     return (
         <div>
             <div className='description'>
@@ -68,10 +64,10 @@ class Description extends Component {
                 </div>
             </div>
             <div className='descriptionBtns'
-                style={{textAlign:'center'}}>
+                style={{ textAlign:'center' }}>
   
                 <Button 
-                    style={{marginRight:'10px'}}
+                    style={{ marginRight:'10px' }}
                     className='editItemBtn'
                     onClick={ () => this.onEditItem( this.state ) }
                     variant='outlined'
@@ -79,12 +75,11 @@ class Description extends Component {
                     Edit Item
                 </Button>
         
-           
-                    <Button 
-                        onClick= { () => this.onDeleteItem( this.state.id ) }
-                        variant='outlined'
-                        color='secondary'>Delete Item
-                    </Button>
+                <Button 
+                    onClick= { () => this.onDeleteItem( this.state.id ) }
+                    variant='outlined'
+                    color='secondary'>Delete Item
+                </Button>
             </div>
       </div>
     );

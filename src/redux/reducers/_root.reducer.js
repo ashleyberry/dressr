@@ -16,8 +16,8 @@ const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   user, // will have an id and username if someone is logged in
   clothing, // will hold the clothing from user's wardrobe if logged in
-  recentClothing, // will hold the most recent selected clothing item
   types, // will hold the types of clothing
+  recentClothing, // will hold the most recent selected clothing item
   recentType // will hold the most recent selected clothing type
   });
 
