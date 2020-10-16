@@ -13,8 +13,7 @@ import {
 class DressMe extends Component {
 
   state = {
-    randomTop: 'https://ae01.alicdn.com/kf/H9e90586f2fcb42968f4a6bf36ce8daa34/ArtSu-Mesh-Top-Transparent-V-neck-T-shirts-for-Women-Puff-Sleeve-Black-White-Tshirt-Sexy.jpg_q50.jpg',
-    randomBottom: '',
+    
     tops: [ 
       'https://i.pinimg.com/564x/90/3a/3e/903a3ec0b277101716f9c87fbedc3667.jpg', 
       'https://ae01.alicdn.com/kf/H9e90586f2fcb42968f4a6bf36ce8daa34/ArtSu-Mesh-Top-Transparent-V-neck-T-shirts-for-Women-Puff-Sleeve-Black-White-Tshirt-Sexy.jpg_q50.jpg',
@@ -28,7 +27,9 @@ class DressMe extends Component {
       'http://picture-cdn.wheretoget.it/2m3gr4-l-610x610-jeans-vintage+levis+jeans-levi+516+jeans-90s+levis.jpg',
       'http://picture-cdn.wheretoget.it/da3wt5-i.jpg',
       'https://www.jcrew.com/s7-img-facade/AQ485_WQ8629_m?fmt=jpeg&qlt=90,0&resMode=sharp&op_usm=.1,0,0,0&crop=0,0,0,0&wid=850&hei=850',
-    ]
+    ],
+    randomTop: 'https://ae01.alicdn.com/kf/H9e90586f2fcb42968f4a6bf36ce8daa34/ArtSu-Mesh-Top-Transparent-V-neck-T-shirts-for-Women-Puff-Sleeve-Black-White-Tshirt-Sexy.jpg_q50.jpg',
+    randomBottom: 'https://d1nr5wevwcuzuv.cloudfront.net/product_photos/68222484/file_d74ddb7f42_400w.png',
   };
 
   componentDidMount = () => {
@@ -36,11 +37,24 @@ class DressMe extends Component {
     this.findBottom();
   }
 
+  dressMe = () => {
+    console.log( 'in dressMeeeeee!' )
+    let randomTopMax = this.state.tops.length-1;
+    let randomTop = this.randomNumber( 0, randomTopMax )
+    let randomBottomMax = this.state.bottoms.length-1;
+    let randomBottom = this.randomNumber( 0, randomBottomMax )
+    this.setState({
+      ...this.state,
+      randomTop: this.state.tops[ randomTop ],
+      randomBottom: this.state.bottoms[ randomBottom ]
+    })
+  }
+
   findBottom = () => {
     let randomBottomMax = this.state.bottoms.length-1;
     let randomBottom = this.randomNumber( 0, randomBottomMax )
-    console.log( 'in FIIIIINDBOTTOM this.state.bottoms.length-1:', randomBottom )
-    console.log(`randomly Generated Bottom`, this.state.bottoms[ randomBottom ])
+    console.log( 'in FIIIIINDBOTTOM randomBottom:', randomBottom )
+    console.log(`randomly Generated Bottom`, this.state.randomBottom )
     this.setState({
       ...this.state,
       randomBottom: this.state.bottoms[ randomBottom ]
@@ -50,12 +64,13 @@ class DressMe extends Component {
   findTop = () => {
     let randomTopMax = this.state.tops.length-1;
     let randomTop = this.randomNumber( 0, randomTopMax )
-    console.log( 'in FIIIIINDTOP this.state.tops.length-1:', randomTop )
-    console.log(`randomly Generated Top`, this.state.tops[ randomTop ])
+    console.log( 'in FIIIIINDTOP randomTop:', randomTop )
+    console.log(`randomly Generated Top`, this.state.randomTop )
     this.setState({
       ...this.state,
       randomTop: this.state.tops[ randomTop ]
     })
+    console.log(`new randomly Generated Top`, this.state.randomTop )
     /* 
       // find all tops in store.clothing
       if (this.props.store.clothing.kind === 'top') {
@@ -71,7 +86,6 @@ class DressMe extends Component {
   }
 
   randomNumber = ( min, max ) => {
-    console.log( 'in randomNumber' );
     return Math.floor(Math.random() * (1 + max - min) + min);
   }
 
@@ -80,36 +94,52 @@ class DressMe extends Component {
       <div>
         <div className='dressMe'>
                 <div className ='dressMeHeader'>
-                  <Typography 
-                      variant='h4'>
-                      Dress Me
-                  </Typography>
+                <div className="dressMeBtn"
+                      style={{ textAlign:'center' }}>
+                      <Button 
+                        onClick= { this.dressMe }
+                        variant='outlined'
+                        color='primary'>                  <Typography 
+                        variant='h5'>
+                        Dress Me
+                    </Typography>
+                      </Button>
+                    </div>
+
                 </div>
                 <br/>
                 <div className='dressMeImages'>
+                  <div className='dressMeTop'>
                     <Card>
-                      <img src={ this.state.randomTop }></img>
+                      <img src={ this.state.randomTop }
+                      style={{ objectFit: 'cover' }}></img>
                     </Card>
                     <div className='getTopBtn'
-                    style={{ textAlign:'center' }}>
+                      style={{ textAlign:'center' }}>
                       <Button 
+                        style={{ marginTop: 5 }}
                         onClick= { this.findTop }
                         variant='outlined'
-                        color='primary'>Find Top
+                        color='primary'>New Top
                       </Button>
                     </div>
+                  </div>
                     
-                    <Card>
-                      <img src={ this.state.randomBottom }></img>
+                    <Card style={{ marginTop: 10 }}>
+                      <img src={ this.state.randomBottom }
+                      style={{ objectFit: 'cover' }}></img>
                     </Card>
                     <div className='getBottomBtn'
                       style={{ textAlign:'center' }}>
-                        <Button 
+                        <Button
+                          style={{ marginTop: 5 }} 
                           onClick= { this.findBottom }
                           variant='outlined'
-                          color='primary'>Find Bottom
+                          color='primary'>New Bottom
                         </Button>
                     </div>
+                    <br/>
+
                 </div>
             </div>
       </div>
