@@ -44,7 +44,8 @@ class UserPage extends Component {
         return (
           <div className='closetItem' key={ i }>
             <ul>
-              <Card>
+              <Card
+              style={{ margin: 5 }}>
                   <img src={ item.image_url } 
                       value={ item.key }
                       onClick={() => this.onItemClick( item )}>
@@ -63,7 +64,7 @@ class UserPage extends Component {
                     value={ this.state.search }
                     onChange={( newValue ) => this.setState({ inputValue: newValue })}
                     onRequestSearch={() => this.filterByInput( this.state.inputValue )}/>
-                    { items }
+                    <div style={{ textAlign:'center' }}>{ items }</div>
             </div>
       </div>
     );

@@ -54,7 +54,7 @@ function* getClothingSaga( action ) {
 function* clothingSaga() {
     yield takeLatest( 'ADD_ITEM', addClothingSaga )
     yield takeLatest( 'DELETE_ITEM', deleteClothingSaga )
-    yield takeEvery('FETCH_CLOTHING', getClothingSaga)
+    yield takeEvery( 'FETCH_CLOTHING', getClothingSaga )
     yield takeLatest( 'UPDATE_ITEM', editClothingSaga )
 }
 

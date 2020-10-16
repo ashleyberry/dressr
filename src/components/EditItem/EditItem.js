@@ -50,6 +50,15 @@ class EditItem extends Component {
     this.props.history.push('/home')
   }
 
+      // delete item
+      onDeleteItem = ( itemId ) => {
+        this.props.dispatch({
+            type: 'DELETE_ITEM',
+            payload: itemId
+        })
+    this.props.history.push('/home');  
+    } // end onDeleteItem
+
   // updates the local state 
   handleChangeFor = ( event, propertyName ) => {
       this.setState({
@@ -61,12 +70,18 @@ class EditItem extends Component {
   render() {
     return (
       <div>
+
       <div className ='itemHeader'>
         <Typography 
             variant='h4'>
             Edit { this.props.store.recentClothing.brand } { this.props.store.recentClothing.type }
         </Typography>
       </div>
+      <div className='descriptionImg'>
+            <img 
+            style={{ marginTop: 5 }} src={ this.state.image_url }></img>
+        </div>
+
       <div className='editItemForm'>
 
 
@@ -283,8 +298,6 @@ class EditItem extends Component {
 
           </div>
 
-
-
           <div className='descriptionBtns'
               style={{textAlign:'center'}}>
               <Button 
@@ -297,9 +310,16 @@ class EditItem extends Component {
               </Button>
               <Button 
                   onClick= { this.onSave }
-                  variant='outlined'
-                  color='secondary'>Save
+                  variant='contained'
+                  >Save
               </Button>
+              <br/>
+              <Button 
+                    style={{ marginTop: 10 }}
+                    onClick= { () => this.onDeleteItem( this.state.id ) }
+                    variant='contained'
+                    color='secondary'>Delete Item
+                </Button>
           </div>
       
       </div>

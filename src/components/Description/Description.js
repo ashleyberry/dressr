@@ -7,6 +7,7 @@ import './Description.css';
 // stying with material-ui
 import { 
     Button, 
+    InputLabel,
     Typography
   } from '@material-ui/core';
 
@@ -20,17 +21,9 @@ class Description extends Component {
         image_url: this.props.store.recentClothing.image_url,
         color: this.props.store.recentClothing.color,
         material: this.props.store.recentClothing.material,
-        description: this.props.store.recentClothing.description
+        description: this.props.store.recentClothing.description,
+        date_worn: this.props.store.recentClothing.date_worn
     };
-
-    // delete item
-    onDeleteItem = ( itemId ) => {
-        this.props.dispatch({
-            type: 'DELETE_ITEM',
-            payload: itemId
-        })
-    this.props.history.push('/home');  
-    } // end onDeleteItem
 
     onEditItem = ( item ) => {
         this.props.dispatch({
@@ -41,8 +34,36 @@ class Description extends Component {
         this.props.history.push('/editItem'); 
   } // end onEditItem
 
+  handleChangeFor = ( event, propertyName ) => {
+      console.log(' in handleChange for:', event.target.value )
+    this.setState({
+        ...this.state,
+        [ propertyName ]: event.target.value
+    })
+    this.checkDate();
+}
+
+    checkDate(){
+        this.setState((prevState) => {
+            return {
+                date_worn: prevState.date_worn};
+            }, () => {
+                this.updateItem( this.state )
+            }
+        )
+        console.log('this is our staaaaaate??:', this.state )
+    }
+
+    updateItem = () => {
+        console.log( 'in update item wtf:', this.state )
+        this.props.dispatch({
+            type: 'UPDATE_ITEM',
+            payload: this.state
+          })
+    }
 
   render() {
+      console.log( 'this is our state:', this.state )
     return (
         <div>
             <div className='description'>
@@ -56,6 +77,7 @@ class Description extends Component {
                 <div className='descriptionImg'>
                     <img src={ this.state.image_url }></img>
                 </div>
+
                 <div className='itemDescription'>
                     <Typography 
                         variant='body1'>
@@ -63,9 +85,23 @@ class Description extends Component {
                     </Typography>
                 </div>
             </div>
+
+        <div className="dateWorn" 
+            style={{ marginTop: 30 }}>
+                <div style={{ textAlign: 'center' }}>
+                    <InputLabel style={{display : 'inline-block'}} htmlFor="dateWorn"
+                        >Last worn:</InputLabel>
+                    <input style={{display : 'inline-block'}, { marginLeft: 15 }} type="date" 
+                        value={this.state.date_worn.split( 'T' )[0]} 
+                        id="dateWorn" 
+                        name="dateWorn"
+                        onChange={ ( event ) => this.handleChangeFor ( event, 'date_worn' ) }>
+                    </input>
+                </div>
+        </div>
+
             <div className='descriptionBtns'
                 style={{ textAlign:'center' }}>
-  
                 <Button 
                     style={{ marginRight:'10px' }}
                     className='editItemBtn'
@@ -75,11 +111,7 @@ class Description extends Component {
                     Edit Item
                 </Button>
         
-                <Button 
-                    onClick= { () => this.onDeleteItem( this.state.id ) }
-                    variant='outlined'
-                    color='secondary'>Delete Item
-                </Button>
+
             </div>
       </div>
     );
