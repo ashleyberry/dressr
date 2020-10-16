@@ -1,7 +1,7 @@
-.editItemHeader {
+.itemHeader {
     text-transform: capitalize;
 }
 
-.editType {
+/* .type {
     display: inline-block;
-}
+} */

@@ -2,20 +2,30 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { withRouter } from 'react-router-dom';
-
-import Select from 'react-select'
+import './AddItem.css';
 
 // import material-ui styling
 import { 
   Button, 
   Checkbox,
+  FormControl,
   FormControlLabel,
+  FormLabel,
+  FormGroup,
+  FormHelperText,
+  Grid,
+  InputLabel,
+  NativeSelect,
+  Paper,
+  Radio,
+  RadioGroup,
+  Select,
   TextField,
   Typography
 } from '@material-ui/core';
 
 
-class AddItem extends Component {
+class AddItem extends React.Component {
 
   state = {
     type: '',
@@ -54,7 +64,9 @@ class AddItem extends Component {
   render() {
     return (
       <div>
-        <div className ='addItemHeader'>
+      {/* <h1>Hello, {this.props} </h1> */}
+      <div>
+        <div className ='itemHeader'>
           <Typography 
               variant='h4'>
               Add Item
@@ -62,121 +74,213 @@ class AddItem extends Component {
         </div>
 
         <div className='addItemForm'>
+          
+            <InputLabel 
+            className ="type"
+            variant="outlined"
+              htmlFor="type-native-helper">
+              Type
+            </InputLabel>
+            <Select
+              native
+              label='Type'
+              variant="outlined"
+              onChange={ ( event ) => this.handleChangeFor ( event, 'type' ) }
+              inputProps={{
+                name: 'type',
+                id: 'type-native-helper'}}>
+              <option aria-label="None" value="" />
+              { this.props.store.types.map( type => {
+                return (
+                  <option key={ type.id } 
+                  value={ type.type }>
+                  { type.type }
+                  </option>
+                )
+              })}
+              <option>other</option>
+            </Select>
+            
+          <br/>
+          
+              <TextField className="otherType"
+                style = { { paddingTop: 5 } }
+                htmlFor="type-other-native-helper"
+                id='outlined-basic'
+                variant="outlined"
+                label="If 'Other', enter type:"
+                onChange={ ( event ) => this.handleChangeFor ( event, 'type' ) }>
+              </TextField>
 
-          <div className='clothingType'>
-            <label htmlFor="clothingType">
-              Type:
-            </label>
-            <br/>
-            <select 
-                name="clothingType" id="clothingType"
-                onChange={ ( event ) => this.handleChangeFor( event, 'type' )}>
-                <option value="Dress">Dress</option>
-                <option value="Skirt">Skirt</option>
-                <option value="Blouse">Blouse</option>
-                <option value="Pants">Pants</option>
-                <option value="Shirt">Shirt</option>
-                <option value="Jacket">Jacket</option>
-                <option value="Other">Other</option>
-            </select>
-          </div>
+          <br/>
+          
+          <div>
+            <FormLabel style = { { paddingTop: 10 } }
+            className="kindRadio">Kind:</FormLabel>
+            <RadioGroup 
+              row aria-label="kind" 
+              name="kind" 
+              onChange={ ( event ) => this.handleChangeFor( event, 'kind' )}>
+              <FormControlLabel value="Top" control={<Radio />} label="Top" />
+              <FormControlLabel value="Bottom" control={<Radio />} label="Bottom" />
+              <FormControlLabel value="Entire Outfit" control={<Radio />} label="Entire Outfit" />
+              <FormControlLabel value="Accessory" control={<Radio />} label="Accessory" />
+              <FormControlLabel value="other" control={<Radio />} label="Other" />
+            </RadioGroup>
+            </div>
+          <br/>
 
-          <div className="kindCheckbox">
-            <Checkbox 
-              color="primary"
-              value="Top"
-              onChange={ ( event ) => this.handleChangeFor( event, 'kind' )}/>Top
-            <Checkbox 
-              color="primary"
-              value="Bottom"
-              onChange={ ( event ) => this.handleChangeFor( event, 'kind' )}/>Bottom
-              <br/>
-            <Checkbox 
-              color="primary"
-              value="Entire Outfit"
-              onChange={ ( event ) => this.handleChangeFor( event, 'kind' )}/>Entire Outfit
-            <Checkbox 
-              color="primary"
-              value="Accessory"
-              onChange={ ( event ) => this.handleChangeFor( event, 'kind' )}/>Accessory
-              <br/>
-            <Checkbox 
-              color="primary"
-              value="Other"
-              onChange={ ( event ) => this.handleChangeFor( event, 'kind' )}/>Other
-          </div>
+          <TextField className="brand"
+            htmlFor="brand"
+            label="Brand"
+            variant="outlined"
+            onChange={ ( event ) => this.handleChangeFor( event, 'brand' )}>
+          </TextField>
 
-          <div className="brand">
-            <label htmlFor="brand">
-              Brand:
-            </label>
-            <br/>
-            <input onChange={ ( event ) => this.handleChangeFor( event, 'brand' )}></input>
-          </div>
+          <br/>
 
-          <div className="image_Url">
-            <label htmlFor="image_Url">
-             Image URL:
-            </label>
-            <input onChange={ ( event ) => this.handleChangeFor( event, 'image_url' )}></input>
-          </div>
+          <TextField className="image_Url"
+            htmlFor="image_Url"
+            label='Image URL:'
+            variant="outlined"
+            onChange={ ( event ) => this.handleChangeFor( event, 'image_url' )}>
+          </TextField>
+          
+          <br/>
+          <FormLabel style = { { paddingTop: 10 } }
+            className="colorOptions">Color:</FormLabel>
+                <div>
+                  <RadioGroup>
+        <Grid container spacing={1}>
+          <Grid container item xs={12} spacing={3}>
+            <Grid item xs={4}>
+              <FormControlLabel
+                  control={ <Radio /> }
+                  label="Red"
+                  color="primary"
+                  value="Red"
+                  onClick={ ( event ) => this.handleChangeFor( event, 'color' )}
+                />
+            </Grid>
+            <Grid item xs={4}>
+              <FormControlLabel
+              
+                  control={ <Radio /> }
+                  label="Orange"
+                  color="primary"
+                  value="Orange"
+                  onChange={ ( event ) => this.handleChangeFor( event, 'color' )}
+                />
+            </Grid>
+            <Grid item xs={4}>
+              <FormControlLabel
+            
+                  control={ <Radio /> }
+                  label="Yellow"
+                  color="primary"
+                  value="Yellow"
+                  onChange={ ( event ) => this.handleChangeFor( event, 'color' )}
+                />
+            </Grid>
+          </Grid>
+        </Grid>
 
-          <div className="colorCheckbox">
-            <label htmlFor="color">
-              Color:
-            </label>
-            <br/>
-            <Checkbox 
-              color="primary"
-              value="Red"
-              onChange={ ( event ) => this.handleChangeFor( event, 'color' )}/>Red
-            <Checkbox 
-              color="primary"
-              value="Orange"
-              onChange={ ( event ) => this.handleChangeFor( event, 'color' )}/>Orange
-              <br/>
-            <Checkbox 
-              color="primary"
-              value="Yellow"
-              onChange={ ( event ) => this.handleChangeFor( event, 'color' )}/>Yellow
-            <Checkbox 
-              color="primary"
-              value="Green"
-              onChange={ ( event ) => this.handleChangeFor( event, 'color' )}/>Green
-              <br/>
-            <Checkbox 
-              color="primary"
-              value="Blue"
-              onChange={ ( event ) => this.handleChangeFor( event, 'color' )}/>Blue
-                          <Checkbox 
-              color="primary"
-              value="Purple"
-              onChange={ ( event ) => this.handleChangeFor( event, 'color' )}/>Purple
-                          <Checkbox 
-              color="primary"
-              value="Cream"
-              onChange={ ( event ) => this.handleChangeFor( event, 'color' )}/>Cream
-                          <Checkbox 
-              color="primary"
-              value="Brown"
-              onChange={ ( event ) => this.handleChangeFor( event, 'color' )}/>Brown
-                          <Checkbox 
-              color="primary"
-              value="White"
-              onChange={ ( event ) => this.handleChangeFor( event, 'color' )}/>White
-                          <Checkbox 
-              color="primary"
-              value="Black"
-              onChange={ ( event ) => this.handleChangeFor( event, 'color' )}/>Black
-                          <Checkbox 
-              color="primary"
-              value="Grey"
-              onChange={ ( event ) => this.handleChangeFor( event, 'color' )}/>Grey
-                          <Checkbox 
-              color="primary"
-              value="Other"
-              onChange={ ( event ) => this.handleChangeFor( event, 'color' )}/>Other
-          </div>
+        <Grid container spacing={1}>
+          <Grid container item xs={12} spacing={3}>
+              <Grid item xs={4}>
+                <FormControlLabel
+         
+                  control={ <Radio /> }
+                  label="Green"
+                  color="primary"
+                  value="Green"
+                  onChange={ ( event ) => this.handleChangeFor( event, 'color' )}
+                />
+              </Grid>
+              <Grid item xs={4}>
+                <FormControlLabel
+      
+                  control={ <Radio /> }
+                  label="Blue"
+                  color="primary"
+                  value="Blue"
+                  onChange={ ( event ) => this.handleChangeFor( event, 'color' )}
+                />
+              </Grid>
+              <Grid item xs={4}>
+                <FormControlLabel
+    
+                  control={ <Radio /> }
+                  label="Purple"
+                  color="primary"
+                  value="Purple"
+                  onChange={ ( event ) => this.handleChangeFor( event, 'color' )}
+                />
+              </Grid>
+          </Grid>
+        </Grid>
+
+          <Grid container spacing={1}>
+            <Grid container item xs={12} spacing={3}>
+              <Grid item xs={4}>
+              <FormControlLabel
+                control={ <Radio /> }
+                label="Black"
+                color="primary"
+                value="Black"
+                onChange={ ( event ) => this.handleChangeFor( event, 'color' )}
+              />
+          </Grid>
+              <Grid item xs={4}>
+              <FormControlLabel
+        
+                  control={ <Radio /> }
+                  label="White"
+                  color="primary"
+                  value="White"
+                  onChange={ ( event ) => this.handleChangeFor( event, 'color' )}
+                />
+          </Grid>
+              <Grid item xs={4}>
+              <FormControlLabel
+        
+                  control={ <Radio /> }
+                  label="Cream"
+                  color="primary"
+                  value="Cream"
+                  onChange={ ( event ) => this.handleChangeFor( event, 'color' )}
+                />
+          </Grid>
+            </Grid>
+          </Grid>
+
+          <Grid container item xs={12} spacing={3}>
+            <Grid item xs={4}>
+              <FormControlLabel
+          
+                  control={ <Radio /> }
+                  label="Multi-color"
+                  color="primary"
+                  value="Multi-color"
+                  onChange={ ( event ) => this.handleChangeFor( event, 'color' )}
+                />
+            </Grid>
+            <Grid item xs={4}>
+              <FormControlLabel
+          
+                  control={ <Radio /> }
+                  label="Other"
+                  color="primary"
+                  value="Other"
+                  onChange={ ( event ) => this.handleChangeFor( event, 'color' )}
+                />
+            </Grid>
+          </Grid>
+          </RadioGroup>
+      </div>
+    
+
+            
 
           <div className="materialCheckbox">
             <label htmlFor="material">
@@ -266,9 +370,9 @@ class AddItem extends Component {
               </Button>
           </div>
         
-        
         </div>
-
+      </div>
+    
       </div>
         
     );

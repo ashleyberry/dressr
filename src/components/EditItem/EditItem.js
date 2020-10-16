@@ -47,40 +47,21 @@ class EditItem extends Component {
       type: 'UPDATE_ITEM',
       payload: this.state
     })
-    // this.props.dispatch({
-    //   type: 'UPDATE_CLOTHING_TYPE',
-    //   payload: this.state
-    // })
     this.props.history.push('/home')
   }
 
-  // updates the local state movie information 
+  // updates the local state 
   handleChangeFor = ( event, propertyName ) => {
-      console.log( 'in handleChangeFor:', event.target.value )
-      if ( event.target.value === 'other') {
-        this.onOtherClick();
-      }
       this.setState({
           ...this.state,
           [ propertyName ]: event.target.value
       })
-      console.log('this.state', this.state )
-  }
-
-  // TODO
-  onOtherClick = () => {
-    console.log( 'in onOtherClick' )
-    this.setState({
-      ...this.state,
-      isOther: true
-    })
-    console.log( 'updated this.state.isOther:', this.state.isOther )
   }
 
   render() {
     return (
       <div>
-      <div className ='editItemHeader'>
+      <div className ='itemHeader'>
         <Typography 
             variant='h4'>
             Edit { this.props.store.recentClothing.brand } { this.props.store.recentClothing.type }
@@ -112,10 +93,21 @@ class EditItem extends Component {
           </FormControl>
         </div>
 
-          <div className='otherHiddenField'>
+          {/* <div className='otherHiddenField'>
             {this.state.type === 'other' ? (
-              <div><label htmlFor="type">SURPRISE!</label><input></input></div> ) : ( null
+              <div>
+                <label htmlFor="type">What type of clothing?</label>
+                <input></input>
+                </div> ) : ( null
             )}
+          </div> */}
+
+        <br/>
+          <div>
+            <label htmlFor="type">If 'Other', enter type:</label>
+            <input 
+              onChange={ ( event ) => this.handleChangeFor ( event, 'type' ) }>
+            </input>
           </div>
 
         <div className="kindCheckbox">
