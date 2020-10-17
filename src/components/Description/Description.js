@@ -6,7 +6,9 @@ import './Description.css';
 
 // stying with material-ui
 import { 
-    Button, 
+    Button,
+    Card, 
+    Grid,
     InputLabel,
     Typography
   } from '@material-ui/core';
@@ -74,8 +76,16 @@ class Description extends Component {
                     </Typography>
                 </div>
                 <br/>
+                
                 <div className='descriptionImg'>
-                    <img src={ this.state.image_url }></img>
+                    <Card
+                    >
+                        <div style={{ display:'flex', justifyContent:'center' }}>
+                        <img 
+                            src={ this.state.image_url }></img>
+                            </div>
+                            
+                    </Card>
                 </div>
 
                 <div className='itemDescription'>
@@ -92,7 +102,7 @@ class Description extends Component {
                     <InputLabel style={{display : 'inline-block'}} htmlFor="dateWorn"
                         >Last worn:</InputLabel>
                     <input style={{display : 'inline-block'}, { marginLeft: 15 }} type="date" 
-                        value={this.state.date_worn.split( 'T' )[0]} 
+                        // value={this.state.date_worn.split( 'T' )[0]} 
                         id="dateWorn" 
                         name="dateWorn"
                         onChange={ ( event ) => this.handleChangeFor ( event, 'date_worn' ) }>
@@ -110,9 +120,8 @@ class Description extends Component {
                     color='primary'>
                     Edit Item
                 </Button>
-        
-
             </div>
+
       </div>
     );
   }

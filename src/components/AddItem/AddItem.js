@@ -30,7 +30,8 @@ class AddItem extends Component {
     image_url: '',
     color: '',
     material: '',
-    description: ''
+    description: '',
+    isOther: false
   };
 
   onCancel = () => {
@@ -50,14 +51,22 @@ class AddItem extends Component {
   // updates the local state clothing information 
   handleChangeFor = ( event, propertyName ) => {
       console.log( 'in handleChangeFor:', event.target.value )
+      if ( event.target.value === 'other' && propertyName === 'type') {
+        this.setState({
+          ...this.State,
+          isOther: true
+          })
+        } else {
       this.setState({
           ...this.state,
           [ propertyName ]: event.target.value
       })
       console.log('this.state', this.state )
+    }
   }
 
   render() {
+    console.log( 'ADDITEMMMMM state:', this.state )
     return (
       <div>
 
@@ -97,7 +106,7 @@ class AddItem extends Component {
 
           <div className="hiddenOther"
             style = { { paddingTop: 10 } }>
-            { this.state.type !== 'other' ? (
+            { this.state.isOther === false ? (
               null ) : ( <TextField className="otherType"
               id="outlined-basic" 
               label="Enter type:" 

@@ -1,3 +1,10 @@
 .descriptionHeader {
     text-transform: capitalize;
 }
+
+.descriptionImg, img {
+    display: inline-block;
+    object-fit: cover;
+    height: 275px;
+    width: 275px;
+}

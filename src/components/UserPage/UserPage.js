@@ -4,7 +4,10 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 // import Search from '../Search/Search';
 import SearchBar from "material-ui-search-bar";
-import Card from '@material-ui/core/Card';
+import { 
+  Card,
+  Typography 
+} from '@material-ui/core/';
 import './UserPage.css';
 
 class UserPage extends Component {
@@ -50,6 +53,7 @@ class UserPage extends Component {
                       value={ item.key }
                       onClick={() => this.onItemClick( item )}>
                   </img>
+              <Typography variant='subtitle2'>{ item.brand }</Typography>
               </Card>
             </ul>
           </div>

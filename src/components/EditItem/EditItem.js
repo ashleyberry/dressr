@@ -50,24 +50,32 @@ class EditItem extends Component {
     this.props.history.push('/home')
   }
 
-      // delete item
-      onDeleteItem = ( itemId ) => {
-        this.props.dispatch({
-            type: 'DELETE_ITEM',
-            payload: itemId
-        })
-    this.props.history.push('/home');  
-    } // end onDeleteItem
+  // delete item
+  onDeleteItem = ( itemId ) => {
+    this.props.dispatch({
+        type: 'DELETE_ITEM',
+        payload: itemId
+    })
+  this.props.history.push('/home');  
+  } // end onDeleteItem
 
   // updates the local state 
   handleChangeFor = ( event, propertyName ) => {
+    if ( event.target.value === 'other' && propertyName === 'type') {
+      this.setState({
+        ...this.State,
+        isOther: true
+        })
+      } else {
       this.setState({
           ...this.state,
           [ propertyName ]: event.target.value
       })
   }
+}
 
   render() {
+    console.log( 'EDIIIIIIT ITEM:', this.state )
     return (
       <div>
 
@@ -110,7 +118,7 @@ class EditItem extends Component {
 
           <div className="hiddenOther"
             style = { { paddingTop: 10 } }>
-            { this.state.type !== 'other' ? (
+            { this.state.isOther === false ? (
               null ) : ( <TextField className="otherType"
               id="outlined-basic" 
               label="If 'Other', enter type:" 

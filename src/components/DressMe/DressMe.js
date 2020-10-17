@@ -13,14 +13,18 @@ import {
 class DressMe extends Component {
 
   state = {
-    
     tops: [ 
+      'https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/194246/item/goods_00_194246.jpg?width=2000',
+      'https://i.etsystatic.com/14667522/r/il/d3fc37/1544064467/il_570xN.1544064467_6kq9.jpg',
+      'https://i.etsystatic.com/5299633/r/il/87bdb7/2540778326/il_794xN.2540778326_rt4s.jpg',
+      'https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F28%2F2019%2F12%2Ftopshop-chevron-crop-sweater-TURTLENECKS1219_0.jpg',
       'https://i.pinimg.com/564x/90/3a/3e/903a3ec0b277101716f9c87fbedc3667.jpg', 
       'https://ae01.alicdn.com/kf/H9e90586f2fcb42968f4a6bf36ce8daa34/ArtSu-Mesh-Top-Transparent-V-neck-T-shirts-for-Women-Puff-Sleeve-Black-White-Tshirt-Sexy.jpg_q50.jpg',
       'https://img.emmacloth.com/images/emmacloth.com/201611/8b/14780478354888563278.jpg',
       'https://cdn-images.farfetch-contents.com/colville-zip-back-vest_14483712_21567318_1000.jpg?c=2', 
     ],
     bottoms: [
+      'https://i.pinimg.com/originals/36/e1/c8/36e1c868fd4efc6d0f251a3715ef8fc2.jpg',
       'https://storage.bhs.cloud.ovh.net/v1/AUTH_9f134bb533c64667ba7cd96ffdeaa2e7/aow-static/previews/full/preview-flare-skirt-499399-front-f.jpg', 
       'https://www.prada.com/content/dam/pradanux_products/2/22H/22H823/1WQ8F0002/22H823_1WQ8_F0002_S_202_SLF.png/_jcr_content/renditions/cq5dam.web.white.800.1000.webp',
       'https://d1nr5wevwcuzuv.cloudfront.net/product_photos/68222484/file_d74ddb7f42_400w.png',
