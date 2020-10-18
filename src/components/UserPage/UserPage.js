@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import LogOutButton from '../LogOutButton/LogOutButton';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import { withRouter } from 'react-router-dom';
+
 
 // import Search from '../Search/Search';
 import SearchBar from "material-ui-search-bar";
 
+import LibraryAddIcon from '@material-ui/icons/LibraryAdd';
 import { 
   Card,
   Typography 
@@ -22,8 +25,11 @@ class UserPage extends Component {
     this.getInfo();
   }
 
+  addItem = () => {
+    this.props.history.push('/addItem')
+  }
+
   getInfo = () => {
-    console.log( 'in getInfo' );
     this.props.dispatch({
       type: 'FETCH_CLOTHING'
     });
@@ -56,8 +62,9 @@ class UserPage extends Component {
           return item
         } 
       }).map( (item, i ) =>{
-
+       
         return (
+          
           <div className='closetItem' key={ i }>
             <ul>
               <Card
@@ -70,6 +77,7 @@ class UserPage extends Component {
               </Card>
             </ul>
           </div>
+
       )
     })
 
@@ -81,7 +89,14 @@ class UserPage extends Component {
                     value={ this.state.search }
                     onChange={( newValue ) => this.setState({ inputValue: newValue })}
                     onRequestSearch={() => this.filterByInput( this.state.inputValue )}/>
-                    <div style={{ textAlign:'center' }}>{ items }</div>
+                    { items.length === 0 || items === null ? (
+                    <div>
+                      <Typography variant='h4'>Your closet is empty!</Typography>
+                      <Typography variant='h5'>Add your first item!</Typography>
+                      <LibraryAddIcon style={{ width: 50, height: 50 }} fontSize='large' onClick={ this.addItem }></LibraryAddIcon>
+                    </div>
+                    ) : 
+                    (<div style={{ textAlign:'center' }}>{ items }</div>) }
             </div>
       </div>
     );
@@ -89,4 +104,4 @@ class UserPage extends Component {
 }
 
 // this allows us to use <App /> in index.js
-export default connect( mapStoreToProps )( UserPage );
+export default connect( mapStoreToProps ) ( withRouter ( UserPage ));

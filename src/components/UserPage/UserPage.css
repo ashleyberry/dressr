@@ -1,3 +1,8 @@
+.addIcon {
+  height: 50px;
+  width: 50px;
+}
+
 .home, img {
     display: inline-block
   }

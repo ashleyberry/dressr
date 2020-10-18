@@ -67,7 +67,7 @@ class EditItem extends Component {
       dangerMode: true,
       }).then(( willDelete ) => {
         if ( willDelete ) {
-        // this.onDeleteItem( this.state.id )
+        this.onDeleteItem( this.state.id )
         swal( <div>
           <hr/>
           <Typography variant='subtitle1'>TAKE ACTION AGAINST TEXTILE WASTE</Typography>

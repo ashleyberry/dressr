@@ -5,26 +5,24 @@ import { connect } from 'react-redux';
 import './Nav.css';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { Typography } from '@material-ui/core';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 // import Icon from '@mdi/react'
 // import { mdiHanger } from '@mdi/js';
 // import FaceIcon from '@material-ui/icons/Face';
 
 const Nav = (props) => {
-
+console.log( 'props.store.user:', props.store.user )
   let loginLinkData = {
     path: '/login',
     text: 'Login / Register',
   };
-
   if (props.store.user.id != null) {
     loginLinkData.path = '/user';
     loginLinkData.text = '';
-
   }
-
-  if ( props.store.user.profile_url != null ) {
-    loginLinkData.photo = <img src={ props.store.user.profile_url } className="avatar"/>
-  }
+  // if ( props.store.user.profile_url != null ) {
+  //   loginLinkData.photo = <img className="avatar" src={ props.store.user.profile_url } />
+  // }
 
   return (
     <div className="nav">
@@ -44,6 +42,11 @@ const Nav = (props) => {
         {/* Show the link to the info page and the logout button if the user is logged in */}
         {props.store.user.id && (
           <>
+            <div className="image-cropper">
+              { props.store.user.profile_url.length === 0 ? 
+              (<AccountCircleIcon className= "avatar" fontSize={ 'large' }></AccountCircleIcon>) : 
+               (<img className="avatar" src={ props.store.user.profile_url } />) }
+            </div>
             {/* <Link className="nav-link" to="/info">
               Info Page
             </Link> */}
@@ -55,9 +58,7 @@ const Nav = (props) => {
           About
         </Link> */}
         
-        <div className="image-cropper">
-          { loginLinkData.photo }
-        </div>
+        
       </div>
     </div>
   );
