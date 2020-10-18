@@ -3,6 +3,8 @@
   text-align: center;
   justify-content: center;
   padding-left: 40px;
+  position: absolute;
+  margin-top: 50px;
 }
 
 .footer-nav-link {

@@ -90,9 +90,9 @@ class UserPage extends Component {
                     onChange={( newValue ) => this.setState({ inputValue: newValue })}
                     onRequestSearch={() => this.filterByInput( this.state.inputValue )}/>
                     { items.length === 0 || items === null ? (
-                    <div>
-                      <Typography variant='h4'>Your closet is empty!</Typography>
-                      <Typography variant='h5'>Add your first item!</Typography>
+                    <div className='newUserNotice'>
+                      <Typography variant='h5'>Your closet is empty!</Typography>
+                      <Typography variant='h6'>Add your first item!</Typography>
                       <LibraryAddIcon style={{ width: 50, height: 50 }} fontSize='large' onClick={ this.addItem }></LibraryAddIcon>
                     </div>
                     ) : 

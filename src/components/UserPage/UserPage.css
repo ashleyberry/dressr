@@ -3,6 +3,13 @@
   width: 50px;
 }
 
+.closetItem, img {
+  display: inline-block;
+  object-fit: cover;
+  height: 275px;
+  width: 175px;
+}
+
 .home, img {
     display: inline-block
   }
@@ -10,29 +17,32 @@
   li {
     display: inline-block;
     margin-right: 30px;
+    margin: 5px;
+  }
+
+  .newUserNotice {
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, 50%);
+
+    padding: 10px;
+
+
+    text-align: center;
+    /* position: fixed; */
+    width: 250px;
+    /* top: 50%;
+    left: 50%; */
+    /* bring your own prefixes */
+    /* transform: translate(-50%, -50%); */
   }
   
   ul {
     list-style: none;
     padding: 0;
   }
-  
-  .closetItem, img {
-    display: inline-block;
-    object-fit: cover;
-    height: 275px;
-    width: 175px;
-}
 
-ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  li {
-    margin: 5px;
-  }
-  
   li img {
     display: inline-block;
     margin-right: 30px;
