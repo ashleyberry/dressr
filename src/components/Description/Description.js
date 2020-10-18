@@ -8,7 +8,6 @@ import './Description.css';
 import { 
     Button,
     Card, 
-    Grid,
     InputLabel,
     Typography
   } from '@material-ui/core';

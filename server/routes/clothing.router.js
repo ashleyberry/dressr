@@ -1,17 +1,20 @@
 const express = require('express');
+const {
+  rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
 const pool = require('../modules/pool');
 const router = express.Router();
 
 // get all items
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
     console.log( 'in clothing GET')
-    const query = `SELECT * FROM "clothing";`
-    pool.query( query )
+    const queryText = `SELECT * FROM "clothing" WHERE "user_id" = $1;`
+    pool.query( queryText, [ req.user.id ] )
     .then( results => {
         res.send( results.rows );
     })
     .catch( error => {
-        console.log( 'error in clothing GET',error );
+        console.log( 'error in clothing GET', error );
         res.sendStatus( 500 );
     })
   });

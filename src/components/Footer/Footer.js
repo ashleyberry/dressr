@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Footer.css';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-import DressMe from '../DressMe/DressMe';
 
 // This is one of our simplest components
 // It doesn't have local state, so it can be a function component.

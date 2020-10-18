@@ -29,17 +29,6 @@ import './App.css';
 class App extends Component {
   componentDidMount() {
     this.props.dispatch({ type: 'FETCH_USER' });
-    this.getInfo();
-  }
-
-  getInfo = () => {
-    console.log( 'in getInfo' );
-    this.props.dispatch({
-      type: 'FETCH_CLOTHING'
-    });
-    this.props.dispatch({
-      type: 'FETCH_TYPES'
-    });
   }
 
   render() {

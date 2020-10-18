@@ -4,13 +4,13 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import { withRouter } from 'react-router-dom';
 import './EditItem.css';
 
-import Select from 'react-select'
+import swal from '@sweetalert/with-react';
+
 // import material-ui styling
 import { 
   Button, 
   Checkbox,
   FormControl,
-  FormHelperText,
   InputLabel,
   NativeSelect,
   TextField,
@@ -35,11 +35,19 @@ class EditItem extends Component {
     isOther: false
 };
 
-
   onCancel = () => {
     console.log('in onCancel');
     this.props.history.push( '/home' );
   }
+
+  onSaveClick = () => {
+    swal({
+      title: "Your item was updated!",
+      icon: "success",
+    });
+      this.onSave();
+  }
+
 
   onSave = () => {
     console.log('in onSave', this.state );
@@ -48,6 +56,35 @@ class EditItem extends Component {
       payload: this.state
     })
     this.props.history.push('/home')
+  }
+
+  onDeleteClick = () => {
+    swal({
+      title: "Are you sure?",
+      text: "This can't be undone!",
+      icon: "warning",
+      buttons: [ "AS IF!", true ],
+      dangerMode: true,
+      }).then(( willDelete ) => {
+        if ( willDelete ) {
+        // this.onDeleteItem( this.state.id )
+        swal( <div>
+          <hr/>
+          <Typography variant='subtitle1'>TAKE ACTION AGAINST TEXTILE WASTE</Typography>
+          <Typography style={{ marginTop: 10 }}variant='body1'>DONATE</Typography> 
+          <img style={{ width: 100, height: 70 }} src='https://www.roadrunnerwm.com/hs-fs/hubfs/Donate_Icon.png?name=Donate_Icon.png'></img>
+
+          <Typography><a href="https://www.homelessshelterdirectory.org/"><b>Find nearby locations</b></a> to donate your gently-used clothing</Typography>
+          <Typography style={{ marginTop: 15 }} variant='body1'>RECYCLE YOUR TEXTILES!</Typography>
+          <img style={{ width: 100, height: 70 }} src='https://www.roadrunnerwm.com/hs-fs/hubfs/RecycleClothing_Icon.png?name=RecycleClothing_Icon.png'></img>
+
+          <Typography variant='body1'> Too worn out to donate? Nearly 100% of textiles can be recycled!</Typography>
+        </div>, {
+          title: "Deleted!",
+          icon: "success",
+          });
+        }
+    })
   }
 
   // delete item
@@ -71,8 +108,8 @@ class EditItem extends Component {
           ...this.state,
           [ propertyName ]: event.target.value
       })
+    }
   }
-}
 
   render() {
     console.log( 'EDIIIIIIT ITEM:', this.state )
@@ -92,7 +129,6 @@ class EditItem extends Component {
 
       <div className='editItemForm'>
 
-
       {/* drop down with type names */}
         <div>
           <FormControl>
@@ -111,7 +147,7 @@ class EditItem extends Component {
                     </option>
                   )
                 })}
-                <option onClick={ this.onOtherClick }>other</option>
+                <option>other</option>
               </NativeSelect>
         
           </FormControl>
@@ -317,14 +353,14 @@ class EditItem extends Component {
                   Cancel
               </Button>
               <Button 
-                  onClick= { this.onSave }
+                  onClick= { this.onSaveClick }
                   variant='contained'
                   >Save
               </Button>
               <br/>
               <Button 
                     style={{ marginTop: 10 }}
-                    onClick= { () => this.onDeleteItem( this.state.id ) }
+                    onClick= { this.onDeleteClick }
                     variant='contained'
                     color='secondary'>Delete Item
                 </Button>

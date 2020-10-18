@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { withRouter } from 'react-router-dom';
 import './AddItem.css';
+import swal from 'sweetalert';
+
 
 // import material-ui styling
 import { 
@@ -45,6 +47,11 @@ class AddItem extends Component {
       type: 'ADD_ITEM',
       payload: this.state
     })
+    swal({
+      title: "Nice!",
+      text: "Your item has been added!",
+      icon: "success",
+    });
     this.props.history.push( '/home' );
   }
 

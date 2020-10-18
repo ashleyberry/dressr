@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import LogOutButton from '../LogOutButton/LogOutButton';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+
 // import Search from '../Search/Search';
 import SearchBar from "material-ui-search-bar";
+
 import { 
   Card,
   Typography 
@@ -16,6 +18,20 @@ class UserPage extends Component {
     inputValue: ''
   }
 
+  componentDidMount() {
+    this.getInfo();
+  }
+
+  getInfo = () => {
+    console.log( 'in getInfo' );
+    this.props.dispatch({
+      type: 'FETCH_CLOTHING'
+    });
+    this.props.dispatch({
+      type: 'FETCH_TYPES'
+    });
+  }
+
   // on item click, send to details page
   onItemClick = ( item ) => {
     console.log( 'in onItemClick:', item );
@@ -23,10 +39,6 @@ class UserPage extends Component {
       // set recently clicked item
         type: 'SET_BATMAN',
         payload: item
-    })
-    this.props.dispatch({
-      type: 'FETCH_TYPE',
-      payload: item.id
     })
     this.props.history.push('/description');  
   }
@@ -39,6 +51,7 @@ class UserPage extends Component {
             item.type.toLowerCase().includes(this.state.inputValue.toLowerCase()) || 
             item.material.toLowerCase().includes(this.state.inputValue.toLowerCase()) ||
             item.kind.toLowerCase().includes(this.state.inputValue.toLowerCase()) || 
+            item.description.toLowerCase().includes(this.state.inputValue.toLowerCase()) || 
             item.brand.toLowerCase().includes(this.state.inputValue.toLowerCase())) {
           return item
         } 
@@ -64,7 +77,7 @@ class UserPage extends Component {
         <div>
             <div className = 'searchBar'>
                 <SearchBar 
-                    style={{ width: 200 }}
+                    style={{ width: 200, marginLeft: 20 }}
                     value={ this.state.search }
                     onChange={( newValue ) => this.setState({ inputValue: newValue })}
                     onRequestSearch={() => this.filterByInput( this.state.inputValue )}/>
