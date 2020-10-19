@@ -101,7 +101,7 @@ class Description extends Component {
                     <InputLabel style={{display : 'inline-block'}} htmlFor="dateWorn"
                         >Last worn:</InputLabel>
                     <input style={{display : 'inline-block'}, { marginLeft: 15 }} type="date" 
-                        // value={this.state.date_worn.split( 'T' )[0]} 
+                        value={this.state.date_worn.split( 'T' )[0]} 
                         id="dateWorn" 
                         name="dateWorn"
                         onChange={ ( event ) => this.handleChangeFor ( event, 'date_worn' ) }>

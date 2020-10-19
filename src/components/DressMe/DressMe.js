@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import { withRouter } from 'react-router-dom';
+
 import './DressMe.css';
 
 // stying with material-ui
@@ -9,6 +11,7 @@ import {
   Card,
   Typography
 } from '@material-ui/core';
+import LibraryAddIcon from '@material-ui/icons/LibraryAdd';
 
 class DressMe extends Component {
 
@@ -22,6 +25,10 @@ class DressMe extends Component {
   componentDidMount = () => {
     this.sortTops();
     this.sortBottoms();
+  }
+
+  addItem = () => {
+    this.props.history.push('/addItem')
   }
 
   dressMe = () => {
@@ -66,7 +73,6 @@ class DressMe extends Component {
            }
            }
         )}
-          
       }
 
   sortBottoms = () => {
@@ -96,10 +102,19 @@ class DressMe extends Component {
     console.log( 'this.state.newBottomsArray.length:', this.state.newBottomsArray.length-1 )
     console.log( 'this.state.randomBottom:', this.state.randomBottom )
 
-        
+    if ( this.state.newTopsArray.length === 0 ) {
+
+    return (
+      <div className='newDressMeUser'>
+        <Typography variant='body1'>Looks like you don't have any items yet!</Typography>
+        <Typography variant='body1'>Add some items and come back soon!</Typography>
+        <LibraryAddIcon style={{ width: 50, height: 50 }} fontSize='large' onClick={ this.addItem }></LibraryAddIcon>
+      </div>
+    )} else 
     return (
       <div>
         <div className='dressMe'>
+
                 <div className ='dressMeHeader'>
                 <div className="dressMeBtn"
                       style={{ textAlign:'center' }}>
@@ -158,4 +173,4 @@ class DressMe extends Component {
   }
 }
 
-export default connect( mapStoreToProps )( DressMe );
+export default connect( mapStoreToProps )( withRouter ( DressMe ));

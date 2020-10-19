@@ -50,6 +50,7 @@ class UserPage extends Component {
   }
 
   render() {
+    console.log( 'in USERRRRRRRRPAGE' )
     const items = this.props.store.clothing.filter(( item )=>{
         if( this.state.inputValue == null) {
           return item
@@ -62,7 +63,6 @@ class UserPage extends Component {
           return item
         } 
       }).map( (item, i ) =>{
-       
         return (
           
           <div className='closetItem' key={ i }>
