@@ -36,25 +36,6 @@ class AddItem extends Component {
     isOther: false
   };
 
-  onCancel = () => {
-    console.log('in onCancel');
-    this.props.history.push( '/home' );
-  }
-
-  onSave = () => {
-    console.log('in onSave:', this.state );
-    this.props.dispatch({
-      type: 'ADD_ITEM',
-      payload: this.state
-    })
-    swal({
-      title: "Nice!",
-      text: "Your item has been added!",
-      icon: "success",
-    });
-    this.props.history.push( '/home' );
-  }
-
   // updates the local state clothing information 
   handleChangeFor = ( event, propertyName ) => {
       console.log( 'in handleChangeFor:', event.target.value )
@@ -72,11 +53,34 @@ class AddItem extends Component {
     }
   }
 
+  // when cancel button is clicked, send user back to home page
+  onCancel = () => {
+    console.log('in onCancel');
+    this.props.history.push( '/home' );
+  }
+
+  // when save button is clicked, dispatch info to respective databases
+  onSave = () => {
+    console.log('in onSave:', this.state );
+    this.props.dispatch({
+      type: 'ADD_ITEM',
+      payload: this.state
+    })
+    this.props.dispatch({
+      type: 'ADD_TYPE',
+      payload: this.state
+    })
+    swal({
+      title: "Nice!",
+      text: "Your item has been added!",
+      icon: "success",
+    });
+    this.props.history.push( '/home' );
+  }
+
   render() {
-    console.log( 'ADDITEMMMMM state:', this.state )
     return (
       <div>
-
         <div className ='itemHeader'>
           <Typography 
               variant='h4'>
@@ -86,7 +90,7 @@ class AddItem extends Component {
 
         <div className='addItemForm'>
 
-        <div className ="type">
+        <div className="type">
             <FormControl variant="outlined">
             <InputLabel id="type-label">Type</InputLabel>
             <Select
@@ -138,7 +142,6 @@ class AddItem extends Component {
               <FormControlLabel value="Accessory" control={<Radio />} label="Accessory" />
               <FormControlLabel value="other" control={<Radio />} label="Other" />
             </RadioGroup>
-
           </div>
 
         <div className="brand"
@@ -149,7 +152,7 @@ class AddItem extends Component {
             variant="outlined"
             onChange={ ( event ) => this.handleChangeFor( event, 'brand' )}>
           </TextField>
-          </div>
+        </div>
 
         <div className="image_Url"
             style = { { paddingTop: 15 } }>
@@ -179,8 +182,7 @@ class AddItem extends Component {
                       />
                   </Grid>
                   <Grid item xs={4}>
-                    <FormControlLabel
-                    
+                    <FormControlLabel                   
                         control={ <Radio /> }
                         label="Orange"
                         color="primary"
@@ -189,8 +191,7 @@ class AddItem extends Component {
                       />
                   </Grid>
                   <Grid item xs={4}>
-                    <FormControlLabel
-                  
+                    <FormControlLabel                
                         control={ <Radio /> }
                         label="Yellow"
                         color="primary"
@@ -215,7 +216,6 @@ class AddItem extends Component {
                     </Grid>
                     <Grid item xs={4}>
                       <FormControlLabel
-            
                         control={ <Radio /> }
                         label="Blue"
                         color="primary"
@@ -224,8 +224,7 @@ class AddItem extends Component {
                       />
                     </Grid>
                     <Grid item xs={4}>
-                      <FormControlLabel
-          
+                      <FormControlLabel          
                         control={ <Radio /> }
                         label="Purple"
                         color="primary"
@@ -293,7 +292,6 @@ class AddItem extends Component {
                 </Grid>
               </Grid>
             </RadioGroup>
-
           </div>       
 
         <div className="materialOptions" 
@@ -434,7 +432,6 @@ class AddItem extends Component {
                   >
               </TextField>
               <FormHelperText>Care / Washing Instructions</FormHelperText>
-
             </div>
         
         <div className='descriptionBtns'
@@ -455,9 +452,7 @@ class AddItem extends Component {
           </div>
         
         </div>
-
       </div>
-        
     );
   }
 }

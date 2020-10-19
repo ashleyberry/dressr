@@ -8,7 +8,6 @@ function* addClothingSaga( action ) {
         url: '/api/clothing',
         data: action.payload
     })
-    console.log( 'back from ADD_ITEM with:' );
     yield put({
         type: 'FETCH_CLOTHING',
     })

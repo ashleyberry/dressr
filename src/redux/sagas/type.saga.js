@@ -1,6 +1,18 @@
 import { put, takeEvery, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
+// adds a new type to the database
+function* addTypeSaga( action ) {
+    console.log( 'in addTypeSaga', action.payload );
+    yield axios({
+        method: 'POST',
+        url: '/api/type',
+        data: action.payload
+    })
+    yield put({
+        type: 'FETCH_TYPES',
+    })
+}
 
 // gets the types via the router
 function* getTypesSaga( action ) {
@@ -35,6 +47,7 @@ function* getRecentTypeSaga( action ) {
 
 
 function* typeSaga() {
+    yield takeLatest( 'ADD_TYPE', addTypeSaga )
     yield takeEvery( 'FETCH_TYPES', getTypesSaga );
     yield takeLatest( 'FETCH_TYPE', getRecentTypeSaga );
 }

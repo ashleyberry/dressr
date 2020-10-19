@@ -42,7 +42,15 @@ router.get('/:id', (req, res) => {
  * POST route template
  */
 router.post('/', (req, res) => {
-  // POST route code here
+  console.log( 'req.body is:', req.body );
+  const queryText = `INSERT INTO "type"("type") VALUES ( $1 );`;
+  pool.query( queryText, [ req.body.type ])
+  .then(result => {
+    res.sendStatus( 201 );
+  }).catch( err => {
+    console.log( 'ERROR in Type POST:', err );
+    res.sendStatus( 500 )
+  })
 });
 
 module.exports = router;

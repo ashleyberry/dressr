@@ -34,9 +34,9 @@ router.delete('/:id', (req, res) => {
 
 // Add a clothing item
 router.post('/', (req, res) => {
-  console.log( 'req.body is:', req.body )
+  console.log( 'req.body is:', req.body );
   const query = `INSERT INTO "clothing" ("type", "kind", "brand", "image_url", "color", "material", "description", "date_worn", "user_id") 
-    VALUES ( $1, $2, $3, $4, $5, $6, $7, $8, $9 );`
+    VALUES ( $1, $2, $3, $4, $5, $6, $7, $8, $9 );`;
     pool.query(query, [ req.body.type, req.body.kind, req.body.brand, req.body.image_url, req.body.color, req.body.material, req.body.description, req.body.date_worn, req.user.id ])
   .then(result => {
     res.sendStatus( 201 );
