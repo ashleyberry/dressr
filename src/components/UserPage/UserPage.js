@@ -11,7 +11,6 @@ import './UserPage.css';
 
 import LibraryAddIcon from '@material-ui/icons/LibraryAdd';
 import { 
-  Card,
   Typography 
 } from '@material-ui/core/';
 import './UserPage.css';

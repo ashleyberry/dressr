@@ -4,14 +4,19 @@ import { connect } from 'react-redux';
 // import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-import { Typography } from '@material-ui/core';
+import MenuIcon from '@material-ui/icons/Menu';
+import Menu from '@material-ui/core/Menu';
+
+import { Button,
+  MenuItem,
+  Typography } from '@material-ui/core';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 // import Icon from '@mdi/react'
 // import { mdiHanger } from '@mdi/js';
 // import FaceIcon from '@material-ui/icons/Face';
 
 const Nav = (props) => {
-console.log( 'props.store.user:', props.store.user )
+
   let loginLinkData = {
     path: '/login',
     text: 'Login / Register',
@@ -23,9 +28,43 @@ console.log( 'props.store.user:', props.store.user )
   // if ( props.store.user.profile_url != null ) {
   //   loginLinkData.photo = <img className="avatar" src={ props.store.user.profile_url } />
   // }
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
     <div className="nav">
+
+    {/* Show the hamburger menu if the user is logged in */}
+    { props.store.user.id == null ? ( null ) : ( <div className='hamburger'>
+      <Button style={{ paddingBottom: 20 }} aria-controls="simple-menu" aria-haspopup="true" onClick={ handleClick }>
+        <MenuIcon fontSize={ 'large' }/>
+      </Button>
+      <Menu
+        id="simple-menu"
+        anchorEl={anchorEl}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
+        <MenuItem onClick={handleClose}>
+        <Link className='link' to="/home">Home</Link></MenuItem>
+        <MenuItem onClick={handleClose}>
+        <Link className='link' to="/dressMe">Dress Me</Link></MenuItem>
+        <MenuItem onClick={handleClose}>
+        <Link className='link' to="/addItem">Add Item</Link></MenuItem>
+        <MenuItem onClick={() => props.dispatch({ type: 'LOGOUT' })}>Logout</MenuItem>
+      </Menu>
+      </div>
+      )}
+    
+      
       <Link to="/home">
         <Typography
           variant='h3'
@@ -33,12 +72,13 @@ console.log( 'props.store.user:', props.store.user )
         </Typography>
       </Link>
       <div className="nav-right">
-        <Link className="nav-link" to={loginLinkData.path}>
+        {/* <Link className="nav-link" to={loginLinkData.path}> */}
           {/* Show this link if they are logged in or not,
           but call this link 'Home' if they are logged in,
           and call this link 'Login / Register' if they are not */}
-          {loginLinkData.text}
-        </Link>
+          {/* {loginLinkData.text} */}
+        {/* </Link> */}
+
         {/* Show the link to the info page and the logout button if the user is logged in */}
         {props.store.user.id && (
           <>

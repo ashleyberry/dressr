@@ -14,6 +14,15 @@
   position: relative;
 }
 
+.link {
+  text-decoration: none;
+  color: black;
+}
+
+.hamburger {
+  display: inline-block;
+}
+
 .nav-title {
     font-size: 24px;
     font-weight: 700;
@@ -26,25 +35,24 @@
   margin: 0 0 10px;
   background-color: #0093E9;
   background-image: linear-gradient(29deg, #0093E9 0%, #80D0C7 74%);
-  
   overflow: hidden;
 }
 
-/* .nav-link {
+.logout-link {
   float: left;
-  color: #f2f2f2;
-  background-color: #00acb0;
-  text-align: center;
-  padding: 24px 10px;
+  color: black;
+  background-color: white;
+ 
+
   text-decoration: none;
-  font-size: 15px;  */
+  font-size: 15px;
 
   /* these last two make the logout button in
   the nav bar look like another link */
-  /* border:none;
+  border:none;
   cursor: pointer;
   outline:0;
-}  */
+}
 
 .nav-link:hover {
   background-color: #008183;
@@ -53,3 +61,4 @@
 .nav-right {
   float: right;
 }
+

@@ -9,6 +9,7 @@ import swal from 'sweetalert';
 // import material-ui styling
 import { 
   Button, 
+  Card,
   FormControl,
   FormControlLabel,
   FormLabel,
@@ -162,6 +163,12 @@ class AddItem extends Component {
               variant="outlined"
               onChange={ ( event ) => this.handleChangeFor( event, 'image_url' )}>
             </TextField>
+            <div>
+              { this.state.image_url === '' ? ( null ) : ( 
+              <Card style={{ textAlign: 'center', marginTop: 10 }}>
+                <img className='addImage' src={ this.state.image_url }></img>
+              </Card> ) }
+            </div>
           </div>
 
         <div className="colorOptions" 
@@ -271,6 +278,15 @@ class AddItem extends Component {
 
               <Grid container spacing={1}>
                 <Grid container item xs={12} spacing={3}>
+                <Grid item xs={4}>
+                    <FormControlLabel
+                        control={ <Radio /> }
+                        label="Pink"
+                        color="primary"
+                        value="Pink"
+                        onChange={ ( event ) => this.handleChangeFor( event, 'color' )}
+                      />
+                  </Grid>
                   <Grid item xs={4}>
                     <FormControlLabel
                         control={ <Radio /> }
@@ -280,7 +296,8 @@ class AddItem extends Component {
                         onChange={ ( event ) => this.handleChangeFor( event, 'color' )}
                       />
                   </Grid>
-                  <Grid item xs={6}>
+                  
+                  <Grid item xs={4}>
                     <FormControlLabel
                         control={ <Radio /> }
                         label="Multi-color"

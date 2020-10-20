@@ -8,6 +8,7 @@ import './Description.css';
 import { 
     Button,
     Card, 
+    Container,
     InputLabel,
     Typography
   } from '@material-ui/core';
@@ -75,44 +76,48 @@ class Description extends Component {
                     </Typography>
                 </div>
                 <br/>
+
+                <div className="dateWorn" >
+                    <div style={{ textAlign: 'center' }}>
+                        <InputLabel style={{display : 'inline-block'}} htmlFor="dateWorn">
+                            Last worn:
+                        </InputLabel>
+                            { this.state.date_worn === '' || this.state.date_worn === undefined || this.state.date_worn === 'undefined' || this.state.date_worn === null ? 
+                            (<input style={{display : 'inline-block'}, { marginLeft: 15 }} type="date" 
+                            id="dateWorn" 
+                            name="dateWorn"
+                            onChange={ ( event ) => this.handleChangeFor ( event, 'date_worn' ) }>
+                        </input>) : ( <input style={{display : 'inline-block'}, { marginLeft: 15 }} type="date" 
+                            value={this.state.date_worn.split( 'T' )[0]} 
+                            id="dateWorn" 
+                            name="dateWorn"
+                            onChange={ ( event ) => this.handleChangeFor ( event, 'date_worn' ) }>
+                        </input> ) }
+                        
+                    </div>
+                </div>
                 
                 <div className='descriptionImg'>
-                    <Card
-                    >
-                        <div style={{ display:'flex', justifyContent:'center' }}>
-                        <img 
-                            src={ this.state.image_url }></img>
-                            </div>
-                            
-                    </Card>
-                </div>
-
-                <div className='itemDescription'>
-                    <Typography 
-                        variant='body1'>
-                        { this.state.description }
-                    </Typography>
-                </div>
-            </div>
-
-        <div className="dateWorn" 
-            style={{ marginTop: 30 }}>
-                <div style={{ textAlign: 'center' }}>
-                    <InputLabel style={{display : 'inline-block'}} htmlFor="dateWorn"
-                        >Last worn:</InputLabel>
-                    <input style={{display : 'inline-block'}, { marginLeft: 15 }} type="date" 
-                        value={this.state.date_worn.split( 'T' )[0]} 
-                        id="dateWorn" 
-                        name="dateWorn"
-                        onChange={ ( event ) => this.handleChangeFor ( event, 'date_worn' ) }>
-                    </input>
-                </div>
-        </div>
+                    <Container>
+                        <Card>
+                            <div style={{ display:'flex', justifyContent:'center' }}>
+                                <img src={ this.state.image_url }></img>
+                            </div> 
+                        </Card>
+                        <div className='thisItemDescription'
+                            style={{ paddingTop: 10 }}>
+                            <Typography 
+                                variant='body1'>
+                                { this.state.description }
+                            </Typography>
+                        </div>
+                    </Container>
+               </div>
 
             <div className='descriptionBtns'
-                style={{ textAlign:'center' }}>
+                style={{ textAlign:'center', }}>
                 <Button 
-                    style={{ marginRight:'10px' }}
+                    style={{ marginTop: 30  }}
                     className='editItemBtn'
                     onClick={ () => this.onEditItem( this.state ) }
                     variant='outlined'
@@ -120,7 +125,7 @@ class Description extends Component {
                     Edit Item
                 </Button>
             </div>
-
+</div>
       </div>
     );
   }

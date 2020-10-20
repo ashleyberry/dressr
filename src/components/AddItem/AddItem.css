@@ -10,3 +10,8 @@
 .kindRadio {
     padding-top: 10px;
 }
+
+.addImage {
+    display: inline-block;
+    object-fit: cover;
+  }

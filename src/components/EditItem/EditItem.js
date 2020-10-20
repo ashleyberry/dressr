@@ -9,6 +9,7 @@ import swal from '@sweetalert/with-react';
 // import material-ui styling
 import { 
   Button, 
+  Card,
   Checkbox,
   FormControl,
   InputLabel,
@@ -123,14 +124,15 @@ class EditItem extends Component {
         </Typography>
       </div>
       <div className='descriptionImg'>
-            <img 
-            style={{ marginTop: 5 }} src={ this.state.image_url }></img>
-        </div>
-
+        <Card>
+          <img 
+          style={{ marginTop: 5 }} src={ this.state.image_url }></img>
+        </Card>
+      </div>
       <div className='editItemForm'>
 
       {/* drop down with type names */}
-        <div>
+        <div className='type'>
           <FormControl>
             <InputLabel htmlFor="type-native-helper">Type</InputLabel>
               <NativeSelect
@@ -166,6 +168,7 @@ class EditItem extends Component {
           
         </div>
 
+       {/* TODO!!!! RADIO */}
         <div className="kindCheckbox">
           <Checkbox 
             color="primary"
@@ -200,13 +203,14 @@ class EditItem extends Component {
             onChange={ ( event ) => this.handleChangeFor( event, 'brand' )}></input>
         </div>
 
-        <div className="image_Url">
-          <label htmlFor="image_Url">
-           Image URL:
-          </label>
-          <input
-            onChange={ ( event ) => this.handleChangeFor( event, 'image_url' )}>
-          </input>
+        <div className="image_Url"
+          style = { { paddingTop: 15 } }>
+          <TextField 
+              htmlFor="image_Url"
+              label='Image URL:'
+              variant="outlined"
+              onChange={ ( event ) => this.handleChangeFor( event, 'image_url' )}>
+            </TextField>
         </div>
 
         <div className="colorCheckbox">
