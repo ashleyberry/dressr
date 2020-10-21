@@ -448,7 +448,7 @@ class AddItem extends Component {
                   rowsMax={ 40 }
                   >
               </TextField>
-              <FormHelperText>Care / Washing Instructions</FormHelperText>
+              <FormHelperText>Add Care / Washing Instructions or a Note</FormHelperText>
             </div>
         
         <div className='descriptionBtns'

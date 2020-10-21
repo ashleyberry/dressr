@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { withRouter } from 'react-router-dom';
+import Item from '../CarouselSlide/CarouselSlide';
+import Carousel from 'react-material-ui-carousel'
 
 import './DressMe.css';
 
@@ -20,12 +22,14 @@ class DressMe extends Component {
     newBottomsArray: [],
     randomTop: '',
     randomBottom: '',
+    activeIndex: 0
   };
 
   componentDidMount = () => {
     this.sortTops();
     this.sortBottoms();
   }
+
 
   addItem = () => {
     this.props.history.push('/addItem')
@@ -94,14 +98,6 @@ class DressMe extends Component {
   }
 
   render() {
-    console.log( 'dressmeeeeee:', this.props.store )
-    console.log( 'this.state.newTopsArray:', this.state.newTopsArray )
-    console.log( 'this.state.newTopsArray.length:', this.state.newTopsArray.length-1 )
-    console.log( 'this.state.randomTop:', this.state.randomTop )
-    console.log( 'this.state.newBottomsArray:', this.state.newBottomsArray )
-    console.log( 'this.state.newBottomsArray.length:', this.state.newBottomsArray.length-1 )
-    console.log( 'this.state.randomBottom:', this.state.randomBottom )
-
     if ( this.state.newTopsArray.length === 0 ) {
 
     return (
@@ -113,6 +109,7 @@ class DressMe extends Component {
     )} else 
     return (
       <div>
+        
         <div className='dressMe'>
 
                 <div className ='dressMeHeader'>
@@ -131,8 +128,16 @@ class DressMe extends Component {
                 </div>
 
                 <div className='dressMeImages'>
-                  { this.state.randomBottom === '' ? (<div></div>) : 
-                    (<div className='dressMeTop'>
+
+                <div className='dressMeTop'>
+                  { this.state.randomTop === '' ? (
+                    <div>
+                      <Carousel autoPlay={ false } >
+                        { this.state.newTopsArray.map( (item, i) => 
+                          <Item key={i} item={item} /> )}
+                      </Carousel>
+                    </div>) : (
+                    <div className='randomTop'>
                       <Card style={{ marginTop: 10 }}>
                         <img src={ this.state.randomTop }
                         style={{ objectFit: 'cover' }}></img>
@@ -148,9 +153,16 @@ class DressMe extends Component {
                       </div>
                     </div>
                     )}
+                </div>
 
-                    { this.state.randomBottom === '' ? (<div></div>) : 
-                    (<div className='dressMeBottom'>
+                <div className='dressMeBottom'>
+                    { this.state.randomBottom === '' ? (<div>
+                      <Carousel autoPlay={ false } >
+                        { this.state.newBottomsArray.map( (item, i) => 
+                          <Item key={i} item={item} /> )}
+                      </Carousel>
+                    </div>) : 
+                    (<div className='randomBottom'>
                       <Card style={{ marginTop: 10 }}>
                         <img src={ this.state.randomBottom }
                         style={{ objectFit: 'cover' }}></img>
@@ -166,6 +178,7 @@ class DressMe extends Component {
                       </div>
                     </div>
                     )}
+                </div>
                 </div>
             </div>
       </div>
