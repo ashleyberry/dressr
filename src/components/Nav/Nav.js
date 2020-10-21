@@ -25,9 +25,7 @@ const Nav = (props) => {
     loginLinkData.path = '/user';
     loginLinkData.text = '';
   }
-  // if ( props.store.user.profile_url != null ) {
-  //   loginLinkData.photo = <img className="avatar" src={ props.store.user.profile_url } />
-  // }
+
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -39,38 +37,38 @@ const Nav = (props) => {
   };
 
   return (
+    
     <div className="nav">
 
     {/* Show the hamburger menu if the user is logged in */}
     { props.store.user.id == null ? ( null ) : ( <div className='hamburger'>
-      <Button style={{ paddingBottom: 20 }} aria-controls="simple-menu" aria-haspopup="true" onClick={ handleClick }>
-        <MenuIcon fontSize={ 'large' }/>
+      <Button style={{ verticalAlign: 'baseline' }} aria-controls="simple-menu" aria-haspopup="true" onClick={ handleClick }>
+        <MenuIcon fontSize={ 'large' } style={{ color: 'white' }}/>
       </Button>
-      <Menu
-        id="simple-menu"
+      <Menu id="simple-menu"
         anchorEl={anchorEl}
         keepMounted
         open={Boolean(anchorEl)}
-        onClose={handleClose}
-      >
+        onClose={handleClose}>
         <MenuItem onClick={handleClose}>
         <Link className='link' to="/home">Home</Link></MenuItem>
         <MenuItem onClick={handleClose}>
-        <Link className='link' to="/dressMe">Dress Me</Link></MenuItem>
-        <MenuItem onClick={handleClose}>
         <Link className='link' to="/addItem">Add Item</Link></MenuItem>
+        <MenuItem onClick={handleClose}>
+        <Link className='link' to="/dressMe">Dress Me</Link></MenuItem>
         <MenuItem onClick={() => props.dispatch({ type: 'LOGOUT' })}>Logout</MenuItem>
       </Menu>
       </div>
       )}
     
+      { props.store.user.id == null? ( <Link to="/home">
+        <h1 className="logged-out-nav-title" >dressr
+        </h1>
+      </Link> ) : ( <Link to="/home">
+        <h1 className="nav-title">dressr
+        </h1>
+      </Link> ) }
       
-      <Link to="/home">
-        <Typography
-          variant='h3'
-          className="nav-title">dressr
-        </Typography>
-      </Link>
       <div className="nav-right">
         {/* <Link className="nav-link" to={loginLinkData.path}> */}
           {/* Show this link if they are logged in or not,

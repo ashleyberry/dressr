@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { Typography } from '@material-ui/core'
+import './LoginForm.css';
 
 class LoginForm extends Component {
   state = {
@@ -33,13 +34,14 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <div>
+      <div className='loginForm'>
       <Typography
+        style={{ textAlign: 'center', fontFamily: 'Quicksand' }}
         variant='h4'>
-        Login
-        </Typography>
+        Welcome back!
+      </Typography>
+
       <form className="formPanel" onSubmit={this.login}>
-                
         {this.props.store.errors.loginMessage && (
           <h3 className="alert" role="alert">
             {this.props.store.errors.loginMessage}

@@ -13,34 +13,33 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 const Footer = ( props ) => {
     let loginLinkData = {
         path: '/login',
-        text: 'Login / Register',
+        text: '',
       };
     
       if (props.store.user.id != null) {
         loginLinkData.path = '/user';
         loginLinkData.text = 'Home';
       }
+
     return (
         <footer>
             <div className="footer-nav">
-                <Link className="footer-nav-link" to={loginLinkData.path}>
-                {/* Show this link if they are logged in or not,
-                but call this link 'Home' if they are logged in,
-                and call this link 'Login / Register' if they are not */}
-                {loginLinkData.text}
-                </Link>
-                {/* Show the link to the info page and the logout button if the user is logged in */}
+                {/* If the user is logged in, show these links */}
                 {props.store.user.id && (
                 <>
-                    <Link className="footer-nav-link" to="/addItem">
-                        Add Item
-                    </Link>
-                    <Link className='footer-nav-link' to="/dressMe">
-                        Dress Me
-                    </Link>
-                    <LogOutButton className="footer-nav-link" />
+                <Link className="footer-nav-link" to={loginLinkData.path}>
+                    {loginLinkData.text}
+                </Link>
+                <Link className="footer-nav-link" to="/addItem">
+                    Add Item
+                </Link>
+                <Link className='footer-nav-link' to="/dressMe">
+                    Dress Me
+                </Link>
+                <LogOutButton className="footer-nav-link" />
                 </>
                 )}
+                
                 {/* Always show this link since the about page is not protected */}
                 {/* <Link className="nav-link" to="/about">
                 About
