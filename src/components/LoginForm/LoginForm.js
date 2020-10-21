@@ -48,14 +48,15 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <div className='body'>
+      <div className='body' style={{ textAlign:'center' }}>
         
-      <div className='loginForm' style={{ textAlign:'center' }}>
-      <Typography
-        style={{ fontFamily: 'Quicksand' }}
-        variant='h4'>
-        Welcome back!
-      </Typography>
+      <div className='loginForm' >
+        <div className='actualLoginForm' >
+          <Typography
+            style={{ fontFamily: 'Quicksand' }}
+            variant='h4'>
+            Welcome back!
+          </Typography>
 
       <form className="formPanel" onSubmit={this.login}>
         {this.props.store.errors.loginMessage && (
@@ -98,6 +99,8 @@ class LoginForm extends Component {
       </form>
       </div>
       </div>
+      </div> 
+
     );
   }
 }

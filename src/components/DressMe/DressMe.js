@@ -30,7 +30,6 @@ class DressMe extends Component {
     this.sortBottoms();
   }
 
-
   addItem = () => {
     this.props.history.push('/addItem')
   }
@@ -119,10 +118,10 @@ class DressMe extends Component {
                         onClick= { this.dressMe }
                         variant='outlined'
                         color='primary'>                  
-                        <Typography 
-                        variant='h5'>
-                        Dress Me
-                    </Typography>
+                          <Typography 
+                          variant='h5'>
+                          Dress Me
+                          </Typography>
                       </Button>
                     </div>
                 </div>

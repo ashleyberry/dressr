@@ -97,6 +97,7 @@ class App extends Component {
             {/* When a value is supplied for the authRedirect prop the user will
             be redirected to the path supplied when logged in, otherwise they will
             be taken to the component and path supplied. */}
+         
             <ProtectedRoute
               // with authRedirect:
               // - if logged in, redirects to "/user"
@@ -106,6 +107,7 @@ class App extends Component {
               component={LoginPage}
               authRedirect="/user"
             />
+            
             <ProtectedRoute
               // with authRedirect:
               // - if logged in, redirects to "/user"

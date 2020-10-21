@@ -177,7 +177,9 @@ class AddItem extends Component {
               Color:
             </FormLabel>
             <RadioGroup>
+
               <Grid container spacing={1}>
+                
                 <Grid container item xs={12} spacing={3}>
                   <Grid item xs={4}>
                     <FormControlLabel
