@@ -1,14 +1,28 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-import { Typography } from '@material-ui/core'
 import './LoginForm.css';
+
+import { 
+  Button, 
+
+  Checkbox,
+  FormControl,
+  InputLabel,
+  NativeSelect,
+  TextField,
+  Typography
+} from '@material-ui/core';
+
+
 
 class LoginForm extends Component {
   state = {
     username: '',
     password: '',
   };
+
+
 
   login = (event) => {
     event.preventDefault();
@@ -34,9 +48,11 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <div className='loginForm'>
+      <div className='body'>
+        
+      <div className='loginForm' style={{ textAlign:'center' }}>
       <Typography
-        style={{ textAlign: 'center', fontFamily: 'Quicksand' }}
+        style={{ fontFamily: 'Quicksand' }}
         variant='h4'>
         Welcome back!
       </Typography>
@@ -47,34 +63,40 @@ class LoginForm extends Component {
             {this.props.store.errors.loginMessage}
           </h3>
         )}
-        <div>
-          <label htmlFor="username">
-            Username:
-            <input
-              type="text"
-              name="username"
-              required
-              value={this.state.username}
-              onChange={this.handleInputChangeFor('username')}
-            />
-          </label>
+        <div className='username'>
+          <TextField 
+            htmlFor="username"
+            label="Username"
+            required
+            variant="outlined"
+            value={this.state.username}
+            onChange={ this.handleInputChangeFor( 'username' ) }>
+          </TextField>
         </div>
-        <div>
-          <label htmlFor="password">
-            Password:
-            <input
+
+        <div className='password'>
+          <TextField 
+            htmlFor="password"
+            variant="outlined"
+            label='Password'
               type="password"
               name="password"
               required
               value={this.state.password}
-              onChange={this.handleInputChangeFor('password')}
-            />
-          </label>
+              onChange={this.handleInputChangeFor('password')}>
+          </TextField>
         </div>
-        <div>
-          <input className="btn" type="submit" name="submit" value="Log In" />
+
+        <div className='logInBtn'>
+          <Button className="btn" 
+            style={{ color: 'white', fontSize: 18, background: 'linear-gradient(45deg, #1098cd 30%, #10bfcd 90%)'}}
+            variant="outlined" 
+            type="submit" name="submit" value="Log In">Log In</Button>
         </div>
+
+
       </form>
+      </div>
       </div>
     );
   }

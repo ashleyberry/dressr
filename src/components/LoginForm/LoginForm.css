@@ -1,11 +1,24 @@
-body {
+/* .body {
     background-image: url('https://www.containerstore.com/catalogimages/355104/HangerOversizeShirtNat10045503_x.jpg?width=1200&height=1200&align=center');
     background-repeat: no-repeat;
     background-size: contain;
-    background-position: top;
+    background-position: bottom;
+    height: 100%;
 }
+ */
 
-.loginForm {
-    margin-top: 200px;
-}
+ .logInBtn {
+     margin-top: 20px;
+ }
 
+ .loginForm {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+ }
+
+ .password {
+     margin: 5px; 
+ }

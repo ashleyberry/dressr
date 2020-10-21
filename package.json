@@ -18,6 +18,7 @@
     "dotenv": "^4.0.0",
     "express": "^4.16.4",
     "material-ui-icons": "^1.0.0-beta.36",
+    "material-ui-password-field": "^2.1.2",
     "material-ui-search-bar": "^1.0.0",
     "mdi-react": "^7.3.0",
     "passport": "^0.4.0",
