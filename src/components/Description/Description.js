@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { withRouter } from 'react-router-dom';
+import Nav from '../Nav/Nav';
+
 import './Description.css';
 
 // stying with material-ui
@@ -68,6 +70,7 @@ class Description extends Component {
       console.log( 'this is our state:', this.state )
     return (
         <div>
+            <Nav/>
             <div className='description'>
                 <div className ='descriptionHeader'>
                     <Typography 

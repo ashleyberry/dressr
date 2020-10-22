@@ -5,23 +5,17 @@ import './LoginForm.css';
 
 import { 
   Button, 
-
-  Checkbox,
-  FormControl,
-  InputLabel,
-  NativeSelect,
   TextField,
   Typography
 } from '@material-ui/core';
 
 
-
 class LoginForm extends Component {
+
   state = {
     username: '',
     password: '',
   };
-
 
 
   login = (event) => {
@@ -50,8 +44,8 @@ class LoginForm extends Component {
     return (
       <div className='body' style={{ textAlign:'center' }}>
         
-      <div className='loginForm' >
-        <div className='actualLoginForm' >
+
+        <div className='loginForm'>
           <Typography
             style={{ fontFamily: 'Quicksand' }}
             variant='h4'>
@@ -80,11 +74,10 @@ class LoginForm extends Component {
             htmlFor="password"
             variant="outlined"
             label='Password'
-              type="password"
-              name="password"
-              required
-              value={this.state.password}
-              onChange={this.handleInputChangeFor('password')}>
+            type="password"
+            required
+            value={this.state.password}
+            onChange={this.handleInputChangeFor('password')}>
           </TextField>
         </div>
 
@@ -95,9 +88,8 @@ class LoginForm extends Component {
             type="submit" name="submit" value="Log In">Log In</Button>
         </div>
 
-
       </form>
-      </div>
+
       </div>
       </div> 
 

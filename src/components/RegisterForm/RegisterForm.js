@@ -2,9 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
-import { Typography } from '@material-ui/core'
+import { 
+  Button, 
+  TextField,
+  Typography 
+} from '@material-ui/core'
+import '../LoginForm/LoginForm.css';
 
 class RegisterForm extends Component {
+
   state = {
     first_name: '',
     email: '',
@@ -28,7 +34,7 @@ class RegisterForm extends Component {
     });
   }; // end registerUser
 
-  handleInputChangeFor = (propertyName) => (event) => {
+  handleInputChangeFor = ( propertyName ) => ( event ) => {
     this.setState({
       [propertyName]: event.target.value,
     });
@@ -37,80 +43,92 @@ class RegisterForm extends Component {
   render() {
     return (
       <div>
-        <Typography
-        variant='h4'>
-        Register
-        </Typography>
-        <form className="formPanel" onSubmit={this.registerUser}>
 
-          {this.props.store.errors.registrationMessage && (
-            <h3 className="alert" role="alert">
-              {this.props.store.errors.registrationMessage}
-            </h3>
-          )}
-          <div>
-            <label htmlFor="first_name">
-              First Name:
-              <input
-              
-                type="text"
-                name="first_name"
-                value={ this.state.first_name }
-                required
-                onChange={this.handleInputChangeFor( 'first_name' )}
-              />
-            </label>
+        <div className='registerForm'>
+
+          <Typography
+            style={{ fontFamily: 'Quicksand'}}
+            variant='h4'>
+            Register
+          </Typography>
+        
+          <form className="registerFormPanel" onSubmit={this.registerUser}>
+            {this.props.store.errors.registrationMessage && (
+              <h3 className="alert" role="alert">
+                {this.props.store.errors.registrationMessage}
+              </h3>
+            )}
+        
+        <div className='queenRegisterFormInput'>
+          <div className='registerFormInputs'>
+          <TextField 
+              htmlFor="first_name"
+              label='First Name'
+              required
+              variant="outlined"
+              value={ this.state.first_name }
+              onChange={this.handleInputChangeFor( 'first_name' )}>
+            </TextField>
+        </div>
+
+          <div className='registerFormInputs'>
+            <TextField 
+              htmlFor="email"
+              variant="outlined"
+              label='Email'
+              required
+              value={ this.state.email }
+              onChange={this.handleInputChangeFor( 'email' )}>
+            </TextField>
           </div>
-          <div>
-            <label htmlFor="email">
-              Email:
-              <input
-                type="text"
-                name="email"
-                value={ this.state.email }
-                onChange={this.handleInputChangeFor( 'email' )}
-              />
-            </label>
+
+          <div className='registerFormInputs'>
+            <TextField 
+              htmlFor="username"
+              label="Username"
+              required
+              variant="outlined"
+              value={this.state.username}
+              onChange={ this.handleInputChangeFor( 'username' ) }>
+            </TextField>
           </div>
-          <div>
-            <label htmlFor="username">
-              Username:
-              <input
-                type="text"
-                name="username"
-                value={this.state.username}
-                required
-                onChange={this.handleInputChangeFor('username')}
-              />
-            </label>
+
+          <div className='registerFormInputs'>
+          <TextField 
+            htmlFor="password"
+            variant="outlined"
+            label='Password'
+            type="password"
+            name="password"
+            required
+            value={this.state.password}
+            onChange={this.handleInputChangeFor('password')}>
+          </TextField>
           </div>
-          <div>
-            <label htmlFor="password">
-              Password:
-              <input
-                type="password"
-                name="password"
-                value={this.state.password}
-                required
-                onChange={this.handleInputChangeFor('password')}
-              />
-            </label>
+
+          <div className='registerFormInputs'>
+            <TextField 
+              htmlFor="profile_url"
+              variant="outlined"
+              label="Profile Image"
+              value={ this.state.profile_url }
+              onChange={this.handleInputChangeFor( 'profile_url' )}>
+            </TextField>
           </div>
-          <div>
-            <label htmlFor="profile_url">
-              Profile Image URL:
-              <input
-                type="text"
-                name="profile_url"
-                value={ this.state.profile_url }
-                onChange={this.handleInputChangeFor( 'profile_url' )}
-              />
-            </label>
-          </div>
-          <div>
-            <input className="btn" type="submit" name="submit" value="Register" />
-          </div>
-        </form>
+        </div>
+        
+        <div className='logInBtn'>
+          <Button className="btn" 
+            style={{ color: 'white', fontSize: 18, background: 'linear-gradient(45deg, #1098cd 30%, #10bfcd 90%)'}}
+            variant="outlined" 
+            type="submit" name="submit" value="Register">Register
+          </Button>
+        </div>
+     
+      </form>
+        
+        </div>
+
       </div>
     );
   }

@@ -1,8 +1,8 @@
-html,
+/* html,
 body,
 #react-root {
   height: 100%;
-}
+} */
 
 .addItemForm {
   padding-top: 20px;
@@ -17,7 +17,6 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0px;
 }
-
 
 img {
   display: inline-block;
@@ -94,7 +93,7 @@ Button
 }
 
 /* This line makes the "Register" and "Login" buttons look like links */
-.btn_asLink {
+.btn_asLink_register {
   padding: 0;
   border-width: 0;
   border-bottom: 1px solid #444;
@@ -102,7 +101,18 @@ Button
   background: none;
   font: inherit;
   color: #444;
-  margin-top: 675px;
+  margin-top: 475px;
+}
+
+.btn_asLink_login {
+  padding: 0;
+  border-width: 0;
+  border-bottom: 1px solid #444;
+  border-radius: 0;
+  background: none;
+  font: inherit;
+  color: #444;
+  margin-top: 175px;
 }
 
 .btn_asLink:hover {
@@ -136,10 +146,9 @@ Form Treatment
   max-width: 100%;
   padding: 25px;
   margin: 0 auto 20px;
-
   border-radius: 3px;
-
 }
+
 
 input {
   margin: 5px;

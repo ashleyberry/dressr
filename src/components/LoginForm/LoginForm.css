@@ -1,39 +1,27 @@
-/* .body {
-    background-image: url('https://www.containerstore.com/catalogimages/355104/HangerOversizeShirtNat10045503_x.jpg?width=1200&height=1200&align=center');
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: bottom;
-    height: 100%;
-}
- */
-
  .logInBtn {
      margin-top: 20px;
  }
 
- .actualLoginForm {
-
+ .loginForm {
     top: 50%;
     left: 50%;
     margin-right: -50%;
-    transform: translate(-21%, -10%);
+    transform: translate(-21%, 110%);
  }
 
-
- .loginForm {
-     height: 80%;
-     background-image: url('https://www.containerstore.com/catalogimages/355104/HangerOversizeShirtNat10045503_x.jpg?width=1200&height=1200&align=center');
-     background-size: 350px;
-     background-repeat: no-repeat;
-     position: absolute;
-     top: 50%;
-     left: 50%;
-     margin-right: -50%;
-     transform: translate(-44%, -50%);
+ .registerForm {
+     text-align: center;
+     margin-top: 10em;
  }
 
-
+ .registerFormInputs {
+     margin-top: 5px;
+ }
 
  .password {
      margin: 5px; 
+ }
+
+ .queenRegisterFormInput {
+     margin-top: 1em;
  }

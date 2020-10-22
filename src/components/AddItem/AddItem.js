@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { withRouter } from 'react-router-dom';
+import Nav from '../Nav/Nav';
+
 import './AddItem.css';
 import swal from 'sweetalert';
 
@@ -82,10 +84,12 @@ class AddItem extends Component {
   render() {
     return (
       <div>
-        <div className ='itemHeader'>
+        <Nav/>
+        <div className='itemHeader'>
           <Typography 
+              style={{ fontFamily: 'Quicksand' }}
               variant='h4'>
-              Add Item
+              Add an item
           </Typography>
         </div>
 
@@ -133,15 +137,63 @@ class AddItem extends Component {
         <div className="kindRadio"
             style = { { paddingTop: 15 } }>
             <FormLabel>Kind:</FormLabel>
-            <RadioGroup 
-              row aria-label="kind" 
-              name="kind" 
-              onChange={ ( event ) => this.handleChangeFor( event, 'kind' )}>
-              <FormControlLabel value="Top" control={<Radio />} label="Top" />
-              <FormControlLabel value="Bottom" control={<Radio />} label="Bottom" />
-              <FormControlLabel value="Entire Outfit" control={<Radio />} label="Entire Outfit" />
-              <FormControlLabel value="Accessory" control={<Radio />} label="Accessory" />
-              <FormControlLabel value="other" control={<Radio />} label="Other" />
+              <RadioGroup>
+
+              <Grid container spacing={1}>
+                <Grid container item xs={12} spacing={3}>
+                  <Grid item xs={4}>
+                    <FormControlLabel
+                      control={ <Radio />}
+                      label='Top'
+                      color='primary'
+                      value='top'
+                      onClick={ ( event ) => this.handleChangeFor( event, 'kind' )}/>
+                  </Grid>
+
+                  <Grid item xs={4}>
+                    <FormControlLabel 
+                    control={<Radio />} 
+                    label="Bottom" 
+                    color='primary'
+                    value="bottom" 
+                    onClick={ ( event ) => this.handleChangeFor( event, 'kind' )}/>
+                  </Grid>
+
+                  <Grid item xs={4}>
+                    <FormControlLabel 
+                      value="Accessory" 
+                      color='primary' 
+                      control={<Radio />} 
+                      label="Accessory" 
+                      onClick={ ( event ) => this.handleChangeFor( event, 'kind' )}/>
+                  </Grid>
+
+                </Grid>
+              </Grid>
+
+              <Grid container spacing={1}>
+                <Grid container item xs={12} spacing={3}>
+                  <Grid item xs={4}>
+                    <FormControlLabel 
+                    value="Outfit" 
+                    color='primary'
+                    control={<Radio />} 
+                    label="Outfit" 
+                    onClick={ ( event ) => this.handleChangeFor( event, 'kind' )}/>
+                  </Grid>
+
+                  <Grid item xs={4}>
+                  <FormControlLabel 
+                    value="Other"
+                    color='primary'  
+                    onClick={ ( event ) => this.handleChangeFor( event, 'kind' )}
+                    control={<Radio />} 
+                    label="Other" />
+                </Grid>
+
+                </Grid>
+              </Grid>
+          
             </RadioGroup>
           </div>
 
@@ -179,7 +231,7 @@ class AddItem extends Component {
             <RadioGroup>
 
               <Grid container spacing={1}>
-                
+
                 <Grid container item xs={12} spacing={3}>
                   <Grid item xs={4}>
                     <FormControlLabel

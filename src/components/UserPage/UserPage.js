@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { withRouter } from 'react-router-dom';
 import Searchish from '../SearchBar/SearchBar';
+import Nav from '../Nav/Nav';
 import './UserPage.css';
 
 
@@ -50,19 +51,23 @@ class UserPage extends Component {
   }
 
   render() {
-    console.log( 'USErRRRRRPAGE:', this.props.store )
-    console.log( 'Userpage this.props.store.clothing:', this.props.store.clothing )
     if ( this.props.store.clothing.length === 0 ) {
       return (
+        <div className='userPage'>
+          <Nav/>
       <div className='newUserNotice'>
         <Typography variant='h5'>Your closet is empty!</Typography>
         <Typography variant='h6'>Add your first item!</Typography>
         <LibraryAddIcon style={{ width: 50, height: 50 }} fontSize='large' onClick={ this.addItem }></LibraryAddIcon>
     </div>
+    </div>
     )
     } else { 
     return (
         <div>
+          <div>
+            <Nav/>
+          </div>
                 <Searchish></Searchish>
         </div>
     );

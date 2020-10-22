@@ -43,7 +43,7 @@ const Nav = (props) => {
     {/* Show the hamburger menu if the user is logged in */}
     { props.store.user.id == null ? ( null ) : ( <div className='hamburger'>
       <Button style={{ verticalAlign: 'baseline' }} aria-controls="simple-menu" aria-haspopup="true" onClick={ handleClick }>
-        <MenuIcon fontSize={ 'large' } style={{ color: 'white' }}/>
+        <MenuIcon fontSize={ 'medium' } style={{ color: 'white' }}/>
       </Button>
       <Menu id="simple-menu"
         anchorEl={anchorEl}
