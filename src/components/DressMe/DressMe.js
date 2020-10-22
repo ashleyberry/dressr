@@ -99,6 +99,7 @@ class DressMe extends Component {
   }
 
   render() {
+    
     if ( this.state.newTopsArray.length === 0 ) {
 
     return (

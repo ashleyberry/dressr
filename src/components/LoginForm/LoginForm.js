@@ -42,10 +42,9 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <div className='body' style={{ textAlign:'center' }}>
-        
+      <div className='body' >
 
-        <div className='loginForm'>
+        <div className='loginForm' style={{ textAlign:'center' }}>
           <Typography
             style={{ fontFamily: 'Quicksand' }}
             variant='h4'>

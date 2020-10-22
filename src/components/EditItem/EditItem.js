@@ -39,6 +39,7 @@ class EditItem extends Component {
     color: this.props.store.recentClothing.color,
     material: this.props.store.recentClothing.material,
     description: this.props.store.recentClothing.description,
+    date_worn: this.props.store.recentClothing.date_worn,
     isOther: false
 };
 

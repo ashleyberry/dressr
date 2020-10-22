@@ -111,9 +111,14 @@ class Description extends Component {
                             <Grid container spacing={1}>
                                 <Grid container item xs={12} spacing={3}>
                                     <Grid item xs={12}>
-                                        
+                                        <div style={{ textTransform: 'capitalize' }}>
+                                            <Typography variant='body1'>
+                                                { this.state.material }
+                                            </Typography>
+                                        </div>
                                         <Typography 
                                             variant='body1'>
+                                
                                             { this.state.description }
                                         </Typography>
                                         
@@ -125,7 +130,7 @@ class Description extends Component {
                </div>
 
             <div className="editBtn" 
-                style={{ textAlign:'center', marginTop: 100 }}>
+                style={{ textAlign:'center', marginTop: 150 }}>
                 <Button  
                     style={{ color: 'white', fontSize: 18, background: 'linear-gradient(45deg, #1098cd 30%, #10bfcd 90%)'}}
                     variant="outlined" 

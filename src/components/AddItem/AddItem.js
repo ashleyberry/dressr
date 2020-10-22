@@ -17,6 +17,7 @@ import {
   FormLabel,
   FormHelperText,
   Grid,
+  Paper,
   InputLabel,
   Radio,
   RadioGroup,
@@ -133,8 +134,8 @@ class AddItem extends Component {
 
         </div>
           
-        <div className="kindRadio"
-            style = { { paddingTop: 15 } }>
+        <div className="kindRadio">
+              
             <FormLabel>Kind:</FormLabel>
               <RadioGroup>
 
@@ -194,6 +195,7 @@ class AddItem extends Component {
               </Grid>
           
             </RadioGroup>
+            
           </div>
 
         <div className="brand"
