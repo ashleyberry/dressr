@@ -119,7 +119,6 @@ class AddItem extends Component {
               <option>other</option>
             </Select>
             </FormControl>
-
           <div className="hiddenOther"
             style = { { paddingTop: 10 } }>
             { this.state.isOther === false ? (
@@ -499,7 +498,7 @@ class AddItem extends Component {
                   multiline
                   style = { { width: 300 } }
                   rows={4}
-                  rowsMax={ 40 }
+                  rowsMax={4}
                   >
               </TextField>
               <FormHelperText>Add Care / Washing Instructions or a Note</FormHelperText>

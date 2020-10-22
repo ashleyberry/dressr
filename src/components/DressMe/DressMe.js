@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { withRouter } from 'react-router-dom';
 import Item from '../CarouselSlide/CarouselSlide';
-import Carousel from 'react-material-ui-carousel'
+import Carousel from 'react-material-ui-carousel';
+import Nav from '../Nav/Nav';
+
 
 import './DressMe.css';
 
@@ -100,35 +102,24 @@ class DressMe extends Component {
     if ( this.state.newTopsArray.length === 0 ) {
 
     return (
+      <div>
+      <Nav/>
       <div className='newDressMeUser'>
+        
         <Typography variant='body1'>Looks like you don't have any items yet!</Typography>
         <Typography variant='body1'>Add some items and come back soon!</Typography>
         <LibraryAddIcon style={{ width: 50, height: 50 }} fontSize='large' onClick={ this.addItem }></LibraryAddIcon>
       </div>
+      </div>
     )} else 
     return (
       <div>
-        
+        <Nav/>
         <div className='dressMe'>
 
-                <div className ='dressMeHeader'>
-                <div className="dressMeBtn"
-                      style={{ textAlign:'center' }}>
-                      <Button 
-                        onClick= { this.dressMe }
-                        variant='outlined'
-                        color='primary'>                  
-                          <Typography 
-                          variant='h5'>
-                          Dress Me
-                          </Typography>
-                      </Button>
-                    </div>
-                </div>
+          <div className='dressMeImages'>
 
-                <div className='dressMeImages'>
-
-                <div className='dressMeTop'>
+            <div className='dressMeTop'>
                   { this.state.randomTop === '' ? (
                     <div>
                       <Carousel autoPlay={ false } >
@@ -154,7 +145,7 @@ class DressMe extends Component {
                     )}
                 </div>
 
-                <div className='dressMeBottom'>
+            <div className='dressMeBottom'>
                     { this.state.randomBottom === '' ? (<div>
                       <Carousel autoPlay={ false } >
                         { this.state.newBottomsArray.map( (item, i) => 
@@ -178,9 +169,22 @@ class DressMe extends Component {
                     </div>
                     )}
                 </div>
-                </div>
+          
+          </div>
+
+            <div className="dressMeBtn" 
+                style={{ textAlign:'center' }}>
+                <Button  
+                    style={{ color: 'white', fontSize: 18, background: 'linear-gradient(45deg, #1098cd 30%, #10bfcd 90%)'}}
+                    variant="outlined" 
+                    type="submit" 
+                    name="submit" 
+                    onClick={ this.dressMe }>Dress Me</Button>
             </div>
-      </div>
+          </div>
+              
+        </div>
+   
     );
   }
 }

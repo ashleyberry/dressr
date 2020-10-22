@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { withRouter } from 'react-router-dom';
+import Nav from '../Nav/Nav';
 import './EditItem.css';
 
 import swal from '@sweetalert/with-react';
@@ -10,10 +11,15 @@ import swal from '@sweetalert/with-react';
 import { 
   Button, 
   Card,
-  Checkbox,
+  Grid,
   FormControl,
+  FormControlLabel,
+  FormHelperText,
+  FormLabel,
   InputLabel,
-  NativeSelect,
+  Radio,
+  RadioGroup,
+  Select,
   TextField,
   Typography
 } from '@material-ui/core';
@@ -49,7 +55,6 @@ class EditItem extends Component {
       this.onSave();
   }
 
-
   onSave = () => {
     console.log('in onSave', this.state );
     this.props.dispatch({
@@ -71,7 +76,6 @@ class EditItem extends Component {
         this.onDeleteItem( this.state.id )
         swal( <div>
           <hr/>
-          <Typography variant='subtitle1'>TAKE ACTION AGAINST TEXTILE WASTE</Typography>
           <Typography style={{ marginTop: 10 }}variant='body1'>DONATE</Typography> 
           <img style={{ width: 100, height: 70 }} src='https://www.roadrunnerwm.com/hs-fs/hubfs/Donate_Icon.png?name=Donate_Icon.png'></img>
 
@@ -116,30 +120,36 @@ class EditItem extends Component {
     console.log( 'EDIIIIIIT ITEM:', this.state )
     return (
       <div>
+        <Nav/>
 
-      <div className ='itemHeader'>
-        <Typography 
-            variant='h4'>
-            Edit { this.props.store.recentClothing.brand } { this.props.store.recentClothing.type }
-        </Typography>
-      </div>
-      <div className='descriptionImg'>
+      <div className='descriptionImg' style={{ textAlign: 'center'}}>
         <Card>
-          <img 
-          style={{ marginTop: 5 }} src={ this.state.image_url }></img>
+        <Typography
+              style={{ fontFamily: 'Quicksand' }}
+                variant='h5'>
+                Edit this item
+            </Typography>
+            { this.state.image_url === '' ? ( null ) : ( 
+              <Card style={{ textAlign: 'center', marginTop: 10 }}>
+                <img className='addImage' src={ this.state.image_url }></img>
+              </Card> ) }
         </Card>
       </div>
       <div className='editItemForm'>
 
       {/* drop down with type names */}
-        <div className='type'>
-          <FormControl>
-            <InputLabel htmlFor="type-native-helper">Type</InputLabel>
-              <NativeSelect
+        <div className='editType'>
+          <FormControl variant='outlined'>
+            <InputLabel id="type-native-helper">Type</InputLabel>
+              <Select
+                labelId='type-label'
+                id='type-native-helper'
+                native
+                label='Type'
                 onChange={ ( event ) => this.handleChangeFor ( event, 'type' ) }
                 inputProps={{
                   name: 'type',
-                  id: 'type-native-helper'}}>
+                }}>
                 <option aria-label="None" value="" />
                 {this.props.store.types.map( type => {
                   return (
@@ -150,10 +160,8 @@ class EditItem extends Component {
                   )
                 })}
                 <option>other</option>
-              </NativeSelect>
-        
+              </Select>
           </FormControl>
-
           <div className="hiddenOther"
             style = { { paddingTop: 10 } }>
             { this.state.isOther === false ? (
@@ -168,183 +176,373 @@ class EditItem extends Component {
           
         </div>
 
-       {/* TODO!!!! RADIO */}
-        <div className="kindCheckbox">
-          <Checkbox 
-            color="primary"
-            value="Top"
-            onChange={ ( event ) => this.handleChangeFor( event, 'kind' )}/>Top
-          <Checkbox 
-            color="primary"
-            value="Bottom"
-            onChange={ ( event ) => this.handleChangeFor( event, 'kind' )}/>Bottom
-            <br/>
-          <Checkbox 
-            color="primary"
-            value="Entire Outfit"
-            onChange={ ( event ) => this.handleChangeFor( event, 'kind' )}/>Entire Outfit
-          <Checkbox 
-            color="primary"
-            value="Accessory"
-            onChange={ ( event ) => this.handleChangeFor( event, 'kind' )}/>Accessory
-            <br/>
-          <Checkbox 
-            color="primary"
-            value="Other"
-            onChange={ ( event ) => this.handleChangeFor( event, 'kind' )}/>Other
-        </div>
+       <div className="kindRadio"
+            style = { { paddingTop: 15 } }>
+            <FormLabel>Kind:</FormLabel>
+              <RadioGroup>
 
-        <div className="brand">
-          <label htmlFor="brand">
-            Brand:
-          </label>
-          <br/>
-          <input value={ this.state.brand }
-            onChange={ ( event ) => this.handleChangeFor( event, 'brand' )}></input>
+              <Grid container spacing={1}>
+                <Grid container item xs={12} spacing={3}>
+                  <Grid item xs={4}>
+                    <FormControlLabel
+                      control={ <Radio />}
+                      label='Top'
+                      color='primary'
+                      value='top'
+                      onClick={ ( event ) => this.handleChangeFor( event, 'kind' )}/>
+                  </Grid>
+
+                  <Grid item xs={4}>
+                    <FormControlLabel 
+                    control={<Radio />} 
+                    label="Bottom" 
+                    color='primary'
+                    value="bottom" 
+                    onClick={ ( event ) => this.handleChangeFor( event, 'kind' )}/>
+                  </Grid>
+
+                  <Grid item xs={4}>
+                    <FormControlLabel 
+                      value="Accessory" 
+                      color='primary' 
+                      control={<Radio />} 
+                      label="Accessory" 
+                      onClick={ ( event ) => this.handleChangeFor( event, 'kind' )}/>
+                  </Grid>
+
+                </Grid>
+              </Grid>
+
+              <Grid container spacing={1}>
+                <Grid container item xs={12} spacing={3}>
+                  <Grid item xs={4}>
+                    <FormControlLabel 
+                    value="Outfit" 
+                    color='primary'
+                    control={<Radio />} 
+                    label="Outfit" 
+                    onClick={ ( event ) => this.handleChangeFor( event, 'kind' )}/>
+                  </Grid>
+
+                  <Grid item xs={4}>
+                  <FormControlLabel 
+                    value="Other"
+                    color='primary'  
+                    onClick={ ( event ) => this.handleChangeFor( event, 'kind' )}
+                    control={<Radio />} 
+                    label="Other" />
+                </Grid>
+
+                </Grid>
+              </Grid>
+          
+            </RadioGroup>
+          </div>
+
+        <div className="brand"
+        style = { { paddingTop: 15 } }>
+          <TextField 
+            htmlFor="brand"
+            label="Brand"
+            variant="outlined"
+            onChange={ ( event ) => this.handleChangeFor( event, 'brand' )}>
+          </TextField>
         </div>
 
         <div className="image_Url"
-          style = { { paddingTop: 15 } }>
+          style = { { paddingTop: 20 } }>
           <TextField 
-              htmlFor="image_Url"
-              label='Image URL:'
-              variant="outlined"
-              onChange={ ( event ) => this.handleChangeFor( event, 'image_url' )}>
-            </TextField>
-        </div>
+            htmlFor="image_Url"
+            label='Image URL:'
+            variant="outlined"
+            onChange={ ( event ) => this.handleChangeFor( event, 'image_url' )}>
+          </TextField>
+        <div>
+          
+            </div>
+          </div>
 
-        <div className="colorCheckbox">
-          <label htmlFor="color">
-            Color:
-          </label>
-          <br/>
-          <Checkbox 
-            color="primary"
-            value="Red"
-            onChange={ ( event ) => this.handleChangeFor( event, 'color' )}/>Red
-          <Checkbox 
-            color="primary"
-            value="Orange"
-            onChange={ ( event ) => this.handleChangeFor( event, 'color' )}/>Orange
-            <br/>
-          <Checkbox 
-            color="primary"
-            value="Yellow"
-            onChange={ ( event ) => this.handleChangeFor( event, 'color' )}/>Yellow
-          <Checkbox 
-            color="primary"
-            value="Green"
-            onChange={ ( event ) => this.handleChangeFor( event, 'color' )}/>Green
-            <br/>
-          <Checkbox 
-            color="primary"
-            value="Blue"
-            onChange={ ( event ) => this.handleChangeFor( event, 'color' )}/>Blue
-                        <Checkbox 
-            color="primary"
-            value="Purple"
-            onChange={ ( event ) => this.handleChangeFor( event, 'color' )}/>Purple
-                        <Checkbox 
-            color="primary"
-            value="Cream"
-            onChange={ ( event ) => this.handleChangeFor( event, 'color' )}/>Cream
-                        <Checkbox 
-            color="primary"
-            value="Brown"
-            onChange={ ( event ) => this.handleChangeFor( event, 'color' )}/>Brown
-                        <Checkbox 
-            color="primary"
-            value="White"
-            onChange={ ( event ) => this.handleChangeFor( event, 'color' )}/>White
-                        <Checkbox 
-            color="primary"
-            value="Black"
-            onChange={ ( event ) => this.handleChangeFor( event, 'color' )}/>Black
-                        <Checkbox 
-            color="primary"
-            value="Grey"
-            onChange={ ( event ) => this.handleChangeFor( event, 'color' )}/>Grey
-                        <Checkbox 
-            color="primary"
-            value="Multi-color"
-            onChange={ ( event ) => this.handleChangeFor( event, 'color' )}/>Multi-color
-                        <Checkbox 
-            color="primary"
-            value="Other"
-            onChange={ ( event ) => this.handleChangeFor( event, 'color' )}/>Other
-        </div>
+        <div className="colorOptions" 
+            style = { { paddingTop: 15 } }>
+            <FormLabel >
+              Color:
+            </FormLabel>
+            <RadioGroup>
 
-        <div className="materialCheckbox">
-          <label htmlFor="material">
-            Material:
-          </label>
-          <br/>
-          <Checkbox 
-            color="primary"
-            value="Cotton"
-            onChange={ ( event ) => this.handleChangeFor( event, 'material' )}/>Cotton
-          <Checkbox 
-            color="primary"
-            value="Acrylic"
-            onChange={ ( event ) => this.handleChangeFor( event, 'material' )}/>Acrylic
-            <br/>
-          <Checkbox 
-            color="primary"
-            value="Cashmere"
-            onChange={ ( event ) => this.handleChangeFor( event, 'material' )}/>Cashmere
-          <Checkbox 
-            color="primary"
-            value="Rayon"
-            onChange={ ( event ) => this.handleChangeFor( event, 'material' )}/>Rayon
-            <br/>
-          <Checkbox 
-            color="primary"
-            value="Linen"
-            onChange={ ( event ) => this.handleChangeFor( event, 'material' )}/>Linen
-                        <Checkbox 
-            color="primary"
-            value="Nylon"
-            onChange={ ( event ) => this.handleChangeFor( event, 'material' )}/>Nylon
-                        <Checkbox 
-            color="primary"
-            value="Polyester"
-            onChange={ ( event ) => this.handleChangeFor( event, 'material' )}/>Polyester
-                        <Checkbox 
-            color="primary"
-            value="Unknown"
-            onChange={ ( event ) => this.handleChangeFor( event, 'material' )}/>Unknown
-                        <Checkbox 
-            color="primary"
-            value="Silk"
-            onChange={ ( event ) => this.handleChangeFor( event, 'material' )}/>Silk
-                        <Checkbox 
-            color="primary"
-            value="Spandex"
-            onChange={ ( event ) => this.handleChangeFor( event, 'material' )}/>Spandex
-                        <Checkbox 
-            color="primary"
-            value="Wool"
-            onChange={ ( event ) => this.handleChangeFor( event, 'material' )}/>Wool
-                        <Checkbox 
-            color="primary"
-            value="Other"
-            onChange={ ( event ) => this.handleChangeFor( event, 'material' )}/>Other
-        </div>
+              <Grid container spacing={1}>
+
+                <Grid container item xs={12} spacing={3}>
+                  <Grid item xs={4}>
+                    <FormControlLabel
+                        control={ <Radio /> }
+                        label="Red"
+                        color="primary"
+                        value="Red"
+                        onClick={ ( event ) => this.handleChangeFor( event, 'color' )}
+                      />
+                  </Grid>
+                  <Grid item xs={4}>
+                    <FormControlLabel                   
+                        control={ <Radio /> }
+                        label="Orange"
+                        color="primary"
+                        value="Orange"
+                        onChange={ ( event ) => this.handleChangeFor( event, 'color' )}
+                      />
+                  </Grid>
+                  <Grid item xs={4}>
+                    <FormControlLabel                
+                        control={ <Radio /> }
+                        label="Yellow"
+                        color="primary"
+                        value="Yellow"
+                        onChange={ ( event ) => this.handleChangeFor( event, 'color' )}
+                      />
+                  </Grid>
+                </Grid>
+              </Grid>
+
+              <Grid container spacing={1}>
+                <Grid container item xs={12} spacing={3}>
+                    <Grid item xs={4}>
+                      <FormControlLabel
+              
+                        control={ <Radio /> }
+                        label="Green"
+                        color="primary"
+                        value="Green"
+                        onChange={ ( event ) => this.handleChangeFor( event, 'color' )}
+                      />
+                    </Grid>
+                    <Grid item xs={4}>
+                      <FormControlLabel
+                        control={ <Radio /> }
+                        label="Blue"
+                        color="primary"
+                        value="Blue"
+                        onChange={ ( event ) => this.handleChangeFor( event, 'color' )}
+                      />
+                    </Grid>
+                    <Grid item xs={4}>
+                      <FormControlLabel          
+                        control={ <Radio /> }
+                        label="Purple"
+                        color="primary"
+                        value="Purple"
+                        onChange={ ( event ) => this.handleChangeFor( event, 'color' )}
+                      />
+                    </Grid>
+                </Grid>
+              </Grid>
+
+              <Grid container spacing={1}>
+                <Grid container item xs={12} spacing={3}>
+                  <Grid item xs={4}>
+                  <FormControlLabel
+                    control={ <Radio /> }
+                    label="Black"
+                    color="primary"
+                    value="Black"
+                    onChange={ ( event ) => this.handleChangeFor( event, 'color' )}
+                  />
+              </Grid>
+                  <Grid item xs={4}>
+                  <FormControlLabel
+            
+                      control={ <Radio /> }
+                      label="White"
+                      color="primary"
+                      value="White"
+                      onChange={ ( event ) => this.handleChangeFor( event, 'color' )}
+                    />
+              </Grid>
+                  <Grid item xs={4}>
+                  <FormControlLabel
+            
+                      control={ <Radio /> }
+                      label="Cream"
+                      color="primary"
+                      value="Cream"
+                      onChange={ ( event ) => this.handleChangeFor( event, 'color' )}
+                    />
+              </Grid>
+                </Grid>
+              </Grid>
+
+              <Grid container spacing={1}>
+                <Grid container item xs={12} spacing={3}>
+                <Grid item xs={4}>
+                    <FormControlLabel
+                        control={ <Radio /> }
+                        label="Pink"
+                        color="primary"
+                        value="Pink"
+                        onChange={ ( event ) => this.handleChangeFor( event, 'color' )}
+                      />
+                  </Grid>
+                  <Grid item xs={4}>
+                    <FormControlLabel
+                        control={ <Radio /> }
+                        label="Other"
+                        color="primary"
+                        value="Other"
+                        onChange={ ( event ) => this.handleChangeFor( event, 'color' )}
+                      />
+                  </Grid>
+                  
+                  <Grid item xs={4}>
+                    <FormControlLabel
+                        control={ <Radio /> }
+                        label="Multi-color"
+                        color="primary"
+                        value="Multi-color"
+                        onChange={ ( event ) => this.handleChangeFor( event, 'color' )}
+                      />
+                  </Grid>
+                </Grid>
+              </Grid>
+            </RadioGroup>
+          </div>       
+
+        <div className="materialOptions" 
+            style = { { paddingTop: 15 } }>
+            <FormLabel >
+              Material:
+            </FormLabel>
+            <RadioGroup>
+              <Grid container spacing={1}>
+                <Grid container item xs={12} spacing={3}>
+                  <Grid item xs={4}>
+                    <FormControlLabel
+                        control={ <Radio /> }
+                        value="Cotton"              
+                        label="Cotton"
+                        color="primary"
+                        onChange={ ( event ) => this.handleChangeFor( event, 'material' )}
+                      />
+                  </Grid>
+                  <Grid item xs={4}>
+                    <FormControlLabel
+                        control={ <Radio /> }
+                        label="Linen"
+                        color="primary"
+                        value="Linen"
+                        onChange={ ( event ) => this.handleChangeFor( event, 'material' )}
+                      />
+                  </Grid>
+                  <Grid item xs={4}>
+                    <FormControlLabel
+                        control={ <Radio /> }
+                        label="Cashmere"
+                        color="primary"
+                        value="Cashmere"
+                        onChange={ ( event ) => this.handleChangeFor( event, 'material' )}
+                      />
+                  </Grid>
+                </Grid>
+              </Grid>
+              <Grid container spacing={1}>
+                <Grid container item xs={12} spacing={3}>
+                    <Grid item xs={4}>
+                      <FormControlLabel
+                        control={ <Radio /> }
+                        label="Nylon"
+                        color="primary"
+                        value="Nylon"
+                        onChange={ ( event ) => this.handleChangeFor( event, 'material' )}
+                      />
+                    </Grid>
+                    <Grid item xs={4}>
+                      <FormControlLabel
+                        control={ <Radio /> }
+                        label="Rayon"
+                        color="primary"
+                        value="Rayon"
+                        onChange={ ( event ) => this.handleChangeFor( event, 'material' )}
+                      />
+                    </Grid>
+                    <Grid item xs={4}>
+                      <FormControlLabel
+                        control={ <Radio /> }
+                        label="Polyester"
+                        color="primary"
+                        value="Polyester"
+                        onChange={ ( event ) => this.handleChangeFor( event, 'material' )}
+                      />
+                    </Grid>
+                </Grid>
+              </Grid>
+              <Grid container spacing={1}>
+                <Grid container item xs={12} spacing={3}>
+                <Grid item xs={4}>
+                  <FormControlLabel
+                    control={ <Radio /> }
+                    label="Silk"
+                    color="primary"
+                    value="Silk"
+                    onChange={ ( event ) => this.handleChangeFor( event, 'material' )}
+                  />
+                </Grid>
+                <Grid item xs={4}>
+                  <FormControlLabel
+                    control={ <Radio /> }
+                    label="Spandex"
+                    color="primary"
+                    value="Spandex"
+                    onChange={ ( event ) => this.handleChangeFor( event, 'material' )}
+                    />
+                  </Grid>
+                <Grid item xs={4}>
+                  <FormControlLabel
+                      control={ <Radio /> }
+                      label="Wool"
+                      color="primary"
+                      value="Wool"
+                      onChange={ ( event ) => this.handleChangeFor( event, 'material' )}
+                    />
+                  </Grid>
+                </Grid>
+              </Grid>
+              <Grid container spacing={1}>
+                <Grid container item xs={12} spacing={3}>
+                  <Grid item xs={4}>
+                    <FormControlLabel
+                        control={ <Radio /> }
+                        label="Other"
+                        color="primary"
+                        value="Other"
+                        onChange={ ( event ) => this.handleChangeFor( event, 'material' )}
+                      />
+                  </Grid>
+                  <Grid item xs={6}>
+                    <FormControlLabel
+                        control={ <Radio /> }
+                        label="Unknown"
+                        color="primary"
+                        value="Unknown"
+                        onChange={ ( event ) => this.handleChangeFor( event, 'material' )}
+                      />
+                  </Grid>
+                </Grid>
+              </Grid>
+            </RadioGroup>
+          </div>       
 
         <div className='descriptionInput'>
-            <TextField 
-                value={ this.state.description }
-                onChange={ ( event ) => this.handleChangeFor ( event, 'description' ) } 
-                type='text' 
-                label='Item Description'
-                variant='outlined'
-                multiline
-                style = { { width: 300 } }
-                rowsMax={40}
-                >
-            </TextField>
-
-          </div>
+          <TextField 
+              value={ this.state.description }
+              onChange={ ( event ) => this.handleChangeFor ( event, 'description' ) } 
+              type='text' 
+              label='Item Description'
+              variant='outlined'
+              multiline
+              style = { { width: 300 } }
+              rows={4}
+              rowsMax={4}
+              >
+          </TextField>
+          <FormHelperText>Add Care / Washing Instructions or a Note</FormHelperText>
+        </div>
 
           <div className='descriptionBtns'
               style={{textAlign:'center'}}>
@@ -371,8 +569,8 @@ class EditItem extends Component {
           </div>
       
       </div>
+      </div>
 
-    </div>
     );
   }
 }

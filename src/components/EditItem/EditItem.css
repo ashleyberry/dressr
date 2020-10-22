@@ -1,13 +1,17 @@
-.itemHeader {
-    text-transform: capitalize;
-    margin-left: 30px;
-}
 
 .editItemForm {
     padding-left: 30px;
     padding-right: 30px;
 }
 
-/* .type {
-    display: inline-block;
-} */
+.editType {
+    margin-top: 60px;
+}
+
+.descriptionImg {
+    margin-top: 20px;
+}
+
+.descriptionInput {
+    margin-top: 20px;
+}

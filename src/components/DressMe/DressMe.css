@@ -10,6 +10,14 @@
     width: 50%;
 }
 
+.dressMeBottom {
+  margin-top: 10px;
+}
+
+.dressMeBtn {
+  margin-top: 20px;
+}
+
 .dressMeHeader {
     text-align: center;
 }
@@ -24,9 +32,10 @@
     width: 300px;
   }
 
-  .inactive {
-    display: none;
-  }
-  .active {
-    display: block;
-  }
+.inactive {
+  display: none;
+}
+
+.active {
+  display: block;
+}

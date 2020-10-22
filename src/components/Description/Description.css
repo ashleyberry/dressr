@@ -4,6 +4,7 @@
 
 .descriptionHeader {
     text-transform: capitalize;
+    margin-top: '10px'
 }
 
 .descriptionImg, img {
@@ -12,3 +13,4 @@
     height: 275px;
     width: 275px;
 }
+

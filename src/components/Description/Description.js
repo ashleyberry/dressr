@@ -10,7 +10,7 @@ import './Description.css';
 import { 
     Button,
     Card, 
-    Container,
+    Grid,
     InputLabel,
     Typography
   } from '@material-ui/core';
@@ -55,7 +55,6 @@ class Description extends Component {
                 this.updateItem( this.state )
             }
         )
-        console.log('this is our staaaaaate??:', this.state )
     }
 
     updateItem = () => {
@@ -67,13 +66,13 @@ class Description extends Component {
     }
 
   render() {
-      console.log( 'this is our state:', this.state )
     return (
         <div>
             <Nav/>
             <div className='description'>
                 <div className ='descriptionHeader'>
                     <Typography 
+                        style={{ fontFamily: 'Quicksand' }}
                         variant='h4'>
                         { this.state.color } { this.state.brand } { this.state.type }
                     </Typography>
@@ -86,11 +85,11 @@ class Description extends Component {
                             Last worn:
                         </InputLabel>
                             { this.state.date_worn === '' || this.state.date_worn === undefined || this.state.date_worn === 'undefined' || this.state.date_worn === null ? 
-                            (<input style={{display : 'inline-block'}, { marginLeft: 15 }} type="date" 
+                            (<input style={{display : 'inline-block'}, { marginLeft: 15 }, { fontFamily: 'Quicksand' }} type="date" 
                             id="dateWorn" 
                             name="dateWorn"
                             onChange={ ( event ) => this.handleChangeFor ( event, 'date_worn' ) }>
-                        </input>) : ( <input style={{display : 'inline-block'}, { marginLeft: 15 }} type="date" 
+                        </input>) : ( <input style={{display : 'inline-block'}, { marginLeft: 15 }, { fontFamily: 'Quicksand' }} type="date" 
                             value={this.state.date_worn.split( 'T' )[0]} 
                             id="dateWorn" 
                             name="dateWorn"
@@ -101,32 +100,38 @@ class Description extends Component {
                 </div>
                 
                 <div className='descriptionImg'>
-                    <Container>
+                   
                         <Card>
                             <div style={{ display:'flex', justifyContent:'center' }}>
                                 <img src={ this.state.image_url }></img>
                             </div> 
                         </Card>
-                        <div className='thisItemDescription'
-                            style={{ paddingTop: 10 }}>
-                            <Typography 
-                                variant='body1'>
-                                { this.state.description }
-                            </Typography>
+
+                        <div className='thisItemDescription' style={{ paddingTop: 10 }}>
+                            <Grid container spacing={1}>
+                                <Grid container item xs={12} spacing={3}>
+                                    <Grid item xs={12}>
+                                        
+                                        <Typography 
+                                            variant='body1'>
+                                            { this.state.description }
+                                        </Typography>
+                                        
+                                    </Grid>
+                                </Grid>
+                            </Grid>
                         </div>
-                    </Container>
+                    
                </div>
 
-            <div className='descriptionBtns'
-                style={{ textAlign:'center', }}>
-                <Button 
-                    style={{ marginTop: 30  }}
-                    className='editItemBtn'
-                    onClick={ () => this.onEditItem( this.state ) }
-                    variant='outlined'
-                    color='primary'>
-                    Edit Item
-                </Button>
+            <div className="editBtn" 
+                style={{ textAlign:'center', marginTop: 100 }}>
+                <Button  
+                    style={{ color: 'white', fontSize: 18, background: 'linear-gradient(45deg, #1098cd 30%, #10bfcd 90%)'}}
+                    variant="outlined" 
+                    type="submit" 
+                    name="submit" 
+                    onClick={ () => this.onEditItem( this.state ) }>Edit Item</Button>
             </div>
 </div>
       </div>
