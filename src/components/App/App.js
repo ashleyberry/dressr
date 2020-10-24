@@ -6,8 +6,9 @@ import {
   Switch,
 } from 'react-router-dom';
 
-import { connect } from 'react-redux';
+import { Typography } from '@material-ui/core'
 
+import { connect } from 'react-redux';
 
 import Footer from '../Footer/Footer';
 
@@ -81,14 +82,14 @@ class App extends Component {
             />
 
             <ProtectedRoute
-              // logged in shows EditItem else shows LoginPage
+              // logged in shows Description else shows LoginPage
               exact
               path="/description"
               component={ Description }
             />
 
             <ProtectedRoute
-              // logged in shows EditItem else shows LoginPage
+              // logged in shows DressMe else shows LoginPage
               exact
               path="/dressMe"
               component={ DressMe }
@@ -128,7 +129,7 @@ class App extends Component {
             />
 
             {/* If none of the other routes matched, we will show a 404. */}
-            <Route render={() => <h1>404</h1>} />
+            <Route render={() => <div><Typography variant='h5' style={{ textAlign: 'center', margin: 20 }}>Bummer! Page not found.</Typography><iframe src="https://giphy.com/embed/3ohfFucMqPjwFq5f7W" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div>} />
           </Switch>
           <Footer />
         </div>
