@@ -8,7 +8,12 @@ import React from 'react';
 const AboutPage = () => (
   <div className="container">
     <div>
-      <p>This about page is for anyone to read!</p>
+      <p>
+        Inspired by the masterpiece film Clueless, dressr is a responsive, 
+        full-stack web application that allows a user to create their own personalized virtual closet to access at any time. 
+        With dressr, the user can easily access and sort through their entire wardrobe. 
+        Additionally, if the user needs a little bit of inspiration, the app has a feature to create random outfits!
+      </p>
     </div>
   </div>
 );

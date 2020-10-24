@@ -20,7 +20,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   });
 
 // Delete a clothing item
-router.delete('/:id', (req, res) => {
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
   console.log( 'in delete router:', req.params.id)
   const query = `DELETE FROM "clothing" WHERE "id"=$1;`
   pool.query(query, [req.params.id])
@@ -33,7 +33,7 @@ router.delete('/:id', (req, res) => {
 });
 
 // Add a clothing item
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
   console.log( 'req.body is:', req.body );
   const query = `INSERT INTO "clothing" ("type", "kind", "brand", "image_url", "color", "material", "description", "date_worn", "user_id") 
     VALUES ( $1, $2, $3, $4, $5, $6, $7, $8, $9 );`;
@@ -49,7 +49,7 @@ router.post('/', (req, res) => {
 /**
  * Update an item
  */
-router.put('/:id', (req, res) => {
+router.put('/:id', rejectUnauthenticated, (req, res) => {
   console.log( 'in edit router:', req.body)
   const query = `
     UPDATE "clothing" 

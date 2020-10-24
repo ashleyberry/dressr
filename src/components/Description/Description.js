@@ -10,7 +10,7 @@ import './Description.css';
 import { 
     Button,
     Card, 
-    Grid,
+    FormHelperText,
     InputLabel,
     Typography
   } from '@material-ui/core';
@@ -67,79 +67,76 @@ class Description extends Component {
 
   render() {
     return (
-        <div>
-            <Nav/>
-            <div className='description'>
-                <div className ='descriptionHeader'>
-                    <Typography 
-                        style={{ fontFamily: 'Quicksand' }}
-                        variant='h4'>
-                        { this.state.color } { this.state.brand } { this.state.type }
-                    </Typography>
-                </div>
-                <br/>
+        <div class="content">
+        <Nav/>
 
-                <div className="dateWorn" >
-                    <div style={{ textAlign: 'center' }}>
-                        <InputLabel style={{display : 'inline-block'}} htmlFor="dateWorn">
-                            Last worn:
-                        </InputLabel>
-                            { this.state.date_worn === '' || this.state.date_worn === undefined || this.state.date_worn === 'undefined' || this.state.date_worn === null ? 
-                            (<input style={{display : 'inline-block'}, { marginLeft: 15 }, { fontFamily: 'Quicksand' }} type="date" 
+        <div className ='descriptionHeader'>
+            <Typography 
+                style={{ fontFamily: 'Quicksand' }}
+                variant='h4'>
+                { this.state.color } { this.state.brand } { this.state.type }
+            </Typography>
+        </div>
+
+        <br/>
+
+        <div className="dateWorn" >
+            <div style={{ textAlign: 'center' }}>
+                <InputLabel style={{display : 'inline-block'}} htmlFor="dateWorn">
+                    Last worn:
+                </InputLabel>
+                    { this.state.date_worn === '' || this.state.date_worn === undefined || this.state.date_worn === 'undefined' || this.state.date_worn === null ? 
+                        (<input style={{display : 'inline-block'}, { marginLeft: 15 }, { fontFamily: 'Quicksand' }} type="date" 
                             id="dateWorn" 
                             name="dateWorn"
                             onChange={ ( event ) => this.handleChangeFor ( event, 'date_worn' ) }>
-                        </input>) : ( <input style={{display : 'inline-block'}, { marginLeft: 15 }, { fontFamily: 'Quicksand' }} type="date" 
+                        </input>) : 
+                        ( <input style={{display : 'inline-block'}, { marginLeft: 15 }, { fontFamily: 'Quicksand' }} type="date" 
                             value={this.state.date_worn.split( 'T' )[0]} 
                             id="dateWorn" 
                             name="dateWorn"
                             onChange={ ( event ) => this.handleChangeFor ( event, 'date_worn' ) }>
-                        </input> ) }
-                        
-                    </div>
-                </div>
-                
-                <div className='descriptionImg'>
-                   
-                        <Card>
-                            <div style={{ display:'flex', justifyContent:'center' }}>
-                                <img src={ this.state.image_url }></img>
-                            </div> 
-                        </Card>
-
-                        <div className='thisItemDescription' style={{ paddingTop: 10 }}>
-                            <Grid container spacing={1}>
-                                <Grid container item xs={12} spacing={3}>
-                                    <Grid item xs={12}>
-                                        <div style={{ textTransform: 'capitalize' }}>
-                                            <Typography variant='body1'>
-                                                { this.state.material }
-                                            </Typography>
-                                        </div>
-                                        <Typography 
-                                            variant='body1'>
-                                
-                                            { this.state.description }
-                                        </Typography>
-                                        
-                                    </Grid>
-                                </Grid>
-                            </Grid>
-                        </div>
-                    
-               </div>
-
-            <div className="editBtn" 
-                style={{ textAlign:'center', marginTop: 150 }}>
-                <Button  
-                    style={{ color: 'white', fontSize: 18, background: 'linear-gradient(45deg, #1098cd 30%, #10bfcd 90%)'}}
-                    variant="outlined" 
-                    type="submit" 
-                    name="submit" 
-                    onClick={ () => this.onEditItem( this.state ) }>Edit Item</Button>
+                        </input> ) }  
             </div>
-</div>
-      </div>
+        </div>
+
+        <div className='materialDisplay' style={{textAlign: 'center'}}>
+        <InputLabel style={{display : 'inline-block'}} htmlFor="material">
+            Material: </InputLabel> <Typography variant='body1' style={{display : 'inline-block'}}>{ this.state.material }</Typography>
+        </div>
+                
+        <div className='descriptionImg'>
+            <Card>
+                <div style={{ display:'flex', justifyContent:'center' }}>
+                    <img src={ this.state.image_url }></img>
+                </div> 
+            </Card>
+
+            <div className="descriptionBody" style={{textAlign: 'center'}}>
+            <FormHelperText>Care / Washing Instructions</FormHelperText> 
+            <div className='notes' style={{ marginTop: -5 }}><FormHelperText>or Notes:</FormHelperText></div>
+            </div>
+            
+            <Typography 
+                variant='body1'>
+                { this.state.description }
+            </Typography>
+                
+        </div>
+
+        <div className="editBtn" 
+            style={{ textAlign:'center', marginTop: 150 }}>
+            <Button  
+                style={{ color: 'white', fontSize: 18, background: 'linear-gradient(45deg, #1098cd 30%, #10bfcd 90%)'}}
+                variant="outlined" 
+                type="submit" 
+                name="submit" 
+                onClick={ () => this.onEditItem( this.state ) }>Edit Item</Button>
+        </div>
+
+        <footer class="footer-nav"></footer>
+
+    </div>
     );
   }
 }

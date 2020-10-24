@@ -1,8 +1,13 @@
-/* html,
+html,
 body,
 #react-root {
   height: 100%;
-} */
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
 
 .addItemForm {
   padding-top: 20px;
@@ -112,7 +117,7 @@ Button
   background: none;
   font: inherit;
   color: #444;
-  margin-top: 175px;
+  margin-top: 100px;
 }
 
 .btn_asLink:hover {

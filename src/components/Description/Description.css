@@ -1,10 +1,10 @@
 .dateWorn {
-    margin-bottom: 20px ;
+    margin-bottom: 10px ;
 }
 
 .descriptionHeader {
     text-transform: capitalize;
-    margin-top: '10px'
+    margin-top: 20px;
 }
 
 .descriptionImg, img {
@@ -14,3 +14,6 @@
     width: 275px;
 }
 
+.descriptionBody {
+    margin-top: 10px;
+}

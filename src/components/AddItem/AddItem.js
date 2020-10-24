@@ -96,7 +96,23 @@ class AddItem extends Component {
 
         <div className='addItemForm'>
 
-        <div className="type">
+        <div className="image_Url"
+            style = { { paddingTop: 15 } }>
+            <TextField 
+              htmlFor="image_Url"
+              label='Image URL:'
+              variant="outlined"
+              onChange={ ( event ) => this.handleChangeFor( event, 'image_url' )}>
+            </TextField>
+            <div>
+              { this.state.image_url === '' ? ( null ) : ( 
+              <Card style={{ textAlign: 'center', marginTop: 10 }}>
+                <img className='addImage' src={ this.state.image_url }></img>
+              </Card> ) }
+            </div>
+          </div>
+
+        <div className="type" style = { { marginTop: 10 } }>
             <FormControl variant="outlined">
             <InputLabel id="type-label">Type</InputLabel>
             <Select
@@ -208,21 +224,7 @@ class AddItem extends Component {
           </TextField>
         </div>
 
-        <div className="image_Url"
-            style = { { paddingTop: 15 } }>
-            <TextField 
-              htmlFor="image_Url"
-              label='Image URL:'
-              variant="outlined"
-              onChange={ ( event ) => this.handleChangeFor( event, 'image_url' )}>
-            </TextField>
-            <div>
-              { this.state.image_url === '' ? ( null ) : ( 
-              <Card style={{ textAlign: 'center', marginTop: 10 }}>
-                <img className='addImage' src={ this.state.image_url }></img>
-              </Card> ) }
-            </div>
-          </div>
+        
 
         <div className="colorOptions" 
             style = { { paddingTop: 15 } }>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import '../RegisterForm/RegisterForm.css'
 
 import { 
   Button, 
@@ -110,7 +111,7 @@ class RegisterForm extends Component {
             <TextField 
               htmlFor="profile_url"
               variant="outlined"
-              label="Profile Image"
+              label="Profile Image URL"
               value={ this.state.profile_url }
               onChange={this.handleInputChangeFor( 'profile_url' )}>
             </TextField>
