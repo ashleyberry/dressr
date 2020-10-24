@@ -1,9 +1,12 @@
 const express = require('express');
+const {
+  rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
 const pool = require('../modules/pool');
 const router = express.Router();
 
 // get all types from the database
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
     console.log( 'in type.router.get' );
       const queryText = `SELECT * FROM "type" ORDER BY "type" ASC;`;
         pool.query( queryText )
@@ -18,7 +21,7 @@ router.get('/', (req, res) => {
     });
 
 // get specific type from the database
-router.get('/:id', (req, res) => {
+router.get('/:id', rejectUnauthenticated, (req, res) => {
   console.log( 'in type router, type id to retrieve:', req.params.id )
   let clothingId = req.params.id;
   // query to get clothing and types
@@ -41,7 +44,7 @@ router.get('/:id', (req, res) => {
 /**
  * POST route template
  */
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
   console.log( 'req.body is:', req.body );
   const queryText = `INSERT INTO "type"("type") VALUES ( $1 );`;
   pool.query( queryText, [ req.body.type ])
