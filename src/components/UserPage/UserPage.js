@@ -1,19 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import LogOutButton from '../LogOutButton/LogOutButton';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { withRouter } from 'react-router-dom';
 import Searchish from '../SearchBar/SearchBar';
 import Nav from '../Nav/Nav';
-import './UserPage.css';
-
-
-// import Search from '../Search/Search';
-
 import LibraryAddIcon from '@material-ui/icons/LibraryAdd';
-import { 
-  Typography 
-} from '@material-ui/core/';
+import { Typography } from '@material-ui/core/';
 import './UserPage.css';
 
 class UserPage extends Component {
@@ -39,9 +31,9 @@ class UserPage extends Component {
     });
   }
 
-  // on item click, send to details page
+  // on item click, dispatch clicked item to recent reducer and send to details page
   onItemClick = ( item ) => {
-    console.log( 'in onItemClick:', item );
+    // console.log( 'in onItemClick:', item );
     this.props.dispatch({
       // set recently clicked item
         type: 'SET_BATMAN',
@@ -64,12 +56,12 @@ class UserPage extends Component {
     )
     } else { 
     return (
+      <div>
         <div>
-          <div>
-            <Nav/>
-          </div>
-                <Searchish></Searchish>
+          <Nav/>
         </div>
+          <Searchish/>
+      </div>
     );
   }
 }

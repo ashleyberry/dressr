@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import {
   HashRouter as Router,
   Route,
@@ -7,12 +9,6 @@ import {
 } from 'react-router-dom';
 
 import { Typography } from '@material-ui/core'
-
-import { connect } from 'react-redux';
-
-import Footer from '../Footer/Footer';
-
-import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
@@ -24,6 +20,7 @@ import AddItem from '../AddItem/AddItem';
 import EditItem from '../EditItem/EditItem';
 import Description from '../Description/Description';
 import DressMe from '../DressMe/DressMe';
+import Footer from '../Footer/Footer';
 
 import './App.css';
 
@@ -118,6 +115,7 @@ class App extends Component {
               component={RegisterPage}
               authRedirect="/user"
             />
+            
             <ProtectedRoute
               // with authRedirect:
               // - if logged in, redirects to "/user"
@@ -129,7 +127,20 @@ class App extends Component {
             />
 
             {/* If none of the other routes matched, we will show a 404. */}
-            <Route render={() => <div><Typography variant='h5' style={{ textAlign: 'center', margin: 20 }}>Bummer! Page not found.</Typography><iframe src="https://giphy.com/embed/3ohfFucMqPjwFq5f7W" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div>} />
+            <Route render={() => 
+            <div>
+              <Typography variant='h5' 
+                  style={{ textAlign: 'center', margin: 20 }}>
+                  Bummer! Page not found.
+              </Typography>
+              <iframe src="https://giphy.com/embed/3ohfFucMqPjwFq5f7W" 
+                width="480" 
+                height="270" 
+                frameBorder="0" 
+                class="giphy-embed" 
+                allowFullScreen>
+              </iframe>
+            </div>} />
           </Switch>
           <Footer />
         </div>

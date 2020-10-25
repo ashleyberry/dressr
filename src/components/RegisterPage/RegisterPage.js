@@ -17,20 +17,19 @@ class RegisterPage extends Component {
     return (
         <div>
           <RegisterForm />
-
-       <div className='loginBtn' style={{ textAlign: 'center' }}>
-          <button
-            type="button"
-            className="btn btn_asLink_login"
-            onClick={() => {
-              this.props.history.push('/login');
-            }}>
-            Login
-          </button>
+          <div className='loginBtn' style={{ textAlign: 'center' }}>
+              <button
+                type="button"
+                className="btn btn_asLink_login"
+                onClick={() => {
+                  this.props.history.push('/login');
+                }}>
+                Login
+              </button>
+            </div>
           </div>
-        </div>
     );
   }
 }
 
-export default connect(mapStoreToProps)(RegisterPage);
+export default connect( mapStoreToProps )( RegisterPage );

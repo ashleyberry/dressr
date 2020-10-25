@@ -6,16 +6,10 @@ import './Nav.css';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import MenuIcon from '@material-ui/icons/Menu';
 import Menu from '@material-ui/core/Menu';
-
-import { Button,
-  MenuItem,
-  Typography } from '@material-ui/core';
+import { Button, MenuItem } from '@material-ui/core';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-// import Icon from '@mdi/react'
-// import { mdiHanger } from '@mdi/js';
-// import FaceIcon from '@material-ui/icons/Face';
 
-const Nav = (props) => {
+const Nav = ( props ) => {
 
   let loginLinkData = {
     path: '/login',
@@ -26,14 +20,14 @@ const Nav = (props) => {
     loginLinkData.text = '';
   }
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [ anchorEl, setAnchorEl ] = React.useState( null );
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
+  const handleClick = ( event ) => {
+    setAnchorEl( event.currentTarget );
   };
 
   const handleClose = () => {
-    setAnchorEl(null);
+    setAnchorEl( null );
   };
 
   return (
@@ -46,28 +40,28 @@ const Nav = (props) => {
         <MenuIcon fontSize={ 'medium' } style={{ color: 'white' }}/>
       </Button>
       <Menu id="simple-menu"
-        anchorEl={anchorEl}
+        anchorEl={ anchorEl }
         keepMounted
-        open={Boolean(anchorEl)}
-        onClose={handleClose}>
-        <MenuItem onClick={handleClose}>
+        open={ Boolean( anchorEl )}
+        onClose={ handleClose }>
+        <MenuItem onClick={ handleClose }>
         <Link className='link' to="/home">Home</Link></MenuItem>
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={ handleClose }>
         <Link className='link' to="/addItem">Add Item</Link></MenuItem>
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={ handleClose }>
         <Link className='link' to="/dressMe">Dress Me</Link></MenuItem>
         <MenuItem onClick={() => props.dispatch({ type: 'LOGOUT' })}>Logout</MenuItem>
       </Menu>
-      </div>
-      )}
+    </div>
+    )}
     
-      { props.store.user.id == null? ( <Link to="/home">
-        <h1 className="logged-out-nav-title" >dressr
-        </h1>
-      </Link> ) : ( <Link to="/home">
-        <h1 className="nav-title">dressr
-        </h1>
-      </Link> ) }
+    { props.store.user.id == null ? ( <Link to="/home">
+      <h1 className="logged-out-nav-title">dressr
+      </h1>
+    </Link> ) : ( <Link to="/home">
+      <h1 className="nav-title">dressr
+      </h1>
+    </Link> ) }
       
       <div className="nav-right">
         {/* <Link className="nav-link" to={loginLinkData.path}> */}
@@ -77,7 +71,7 @@ const Nav = (props) => {
           {/* {loginLinkData.text} */}
         {/* </Link> */}
 
-        {/* Show the link to the info page and the logout button if the user is logged in */}
+        {/* Show the user's profile image as their avatar if the user is logged in */}
         {props.store.user.id && (
           <>
             <div className="image-cropper">
@@ -85,18 +79,12 @@ const Nav = (props) => {
               (<AccountCircleIcon className= "avatar" fontSize={ 'large' }></AccountCircleIcon>) : 
                (<img className="avatar" src={ props.store.user.profile_url } />) }
             </div>
-            {/* <Link className="nav-link" to="/info">
-              Info Page
-            </Link> */}
-            {/* <LogOutButton className="nav-link" /> */}
           </>
         )}
         {/* Always show this link since the about page is not protected */}
         {/* <Link className="nav-link" to="/about">
           About
         </Link> */}
-        
-        
       </div>
     </div>
   );

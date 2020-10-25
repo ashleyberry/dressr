@@ -10,11 +10,8 @@ class LoginPage extends Component {
     return (
       <div className='loginPage'>
         <LoginForm />
-
         <div className='newHereBtn' style={{ marginLeft: '100px'}}>
-        
           <button 
-          
             type="button"
             className="btn btn_asLink_register"
             onClick={() => {
@@ -22,11 +19,10 @@ class LoginPage extends Component {
             }}>
             New Here? Sign up!
           </button>
-        
         </div>
       </div>
     );
   }
 }
 
-export default connect(mapStoreToProps)(LoginPage);
+export default connect( mapStoreToProps )( LoginPage );

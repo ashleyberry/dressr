@@ -29,47 +29,52 @@ class Description extends Component {
         date_worn: this.props.store.recentClothing.date_worn
     };
 
+    // sends user to edit page after dispatching item to recent clothing reducer
     onEditItem = ( item ) => {
         this.props.dispatch({
             //setting.recentClothing item
             type: 'SET_BATMAN',
             payload: item
         })
-        this.props.history.push('/editItem'); 
-  } // end onEditItem
+        this.props.history.push( '/editItem' ); 
+    } // end onEditItem
 
-  handleChangeFor = ( event, propertyName ) => {
-      console.log(' in handleChange for:', event.target.value )
-    this.setState({
-        ...this.state,
-        [ propertyName ]: event.target.value
-    })
-    this.checkDate();
-}
+  
+    handleChangeFor = ( event, propertyName ) => {
+        // console.log(' in handleChange for:', event.target.value )
+        //set a new state
+        this.setState({
+            ...this.state,
+            // updating property to be selected value
+            [ propertyName ]: event.target.value
+        })
+        this.checkDate();
+    } // end handleChangeFor
+
 
     checkDate(){
-        this.setState((prevState) => {
+        this.setState(( prevState ) => {
             return {
                 date_worn: prevState.date_worn};
             }, () => {
                 this.updateItem( this.state )
             }
         )
-    }
+    } // end checkDate
 
+    // dispatches state to clothing saga to edit clothing item
     updateItem = () => {
-        console.log( 'in update item wtf:', this.state )
+        // console.log( 'in update item:', this.state )
         this.props.dispatch({
             type: 'UPDATE_ITEM',
             payload: this.state
           })
-    }
+    } // end updateItem
 
   render() {
     return (
-        <div class="content">
+        <div>
         <Nav/>
-
         <div className ='descriptionHeader'>
             <Typography 
                 style={{ fontFamily: 'Quicksand' }}

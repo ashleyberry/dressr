@@ -124,8 +124,8 @@ class DressMe extends Component {
                   { this.state.randomTop === '' ? (
                     <div>
                       <Carousel autoPlay={ false } >
-                        { this.state.newTopsArray.map( (item, i) => 
-                          <Item key={i} item={item} /> )}
+                        { this.state.newTopsArray.map( ( item, i ) => 
+                          <Item key={ i } item={ item } /> )}
                       </Carousel>
                     </div>) : (
                     <div className='randomTop'>
