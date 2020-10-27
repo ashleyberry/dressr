@@ -88,7 +88,7 @@ class Description extends Component {
         <div className="dateWorn" >
             <div style={{ textAlign: 'center' }}>
                 <InputLabel style={{display : 'inline-block'}} htmlFor="dateWorn">
-                    Last worn:
+                    Last worn: 
                 </InputLabel>
                     { this.state.date_worn === '' || this.state.date_worn === undefined || this.state.date_worn === 'undefined' || this.state.date_worn === null ? 
                         (<input style={{display : 'inline-block'}, { marginLeft: 15 }, { fontFamily: 'Quicksand' }} type="date" 

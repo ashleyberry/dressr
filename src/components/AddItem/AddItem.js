@@ -112,6 +112,16 @@ class AddItem extends Component {
             </div>
           </div>
 
+          <div className="brand"
+          style = { { paddingTop: 15 } }>
+          <TextField 
+            htmlFor="brand"
+            label="Brand"
+            variant="outlined"
+            onChange={ ( event ) => this.handleChangeFor( event, 'brand' )}>
+          </TextField>
+        </div>
+
         <div className="type" style = { { marginTop: 10 } }>
             <FormControl variant="outlined">
             <InputLabel id="type-label">Type</InputLabel>
@@ -213,16 +223,6 @@ class AddItem extends Component {
             </RadioGroup>
             
           </div>
-
-        <div className="brand"
-          style = { { paddingTop: 15 } }>
-          <TextField 
-            htmlFor="brand"
-            label="Brand"
-            variant="outlined"
-            onChange={ ( event ) => this.handleChangeFor( event, 'brand' )}>
-          </TextField>
-        </div>
 
         
 

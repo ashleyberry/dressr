@@ -118,6 +118,16 @@ class DressMe extends Component {
         <Nav/>
         <div className='dressMe'>
 
+        <div className="dressMeBtn" 
+                style={{ textAlign:'center', marginBottom: 30 }}>
+                <Button  
+                    style={{ color: 'white', fontSize: 18, background: 'linear-gradient(45deg, #1098cd 30%, #10bfcd 90%)'}}
+                    variant="outlined" 
+                    type="submit" 
+                    name="submit" 
+                    onClick={ this.dressMe }>Dress Me</Button>
+            </div>
+
           <div className='dressMeImages'>
 
             <div className='dressMeTop'>
@@ -173,15 +183,6 @@ class DressMe extends Component {
           
           </div>
 
-            <div className="dressMeBtn" 
-                style={{ textAlign:'center' }}>
-                <Button  
-                    style={{ color: 'white', fontSize: 18, background: 'linear-gradient(45deg, #1098cd 30%, #10bfcd 90%)'}}
-                    variant="outlined" 
-                    type="submit" 
-                    name="submit" 
-                    onClick={ this.dressMe }>Dress Me</Button>
-            </div>
           </div>
               
         </div>

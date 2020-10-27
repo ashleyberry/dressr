@@ -139,6 +139,16 @@ class EditItem extends Component {
       </div>
       <div className='editItemForm'>
 
+      <div className="brand"
+        style = { { paddingTop: 60 } }>
+          <TextField 
+            htmlFor="brand"
+            label="Brand"
+            variant="outlined"
+            onChange={ ( event ) => this.handleChangeFor( event, 'brand' )}>
+          </TextField>
+        </div>
+
       {/* drop down with type names */}
         <div className='editType'>
           <FormControl variant='outlined'>
@@ -241,15 +251,6 @@ class EditItem extends Component {
             </RadioGroup>
           </div>
 
-        <div className="brand"
-        style = { { paddingTop: 15 } }>
-          <TextField 
-            htmlFor="brand"
-            label="Brand"
-            variant="outlined"
-            onChange={ ( event ) => this.handleChangeFor( event, 'brand' )}>
-          </TextField>
-        </div>
 
         <div className="image_Url"
           style = { { paddingTop: 20 } }>

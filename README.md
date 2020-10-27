@@ -2,7 +2,7 @@
 _Duration: 10 days_
 
 ## Description
-- Inspired by the masterpiece film 'Clueless,' dressr is a responsive, full-stack mobile application which allows a user to create their own personalized virtual closet to access at any time. The user can add to their virtual closet, edit an item, search through their wardrobe, and even assistance from the app with pairing an outfit together.
+- Inspired by the masterpiece film 'Clueless,' dressr is a responsive, full-stack mobile application which allows a user to create their own personalized virtual closet to access at any time. The user can add to their virtual closet, edit an item, search through their wardrobe, and even assistance from the app to pair an outfit together.
 
 This application uses React, Redux, Express, Passport, and PostgreSQL (a full list of dependencies can be found in `package.json`).
 
@@ -32,11 +32,9 @@ From the Home page, click on any item to be directed to the item's description p
 Upon clicking the _Dress Me_ link from the Menu icon, you will be directed to a page where you can match an outfit. Click the _Dress Me_ button to randomly populate one top and one bottom from your virtual wardrobe. Choose to randomly select a new top, bottom, or both to suit your preferences.
 
 ## Screenshots
-Login page:
+
 ![screenshot](./public/images/loginPage.png) 
 
-Home page:
 ![demo](./public/images/homePage.gif)
 
-Dress Me page:
 ![demo](./public/images/dressMe.gif)
