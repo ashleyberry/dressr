@@ -3,11 +3,9 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { withRouter } from 'react-router-dom';
 import Nav from '../Nav/Nav';
-
 import './AddItem.css';
 import swal from 'sweetalert';
-
-
+import ItemHeader from './AddItemHeading'
 // import material-ui styling
 import { 
   Button, 
@@ -17,7 +15,6 @@ import {
   FormLabel,
   FormHelperText,
   Grid,
-  Paper,
   InputLabel,
   Radio,
   RadioGroup,
@@ -25,7 +22,6 @@ import {
   TextField,
   Typography
 } from '@material-ui/core';
-
 
 class AddItem extends Component {
 
@@ -42,7 +38,7 @@ class AddItem extends Component {
 
   // updates the local state clothing information 
   handleChangeFor = ( event, propertyName ) => {
-      console.log( 'in handleChangeFor:', event.target.value )
+      // sets local state isOther
       if ( event.target.value === 'other' && propertyName === 'type') {
         this.setState({
           ...this.State,
@@ -53,19 +49,16 @@ class AddItem extends Component {
           ...this.state,
           [ propertyName ]: event.target.value
       })
-      console.log('this.state', this.state )
     }
   }
 
-  // when cancel button is clicked, send user back to home page
+  // send user back to home page
   onCancel = () => {
-    console.log('in onCancel');
     this.props.history.push( '/home' );
   }
 
   // when save button is clicked, dispatch info to respective databases
   onSave = () => {
-    console.log('in onSave:', this.state );
     this.props.dispatch({
       type: 'ADD_ITEM',
       payload: this.state
@@ -74,26 +67,24 @@ class AddItem extends Component {
       type: 'ADD_TYPE',
       payload: this.state
     })
+    this.addedAlert();
+  }
+
+  addedAlert = () => {
+    // alert user that item has been successfully added
     swal({
       title: "Nice!",
       text: "Your item has been added!",
       icon: "success",
     });
-    this.props.history.push( '/home' );
+    this.onCancel();
   }
 
   render() {
     return (
       <div>
         <Nav/>
-        <div className='itemHeader'>
-          <Typography 
-              style={{ fontFamily: 'Quicksand' }}
-              variant='h4'>
-              Add an item
-          </Typography>
-        </div>
-
+            <ItemHeader />
         <div className='addItemForm'>
 
         <div className="image_Url"
@@ -524,7 +515,7 @@ class AddItem extends Component {
                   color='secondary'>Save
               </Button>
           </div>
-        
+
         </div>
       </div>
     );

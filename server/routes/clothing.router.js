@@ -5,7 +5,7 @@ const {
 const pool = require('../modules/pool');
 const router = express.Router();
 
-// get all items
+// get all clothing items
 router.get('/', rejectUnauthenticated, (req, res) => {
     console.log( 'in clothing GET')
     const queryText = `SELECT * FROM "clothing" WHERE "user_id" = $1;`
@@ -46,9 +46,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
   })
 });
 
-/**
- * Update an item
- */
+// Update a clothing item
 router.put('/:id', rejectUnauthenticated, (req, res) => {
   console.log( 'in edit router:', req.body)
   const query = `

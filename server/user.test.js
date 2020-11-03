@@ -1,13 +1,3 @@
-/**
- * End goal:
- * Update a user's first name
- * 
- * PUT /api/user/:id
- * {
- *    first_name: ashley
- * }
- */
-
 // Tell pool.js to use the test database
 process.env.TEST = true;
 
@@ -50,7 +40,7 @@ describe('Updating a users first name', () => {
 } )
 
   test(`should add an item`, async() => {
-    // POST /clothing
+    // POST /api/clothing
     let postResponse = await agent
       .post(`/api/clothing`)
       .send({

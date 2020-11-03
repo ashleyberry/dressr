@@ -5,20 +5,20 @@ const {
 const pool = require('../modules/pool');
 const router = express.Router();
 
-// get all types from the database
+// get all clothing types from the database
 router.get('/', rejectUnauthenticated, (req, res) => {
-    console.log( 'in type.router.get' );
-      const queryText = `SELECT * FROM "type" ORDER BY "type" ASC;`;
-        pool.query( queryText )
-            .then( ( result ) => {
-                res.send( result.rows );
-            })
-            // catch for query
-            .catch( ( error ) => {
-                console.log( `Error on query ${error}` );
-                res.sendStatus( 500 );
-            });
-    });
+  console.log( 'in type.router.get' );
+    const queryText = `SELECT * FROM "type" ORDER BY "type" ASC;`;
+      pool.query( queryText )
+          .then( ( result ) => {
+              res.send( result.rows );
+          })
+          // catch for query
+          .catch( ( error ) => {
+              console.log( `Error on query ${error}` );
+              res.sendStatus( 500 );
+          });
+  });
 
 // get specific type from the database
 router.get('/:id', rejectUnauthenticated, (req, res) => {
@@ -41,9 +41,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
   })
 });
 
-/**
- * POST route template
- */
+// Add a type to the database
 router.post('/', rejectUnauthenticated, (req, res) => {
   console.log( 'req.body is:', req.body );
   const queryText = `INSERT INTO "type"("type") VALUES ( $1 );`;
