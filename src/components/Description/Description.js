@@ -7,14 +7,9 @@ import './Description.css';
 import DescriptionHeader from './DescriptionHeader';
 import DescriptionImage from './DescriptionImage';
 import DescriptionMaterial from './DescriptionMaterial';
+import EditBtn from './EditBtn';
 // stying with material-ui
-import { 
-    Button,
-    Card, 
-    FormHelperText,
-    InputLabel,
-    Typography
-  } from '@material-ui/core';
+import { InputLabel } from '@material-ui/core';
 
 class Description extends Component {
 
@@ -30,18 +25,17 @@ class Description extends Component {
         date_worn: this.props.store.recentClothing.date_worn
     };
 
-    // sends user to edit page after dispatching item to recent clothing reducer
-    onEditItem = ( item ) => {
+    // sends user to edit page after dispatching local state to recent clothing reducer
+    onEditItem = () => {
         this.props.dispatch({
             //setting.recentClothing item
             type: 'SET_BATMAN',
-            payload: item
+            payload: this.state
         })
         this.props.history.push( '/editItem' ); 
     } // end onEditItem
 
     handleChangeFor = ( event, propertyName ) => {
-        // console.log(' in handleChange for:', event.target.value )
         //set a new state
         this.setState({
             ...this.state,
@@ -73,41 +67,32 @@ class Description extends Component {
   render() {
     return (
         <div>
-        <Nav/>
-        <DescriptionHeader />
-        <br/>
-        <div className="dateWorn" >
-            <div style={{ textAlign: 'center' }}>
-                <InputLabel style={{display : 'inline-block'}} htmlFor="dateWorn">
-                    Last worn: 
-                </InputLabel>
-                    { this.state.date_worn === '' || this.state.date_worn === undefined || this.state.date_worn === 'undefined' || this.state.date_worn === null ? 
-                        (<input style={{display : 'inline-block'}, { marginLeft: 15 }, { fontFamily: 'Quicksand' }} type="date" 
-                            id="dateWorn" 
-                            name="dateWorn"
-                            onChange={ ( event ) => this.handleChangeFor ( event, 'date_worn' ) }>
-                        </input>) : 
-                        ( <input style={{display : 'inline-block'}, { marginLeft: 15 }, { fontFamily: 'Quicksand' }} type="date" 
-                            value={this.state.date_worn.split( 'T' )[0]} 
-                            id="dateWorn" 
-                            name="dateWorn"
-                            onChange={ ( event ) => this.handleChangeFor ( event, 'date_worn' ) }>
-                        </input> ) }  
+            <Nav/>
+            <DescriptionHeader />
+            <div className="dateWorn" >
+                <div style={{ textAlign: 'center' }}>
+                    <InputLabel style={{display : 'inline-block'}} htmlFor="dateWorn">
+                        Last worn: 
+                    </InputLabel>
+                        { this.state.date_worn === '' || this.state.date_worn === undefined || this.state.date_worn === 'undefined' || this.state.date_worn === null ? 
+                            (<input style={{display : 'inline-block'}, { marginLeft: 15 }, { fontFamily: 'Quicksand' }} type="date" 
+                                id="dateWorn" 
+                                name="dateWorn"
+                                onChange={ ( event ) => this.handleChangeFor ( event, 'date_worn' ) }>
+                            </input>) : 
+                            ( <input style={{display : 'inline-block'}, { marginLeft: 15 }, { fontFamily: 'Quicksand' }} type="date" 
+                                value={this.state.date_worn.split( 'T' )[0]} 
+                                id="dateWorn" 
+                                name="dateWorn"
+                                onChange={ ( event ) => this.handleChangeFor ( event, 'date_worn' ) }>
+                            </input> ) }  
+                </div>
             </div>
+            <DescriptionMaterial/>
+            <DescriptionImage/>
+            <EditBtn onEditItem={ this.onEditItem }/>
+            <footer class="footer-nav"></footer>
         </div>
-        <DescriptionMaterial/>
-        <DescriptionImage/>
-        <div className="editBtn" 
-            style={{ textAlign:'center', marginTop: 150 }}>
-            <Button  
-                style={{ color: 'white', fontSize: 18, background: 'linear-gradient(45deg, #1098cd 30%, #10bfcd 90%)'}}
-                variant="outlined" 
-                type="submit" 
-                name="submit" 
-                onClick={ () => this.onEditItem( this.state ) }>Edit Item</Button>
-        </div>
-        <footer class="footer-nav"></footer>
-    </div>
     );
   }
 }

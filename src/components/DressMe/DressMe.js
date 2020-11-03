@@ -12,10 +12,7 @@ import NewDressMeUser from './NewDressMeUser';
 import './DressMe.css';
 
 // stying with material-ui
-import { 
-  Button, 
-  Card
-} from '@material-ui/core';
+import { Card } from '@material-ui/core';
 
 class DressMe extends Component {
 

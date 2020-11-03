@@ -7,7 +7,7 @@ const AddItemHeader = () => {
   const [heading, setHeading] = useState('Add an item');
 
   return (
-    <div className='itemHeader'>
+    <div style={{ textAlign: 'center'}}>
         <Typography 
             style={{ fontFamily: 'Quicksand' }}
             variant='h4'>

@@ -14,7 +14,7 @@ class DescriptionHeader extends Component {
     return (
       <div className ='descriptionHeader'>
         <Typography 
-            style={{ fontFamily: 'Quicksand', padding: 5 }}
+            style={{ fontFamily: 'Quicksand', padding: 5, marginBottom: 20 }}
             variant='h4'>
             { this.state.color } { this.state.brand } { this.state.type }
         </Typography>

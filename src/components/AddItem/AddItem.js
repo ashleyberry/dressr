@@ -6,15 +6,15 @@ import Nav from '../Nav/Nav';
 import './AddItem.css';
 import swal from 'sweetalert';
 import ItemHeader from './AddItemHeading';
-import AddImageUrl from './AddImageUrl';
-import AddBrand from './AddBrand';
-import AddColor from './AddColor';
-import AddDescription from './AddDescription';
-import AddMaterial from './AddMaterial';
-import AddType from './AddType';
-import AddKind from './AddKind';
-// import material-ui styling
-import { Button } from '@material-ui/core';
+import AddImageUrl from './ImageUrl';
+import AddBrand from './Brand';
+import AddColor from './Color';
+import AddDescription from './ItemDescription';
+import AddMaterial from './Material';
+import AddType from './Type';
+import AddKind from './Kind';
+import DescriptionBtns from './DescriptionBtns';
+
 
 class AddItem extends Component {
 
@@ -56,10 +56,13 @@ class AddItem extends Component {
       type: 'ADD_ITEM',
       payload: this.state
     })
-    this.props.dispatch({
-      type: 'ADD_TYPE',
-      payload: this.state
-    })
+    // add new type to database if type is "other" and state type is not empty
+    if (this.state.type !== '' && this.state.isOther === true ){
+      this.props.dispatch({
+        type: 'ADD_TYPE',
+        payload: this.state
+      })
+    }
     this.addedAlert();
   }
 
@@ -77,8 +80,8 @@ class AddItem extends Component {
     return (
       <div>
         <Nav/>
-        <ItemHeader />
         <div className='addItemForm'>
+          <ItemHeader />
           <AddImageUrl handleChangeFor = { this.handleChangeFor } image_url = { this.state.image_url }/>
           <AddBrand handleChangeFor = { this.handleChangeFor }/>
           <AddType handleChangeFor = { this.handleChangeFor } isOther = { this.state.isOther }/>
@@ -86,21 +89,7 @@ class AddItem extends Component {
           <AddColor handleChangeFor = { this.handleChangeFor }/>
           <AddMaterial handleChangeFor = { this.handleChangeFor }/>
           <AddDescription handleChangeFor = { this.handleChangeFor }/>
-        </div>
-        <div className='descriptionBtns' style={{ textAlign:'center' }}>
-          <Button 
-              className='editItemBtn'
-              onClick={ this.onCancel }
-              variant='outlined'
-              color='primary'>
-              Cancel
-          </Button>
-          <Button 
-              style={{ marginLeft:'10px' }}
-              onClick= { this.onSave }
-              variant='outlined'
-              color='secondary'>Save
-          </Button>
+          <DescriptionBtns onCancel={ this.onCancel } onSave={ this.onSave }/>
         </div>
       </div>
     );

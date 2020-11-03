@@ -12,9 +12,7 @@ class AddColor extends Component {
   render() {
     return (
         <div className="colorOptions" style = { { paddingTop: 15 } }> 
-            <FormLabel >
-                Color:
-            </FormLabel>
+            <FormLabel>Color: </FormLabel>
             <RadioGroup>
                 <Grid container spacing={1}>
                     <Grid container item xs={12} spacing={3}>
@@ -81,14 +79,14 @@ class AddColor extends Component {
                 <Grid container spacing={1}>
                     <Grid container item xs={12} spacing={3}>
                         <Grid item xs={4}>
-                                <FormControlLabel
-                                    control={ <Radio /> }
-                                    label="Black"
-                                    color="primary"
-                                    value="Black"
-                                    onChange={ ( event ) => this.props.handleChangeFor( event, 'color' )}
-                                />
-                            </Grid>
+                            <FormControlLabel
+                                control={ <Radio /> }
+                                label="Black"
+                                color="primary"
+                                value="Black"
+                                onChange={ ( event ) => this.props.handleChangeFor( event, 'color' )}
+                            />
+                        </Grid>
                         <Grid item xs={4}>
                             <FormControlLabel
                             control={ <Radio /> }
@@ -123,21 +121,34 @@ class AddColor extends Component {
                         <Grid item xs={4}>
                             <FormControlLabel
                                 control={ <Radio /> }
+                                label="Grey"
+                                color="primary"
+                                value="Grey"
+                                onChange={ ( event ) => this.props.handleChangeFor( event, 'color' )}
+                            />
+                        </Grid>                
+                        <Grid item xs={4}>
+                            <FormControlLabel
+                                control={ <Radio /> }
                                 label="Other"
                                 color="primary"
                                 value="Other"
                                 onChange={ ( event ) => this.props.handleChangeFor( event, 'color' )}
                             />
-                        </Grid>                
-                        <Grid item xs={4}>
-                        <FormControlLabel
-                            control={ <Radio /> }
-                            label="Multi-color"
-                            color="primary"
-                            value="Multi-color"
-                            onChange={ ( event ) => this.props.handleChangeFor( event, 'color' )}
-                        />
+                        </Grid>
                     </Grid>
+                </Grid>
+                <Grid container spacing={1}>
+                    <Grid container item xs={12} spacing={3}>         
+                        <Grid item xs={6}>
+                            <FormControlLabel
+                                control={ <Radio /> }
+                                label="Multi-color"
+                                color="primary"
+                                value="Multi-color"
+                                onChange={ ( event ) => this.props.handleChangeFor( event, 'color' )}
+                            />
+                        </Grid>
                     </Grid>
                 </Grid>
             </RadioGroup>
