@@ -3,9 +3,7 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { Typography } from '@material-ui/core';
 
-const AddItemHeader = props => {
-  // Using hooks we're creating local state for a "heading" variable with
-  // a default value of 'Functional Component'
+const AddItemHeader = () => {
   const [heading, setHeading] = useState('Add an item');
 
   return (
