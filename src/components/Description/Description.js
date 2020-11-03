@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { withRouter } from 'react-router-dom';
 import Nav from '../Nav/Nav';
-
 import './Description.css';
-
+import DescriptionHeader from './DescriptionHeader';
+import DescriptionImage from './DescriptionImage';
+import DescriptionMaterial from './DescriptionMaterial';
 // stying with material-ui
 import { 
     Button,
@@ -39,7 +40,6 @@ class Description extends Component {
         this.props.history.push( '/editItem' ); 
     } // end onEditItem
 
-  
     handleChangeFor = ( event, propertyName ) => {
         // console.log(' in handleChange for:', event.target.value )
         //set a new state
@@ -50,7 +50,6 @@ class Description extends Component {
         })
         this.checkDate();
     } // end handleChangeFor
-
 
     checkDate(){
         this.setState(( prevState ) => {
@@ -75,16 +74,8 @@ class Description extends Component {
     return (
         <div>
         <Nav/>
-        <div className ='descriptionHeader'>
-            <Typography 
-                style={{ fontFamily: 'Quicksand' }}
-                variant='h4'>
-                { this.state.color } { this.state.brand } { this.state.type }
-            </Typography>
-        </div>
-
+        <DescriptionHeader />
         <br/>
-
         <div className="dateWorn" >
             <div style={{ textAlign: 'center' }}>
                 <InputLabel style={{display : 'inline-block'}} htmlFor="dateWorn">
@@ -104,31 +95,8 @@ class Description extends Component {
                         </input> ) }  
             </div>
         </div>
-
-        <div className='materialDisplay' style={{textAlign: 'center'}}>
-        <InputLabel style={{display : 'inline-block'}} htmlFor="material">
-            Material: </InputLabel> <Typography variant='body1' style={{display : 'inline-block'}}>{ this.state.material }</Typography>
-        </div>
-                
-        <div className='descriptionImg'>
-            <Card>
-                <div style={{ display:'flex', justifyContent:'center' }}>
-                    <img src={ this.state.image_url }></img>
-                </div> 
-            </Card>
-
-            <div className="descriptionBody" style={{textAlign: 'center'}}>
-            <FormHelperText>Care / Washing Instructions</FormHelperText> 
-            <div className='notes' style={{ marginTop: -5 }}><FormHelperText>or Notes:</FormHelperText></div>
-            </div>
-            
-            <Typography 
-                variant='body1'>
-                { this.state.description }
-            </Typography>
-                
-        </div>
-
+        <DescriptionMaterial/>
+        <DescriptionImage/>
         <div className="editBtn" 
             style={{ textAlign:'center', marginTop: 150 }}>
             <Button  
@@ -138,9 +106,7 @@ class Description extends Component {
                 name="submit" 
                 onClick={ () => this.onEditItem( this.state ) }>Edit Item</Button>
         </div>
-
         <footer class="footer-nav"></footer>
-
     </div>
     );
   }

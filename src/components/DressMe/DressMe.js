@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { withRouter } from 'react-router-dom';
-import Item from '../CarouselSlide/CarouselSlide';
+import Item from './CarouselSlide';
 import Carousel from 'react-material-ui-carousel';
 import Nav from '../Nav/Nav';
-
 
 import './DressMe.css';
 
@@ -32,12 +31,7 @@ class DressMe extends Component {
     this.sortBottoms();
   }
 
-  addItem = () => {
-    this.props.history.push('/addItem')
-  }
-
   dressMe = () => {
-    console.log( 'in dressMeeeeee!' )
     let randomTopMax = this.state.newTopsArray.length-1;
     let randomTop = this.randomNumber( 0, randomTopMax )
     let randomBottomMax = this.state.newBottomsArray.length-1;
@@ -106,7 +100,6 @@ class DressMe extends Component {
       <div>
       <Nav/>
       <div className='newDressMeUser'>
-        
         <Typography variant='body1'>Looks like you don't have any items yet!</Typography>
         <Typography variant='body1'>Add some items and come back soon!</Typography>
         <LibraryAddIcon style={{ width: 50, height: 50 }} fontSize='large' onClick={ this.addItem }></LibraryAddIcon>
