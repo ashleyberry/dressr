@@ -5,16 +5,17 @@ import { withRouter } from 'react-router-dom';
 import Item from './CarouselSlide';
 import Carousel from 'react-material-ui-carousel';
 import Nav from '../Nav/Nav';
-
+import DressMeBtn from './DressMeBtn';
+import FindBottomBtn from './FindBottomBtn';
+import FindTopBtn from './FindTopBtn';
+import NewDressMeUser from './NewDressMeUser';
 import './DressMe.css';
 
 // stying with material-ui
 import { 
   Button, 
-  Card,
-  Typography
+  Card
 } from '@material-ui/core';
-import LibraryAddIcon from '@material-ui/icons/LibraryAdd';
 
 class DressMe extends Component {
 
@@ -31,6 +32,7 @@ class DressMe extends Component {
     this.sortBottoms();
   }
 
+  // randomly selects a top and bottom from the user's wardrobe
   dressMe = () => {
     let randomTopMax = this.state.newTopsArray.length-1;
     let randomTop = this.randomNumber( 0, randomTopMax )
@@ -43,6 +45,7 @@ class DressMe extends Component {
     })
   }
 
+  // randomly selects a new bottom from the user's wardrobe
   findBottom = () => {
     let randomBottomMax = this.state.newBottomsArray.length-1;
     let randomBottom = this.randomNumber( 0, randomBottomMax )
@@ -52,6 +55,7 @@ class DressMe extends Component {
     })
   }
 
+  // randomly selects a new top from the user's wardrobe
   findTop = () => {
     let randomTopMax = this.state.newTopsArray.length-1;
     let randomTop = this.randomNumber( 0, randomTopMax )
@@ -61,8 +65,8 @@ class DressMe extends Component {
     })
   }
 
+  // creates new array with all tops from user's clothing database
   sortTops = () => {
-    console.log( 'in sortTops' )
     { this.props.store.clothing.map(( item )=> {
         if ( item.kind === 'top' || item.kind === 'Top' ) {
           // add item to local state tops array.
@@ -74,6 +78,7 @@ class DressMe extends Component {
         )}
       }
 
+  // creates new array with all tops from user's clothing database
   sortBottoms = () => {
     console.log( 'in sortBottoms' )
     { this.props.store.clothing.map(( item )=> {
@@ -88,98 +93,62 @@ class DressMe extends Component {
       }
   }
 
+  // randomizing algorithm
   randomNumber = ( min, max ) => {
     return Math.floor(Math.random() * (1 + max - min) + min);
   }
 
   render() {
-    
     if ( this.state.newTopsArray.length === 0 ) {
-
     return (
       <div>
-      <Nav/>
-      <div className='newDressMeUser'>
-        <Typography variant='body1'>Looks like you don't have any items yet!</Typography>
-        <Typography variant='body1'>Add some items and come back soon!</Typography>
-        <LibraryAddIcon style={{ width: 50, height: 50 }} fontSize='large' onClick={ this.addItem }></LibraryAddIcon>
-      </div>
+        <Nav/>
+        <NewDressMeUser />
       </div>
     )} else 
     return (
       <div>
         <Nav/>
         <div className='dressMe'>
-
-        <div className="dressMeBtn" 
-                style={{ textAlign:'center', marginBottom: 30 }}>
-                <Button  
-                    style={{ color: 'white', fontSize: 18, background: 'linear-gradient(45deg, #1098cd 30%, #10bfcd 90%)'}}
-                    variant="outlined" 
-                    type="submit" 
-                    name="submit" 
-                    onClick={ this.dressMe }>Dress Me</Button>
-            </div>
-
+          <DressMeBtn dressMe={ this.dressMe }/>
           <div className='dressMeImages'>
-
             <div className='dressMeTop'>
-                  { this.state.randomTop === '' ? (
-                    <div>
-                      <Carousel autoPlay={ false } >
-                        { this.state.newTopsArray.map( ( item, i ) => 
-                          <Item key={ i } item={ item } /> )}
-                      </Carousel>
-                    </div>) : (
-                    <div className='randomTop'>
-                      <Card style={{ marginTop: 10 }}>
-                        <img src={ this.state.randomTop }
-                        style={{ objectFit: 'cover' }}></img>
-                      </Card>
-                      <div className='getTopBtn'
-                        style={{ textAlign:'center' }}>
-                        <Button 
-                          style={{ marginTop: 5 }}
-                          onClick= { this.findTop }
-                          variant='outlined'
-                          color='primary'>New Top
-                        </Button>
-                      </div>
-                    </div>
-                    )}
+              { this.state.randomTop === '' ? (
+                <div>
+                  <Carousel autoPlay={ false } >
+                    { this.state.newTopsArray.map( ( item, i ) => 
+                      <Item key={ i } item={ item } /> )}
+                  </Carousel>
+                </div>) : (
+                <div className='randomTop'>
+                  <Card style={{ marginTop: 10 }}>
+                    <img src={ this.state.randomTop }
+                    style={{ objectFit: 'cover' }}></img>
+                  </Card>
+                  <FindTopBtn findTop = { this.findTop }/>
                 </div>
-
+                )}
+            </div>
             <div className='dressMeBottom'>
-                    { this.state.randomBottom === '' ? (<div>
-                      <Carousel autoPlay={ false } >
-                        { this.state.newBottomsArray.map( (item, i) => 
-                          <Item key={i} item={item} /> )}
-                      </Carousel>
-                    </div>) : 
-                    (<div className='randomBottom'>
-                      <Card style={{ marginTop: 10 }}>
-                        <img src={ this.state.randomBottom }
-                        style={{ objectFit: 'cover' }}></img>
-                      </Card>
-                      <div className='getBottomBtn'
-                        style={{ textAlign:'center' }}>
-                          <Button
-                            style={{ marginTop: 5 }} 
-                            onClick= { this.findBottom }
-                            variant='outlined'
-                            color='primary'>New Bottom
-                          </Button>
-                      </div>
-                    </div>
-                    )}
-                </div>
-          
+              { this.state.randomBottom === '' ? (
+              <div>
+                <Carousel autoPlay={ false } >
+                  { this.state.newBottomsArray.map( (item, i) => 
+                    <Item key={i} item={item} /> )}
+                </Carousel>
+              </div>) : 
+              (<div className='randomBottom'>
+                <Card style={{ marginTop: 10 }}>
+                  <img src={ this.state.randomBottom }
+                  style={{ objectFit: 'cover' }}></img>
+                </Card>
+                <FindBottomBtn findBottom = { this.findBottom }/>
+              </div>
+              )}
+            </div>
           </div>
-
-          </div>
-              
-        </div>
-   
+        </div> 
+      </div>
     );
   }
 }
