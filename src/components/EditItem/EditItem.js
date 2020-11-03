@@ -4,24 +4,22 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import { withRouter } from 'react-router-dom';
 import Nav from '../Nav/Nav';
 import './EditItem.css';
-
+import DeleteInfo from './DeleteInfo';
+import EditItemHeader from './EditItemHeading';
+import EditBrand from './EditBrand';
+import EditType from './EditType';
 import swal from '@sweetalert/with-react';
 
 // import material-ui styling
 import { 
   Button, 
-  Card,
   Grid,
-  FormControl,
   FormControlLabel,
   FormHelperText,
   FormLabel,
-  InputLabel,
   Radio,
   RadioGroup,
-  Select,
-  TextField,
-  Typography
+  TextField
 } from '@material-ui/core';
 
 class EditItem extends Component {
@@ -39,8 +37,8 @@ class EditItem extends Component {
     isOther: false
 };
 
+  // upon clicking cancel button, user is sent to home page
   onCancel = () => {
-    console.log('in onCancel');
     this.props.history.push( '/home' );
   }
 
@@ -53,7 +51,6 @@ class EditItem extends Component {
   }
 
   onSave = () => {
-    console.log('in onSave', this.state );
     this.props.dispatch({
       type: 'UPDATE_ITEM',
       payload: this.state
@@ -61,6 +58,7 @@ class EditItem extends Component {
     this.props.history.push('/home')
   }
 
+  // delete alert
   onDeleteClick = () => {
     swal({
       title: "Are you sure?",
@@ -71,18 +69,11 @@ class EditItem extends Component {
       }).then(( willDelete ) => {
         if ( willDelete ) {
         this.onDeleteItem( this.state.id )
-        swal( <div>
-          <hr/>
-          <Typography style={{ marginTop: 20 }}variant='body1'>DONATE</Typography> 
-          <img style={{ width: 100, height: 70 }} src='https://www.roadrunnerwm.com/hs-fs/hubfs/Donate_Icon.png?name=Donate_Icon.png'></img>
-
-          <Typography><a href="https://www.homelessshelterdirectory.org/" target="_blank"><b>Find nearby locations</b></a> to donate your gently-used clothing for those in need.</Typography>
-          <Typography style={{ marginTop: 20 }} variant='body1'>RECYCLE</Typography>
-          <img style={{ width: 100, height: 70 }} src='https://www.roadrunnerwm.com/hs-fs/hubfs/RecycleClothing_Icon.png?name=RecycleClothing_Icon.png'></img>
-
-          <Typography variant='body1'> Too worn out to donate?</Typography> 
-          <Typography variant='body1'>Nearly 100% of textiles can be recycled!</Typography>
-        </div>, {
+        swal( 
+        <div>
+          <DeleteInfo/>
+        </div>
+        , {
           title: "Deleted!",
           icon: "success",
           });
@@ -115,61 +106,14 @@ class EditItem extends Component {
   }
 
   render() {
-    console.log( 'EDIIIIIIT ITEM:', this.state )
     return (
       <div>
         <Nav/>
-
-      <div className='descriptionImg' style={{ textAlign: 'center'}}>
-        <Card>
-        <Typography
-              style={{ fontFamily: 'Quicksand' }}
-                variant='h5'>
-                Edit this item
-            </Typography>
-            { this.state.image_url === '' ? ( null ) : ( 
-              <Card style={{ textAlign: 'center', marginTop: 10 }}>
-                <img className='addImage' src={ this.state.image_url }></img>
-              </Card> ) }
-        </Card>
-      </div>
-      <div className='editItemForm'>
-
-      <div className="brand"
-        style = { { paddingTop: 60 } }>
-          <TextField 
-            htmlFor="brand"
-            label="Brand"
-            variant="outlined"
-            onChange={ ( event ) => this.handleChangeFor( event, 'brand' )}>
-          </TextField>
-        </div>
-
-      {/* drop down with type names */}
-        <div className='editType'>
-          <FormControl variant='outlined'>
-            <InputLabel id="type-native-helper">Type</InputLabel>
-              <Select
-                labelId='type-label'
-                id='type-native-helper'
-                native
-                label='Type'
-                onChange={ ( event ) => this.handleChangeFor ( event, 'type' ) }
-                inputProps={{
-                  name: 'type',
-                }}>
-                <option aria-label="None" value="" />
-                {this.props.store.types.map( type => {
-                  return (
-                    <option key={ type.id } 
-                    value={ type.type }>
-                    { type.type }
-                    </option>
-                  )
-                })}
-                <option>other</option>
-              </Select>
-          </FormControl>
+        <EditItemHeader/>
+        <div className='editItemForm'>
+          <EditBrand handleChangeFor = { this.handleChangeFor }/>
+          <EditType handleChangeFor = { this.handleChangeFor }/>
+      
           <div className="hiddenOther"
             style = { { paddingTop: 10 } }>
             { this.state.isOther === false ? (
@@ -181,8 +125,6 @@ class EditItem extends Component {
             </TextField>
             )}
           </div>
-          
-        </div>
 
        <div className="kindRadio"
             style = { { paddingTop: 15 } }>

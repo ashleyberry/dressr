@@ -4,6 +4,8 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import { Card, 
     FormHelperText, 
     Typography } from '@material-ui/core';
+import Placeholder from '../../images/placeholder-vertical.jpg';
+
 
 class DescriptionImage extends Component {
     state = {
@@ -16,7 +18,11 @@ class DescriptionImage extends Component {
         <div className='descriptionImg'>
             <Card>
                 <div style={{ display:'flex', justifyContent:'center' }}>
-                    <img src={ this.state.image_url }></img>
+                    { this.state.image_url === '' ? ( 
+                        <img src= { Placeholder } />
+                    ) : ( 
+                        <img src={ this.state.image_url }/>
+                    )}
                 </div> 
             </Card>
             <div className="descriptionBody" style={{textAlign: 'center'}}>
