@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 import Nav from '../Nav/Nav';
 import './EditItem.css';
 
-import swal from '@sweetalert/with-react';
+// import swal from '@sweetalert/with-react';
 
 // import material-ui styling
 import { 
@@ -22,7 +22,7 @@ import {
   Select,
   TextField,
   Typography
-} from '@material-ui/core';
+} from '@mui/material';
 
 // Basic class component structure for React with default state
 // value setup. When making a new component be sure to replace
@@ -66,32 +66,32 @@ class EditItem extends Component {
   }
 
   onDeleteClick = () => {
-    swal({
-      title: "Are you sure?",
-      text: "This can't be undone!",
-      icon: "warning",
-      buttons: [ "AS IF!", true ],
-      dangerMode: true,
-      }).then(( willDelete ) => {
-        if ( willDelete ) {
-        this.onDeleteItem( this.state.id )
-        swal( <div>
-          <hr/>
-          <Typography style={{ marginTop: 20 }}variant='body1'>DONATE</Typography> 
-          <img style={{ width: 100, height: 70 }} src='https://www.roadrunnerwm.com/hs-fs/hubfs/Donate_Icon.png?name=Donate_Icon.png'></img>
-
-          <Typography><a href="https://www.homelessshelterdirectory.org/" target="_blank"><b>Find nearby locations</b></a> to donate your gently-used clothing for those in need.</Typography>
-          <Typography style={{ marginTop: 20 }} variant='body1'>RECYCLE</Typography>
-          <img style={{ width: 100, height: 70 }} src='https://www.roadrunnerwm.com/hs-fs/hubfs/RecycleClothing_Icon.png?name=RecycleClothing_Icon.png'></img>
-
-          <Typography variant='body1'> Too worn out to donate?</Typography> 
-          <Typography variant='body1'>Nearly 100% of textiles can be recycled!</Typography>
-        </div>, {
-          title: "Deleted!",
-          icon: "success",
-          });
-        }
-    })
+    // swal({
+    //   title: "Are you sure?",
+    //   text: "This can't be undone!",
+    //   icon: "warning",
+    //   buttons: [ "AS IF!", true ],
+    //   dangerMode: true,
+    //   }).then(( willDelete ) => {
+    //     if ( willDelete ) {
+    //     this.onDeleteItem( this.state.id )
+    //     swal( <div>
+    //       <hr/>
+    //       <Typography style={{ marginTop: 20 }}variant='body1'>DONATE</Typography>
+    //       <img style={{ width: 100, height: 70 }} src='https://www.roadrunnerwm.com/hs-fs/hubfs/Donate_Icon.png?name=Donate_Icon.png'></img>
+    //
+    //       <Typography><a href="https://www.homelessshelterdirectory.org/" target="_blank"><b>Find nearby locations</b></a> to donate your gently-used clothing for those in need.</Typography>
+    //       <Typography style={{ marginTop: 20 }} variant='body1'>RECYCLE</Typography>
+    //       <img style={{ width: 100, height: 70 }} src='https://www.roadrunnerwm.com/hs-fs/hubfs/RecycleClothing_Icon.png?name=RecycleClothing_Icon.png'></img>
+    //
+    //       <Typography variant='body1'> Too worn out to donate?</Typography>
+    //       <Typography variant='body1'>Nearly 100% of textiles can be recycled!</Typography>
+    //     </div>, {
+    //       title: "Deleted!",
+    //       icon: "success",
+    //       });
+    //     }
+    // })
   }
 
   // delete item
@@ -540,7 +540,7 @@ class EditItem extends Component {
               multiline
               style = { { width: 300 } }
               rows={4}
-              rowsMax={4}
+              maxRows={4}
               >
           </TextField>
           <FormHelperText>Add Care / Washing Instructions or a Note</FormHelperText>
@@ -572,7 +572,6 @@ class EditItem extends Component {
       
       </div>
       </div>
-
     );
   }
 }

@@ -7,7 +7,7 @@ import {
   Button, 
   TextField,
   Typography 
-} from '@material-ui/core'
+} from '@mui/material'
 import '../LoginForm/LoginForm.css';
 
 class RegisterForm extends Component {

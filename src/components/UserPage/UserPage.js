@@ -4,9 +4,11 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import { withRouter } from 'react-router-dom';
 import Searchish from '../SearchBar/SearchBar';
 import Nav from '../Nav/Nav';
-import LibraryAddIcon from '@material-ui/icons/LibraryAdd';
-import { Typography } from '@material-ui/core/';
+import { LibraryAdd } from "@mui/icons-material";
+
+
 import './UserPage.css';
+import {Typography} from "@mui/material";
 
 class UserPage extends Component {
 
@@ -50,7 +52,7 @@ class UserPage extends Component {
       <div className='newUserNotice'>
         <Typography variant='h5'>Your closet is empty!</Typography>
         <Typography variant='h6'>Add your first item!</Typography>
-        <LibraryAddIcon style={{ width: 50, height: 50 }} fontSize='large' onClick={ this.addItem }></LibraryAddIcon>
+        <LibraryAdd style={{ width: 50, height: 50 }} fontSize='large' onClick={ this.addItem }></LibraryAdd>
     </div>
     </div>
     )

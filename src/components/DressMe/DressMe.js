@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { withRouter } from 'react-router-dom';
 import Item from '../CarouselSlide/CarouselSlide';
-import Carousel from 'react-material-ui-carousel';
+// import Carousel from 'react-material-ui-carousel';
 import Nav from '../Nav/Nav';
 
 
@@ -14,8 +14,8 @@ import {
   Button, 
   Card,
   Typography
-} from '@material-ui/core';
-import LibraryAddIcon from '@material-ui/icons/LibraryAdd';
+} from '@mui/material';
+import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
 
 class DressMe extends Component {
 
@@ -123,10 +123,10 @@ class DressMe extends Component {
             <div className='dressMeTop'>
                   { this.state.randomTop === '' ? (
                     <div>
-                      <Carousel autoPlay={ false } >
-                        { this.state.newTopsArray.map( ( item, i ) => 
-                          <Item key={ i } item={ item } /> )}
-                      </Carousel>
+                      {/*<Carousel autoPlay={ false } >*/}
+                      {/*  { this.state.newTopsArray.map( ( item, i ) => */}
+                      {/*    <Item key={ i } item={ item } /> )}*/}
+                      {/*</Carousel>*/}
                     </div>) : (
                     <div className='randomTop'>
                       <Card style={{ marginTop: 10 }}>
