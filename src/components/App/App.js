@@ -1,4 +1,4 @@
-import React, {Component, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {connect, useDispatch} from 'react-redux';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import {
@@ -7,8 +7,8 @@ import {
   Redirect,
   Switch,
 } from 'react-router-dom';
-
 import { Typography } from '@mui/material'
+import { ThemeProvider, StyledEngineProvider, createTheme,  } from '@mui/material/styles';
 
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
@@ -20,8 +20,6 @@ import EditItem from '../EditItem/EditItem';
 import Description from '../Description/Description';
 import DressMe from '../DressMe/DressMe';
 import Footer from '../Footer/Footer';
-import { ThemeProvider, StyledEngineProvider, createTheme,  } from '@mui/material/styles';
-
 import './App.css';
 
 const theme = createTheme({
