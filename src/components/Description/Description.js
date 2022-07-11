@@ -13,7 +13,7 @@ import {
     FormHelperText,
     InputLabel,
     Typography
-  } from '@material-ui/core';
+  } from '@mui/material';
 
 class Description extends Component {
 
@@ -91,12 +91,12 @@ class Description extends Component {
                     Last worn:
                 </InputLabel>
                     { this.state.date_worn === '' || this.state.date_worn === undefined || this.state.date_worn === 'undefined' || this.state.date_worn === null ? 
-                        (<input style={{display : 'inline-block'}, { marginLeft: 15 }, { fontFamily: 'Quicksand' }} type="date" 
+                        (<input style={({display : 'inline-block'}, { marginLeft: 15 }, { fontFamily: 'Quicksand' })} type="date" 
                             id="dateWorn" 
                             name="dateWorn"
                             onChange={ ( event ) => this.handleChangeFor ( event, 'date_worn' ) }>
                         </input>) : 
-                        ( <input style={{display : 'inline-block'}, { marginLeft: 15 }, { fontFamily: 'Quicksand' }} type="date" 
+                        ( <input style={({display : 'inline-block'}, { marginLeft: 15 }, { fontFamily: 'Quicksand' })} type="date" 
                             value={this.state.date_worn.split( 'T' )[0]} 
                             id="dateWorn" 
                             name="dateWorn"

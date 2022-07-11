@@ -7,7 +7,7 @@ import {
   Button, 
   TextField,
   Typography
-} from '@material-ui/core';
+} from '@mui/material';
 
 
 class LoginForm extends Component {

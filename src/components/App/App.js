@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, {useEffect} from 'react';
+import {connect, useDispatch} from 'react-redux';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import {
   HashRouter as Router,
@@ -7,8 +7,8 @@ import {
   Redirect,
   Switch,
 } from 'react-router-dom';
-
-import { Typography } from '@material-ui/core'
+import { Typography } from '@mui/material'
+import { ThemeProvider, StyledEngineProvider, createTheme,  } from '@mui/material/styles';
 
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
@@ -20,19 +20,36 @@ import EditItem from '../EditItem/EditItem';
 import Description from '../Description/Description';
 import DressMe from '../DressMe/DressMe';
 import Footer from '../Footer/Footer';
-
 import './App.css';
 
-class App extends Component {
-  componentDidMount() {
-    this.props.dispatch({ type: 'FETCH_USER' });
+const theme = createTheme({
+  components: {
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {}
+      }
+    }
+}
+});
+
+
+function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    getUser();
+  }, []);
+
+  const getUser = () => {
+    dispatch({ type: 'FETCH_USER' })
   }
 
-  render() {
     return (
+      <StyledEngineProvider injectFirst>
+        <ThemeProvider theme={theme}>
       <Router>
         <div>
-          
+
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
             <Redirect exact from="/" to="/home" />
@@ -137,8 +154,9 @@ class App extends Component {
           <Footer />
         </div>
       </Router>
+        </ThemeProvider>
+      </StyledEngineProvider>
     );
-  }
 }
 
 export default connect()(App);

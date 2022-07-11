@@ -24,7 +24,7 @@ import {
   Select,
   TextField,
   Typography
-} from '@material-ui/core';
+} from '@mui/material';
 
 
 class AddItem extends Component {
@@ -502,7 +502,7 @@ class AddItem extends Component {
                   multiline
                   style = { { width: 300 } }
                   rows={4}
-                  rowsMax={4}
+                  maxRows={4}
                   >
               </TextField>
               <FormHelperText>Add Care / Washing Instructions or a Note</FormHelperText>

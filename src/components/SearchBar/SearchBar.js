@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { withRouter } from 'react-router-dom';
 import './SearchBar.css'
-import SearchBar from "material-ui-search-bar";
-import { 
+// import SearchBar from "material-ui-search-bar";
+import {
   Card,
   Typography 
-} from '@material-ui/core/';
+} from '@mui/material';
 
 class Searchish extends Component {
     state = {
@@ -30,7 +30,6 @@ class Searchish extends Component {
     }
 
     render() {
-        console.log( 'in SEARRRRCH' )
         const items = this.props.store.clothing.filter(( item )=>{
             if( this.state.inputValue == null) {
             return item
@@ -63,11 +62,12 @@ class Searchish extends Component {
     return (
         <div>
             <div className ='searchBar'>
-                <SearchBar 
-                    style={{ width: 200, marginLeft: 20 }}
-                    value={ this.state.search }
-                    onChange={( newValue ) => this.setState({ inputValue: newValue })}
-                    onRequestSearch={() => this.filterByInput( this.state.inputValue )}/>
+                {/*<SearchBar */}
+                {/*    style={{ width: 200, marginLeft: 20 }}*/}
+                {/*    value={ this.state.search }*/}
+                {/*    onChange={( newValue ) => this.setState({ inputValue: newValue })}*/}
+                {/*    onRequestSearch={() => this.filterByInput( this.state.inputValue )}/>*/}
+
                     { items.length === 0 || items === null ? (
                     <div className='noMatchingSearch'>
                     <Typography variant='body1'>No items matched your search '{ this.state.inputValue }'!</Typography>
