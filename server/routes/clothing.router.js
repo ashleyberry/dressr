@@ -7,7 +7,6 @@ const router = express.Router();
 
 // get all items
 router.get('/', rejectUnauthenticated, (req, res) => {
-    console.log( 'in clothing GET')
     const queryText = `SELECT * FROM "clothing" WHERE "user_id" = $1;`
     pool.query( queryText, [ req.user.id ] )
     .then( results => {
@@ -21,7 +20,6 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
 // Delete a clothing item
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
-  console.log( 'in delete router:', req.params.id)
   const query = `DELETE FROM "clothing" WHERE "id"=$1;`
   pool.query(query, [req.params.id])
   .then(() => 
